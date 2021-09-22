@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="false"
+    tools:context=".LauncherActivity"
+    android:id="@+id/launcher_activity"
+    >
+
+    <ImageView
+        android:id="@+id/wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.88"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/stopusingphone"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.2"
+        android:background="@android:color/black"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/statustextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="false"
+        android:layout_centerVertical="true"
+        android:textColor="@color/yellow"
+        android:textSize="28sp"
+        tools:visibility="visible" />
+
+    <RelativeLayout
+        android:id="@+id/voiceAssistantLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="48dp"
+        android:layout_marginBottom="48dp"
+        android:alwaysDrawnWithCache="false"
+        android:animateLayoutChanges="true"
+        android:clickable="true"
+        android:focusable="auto"
+        android:focusableInTouchMode="true">
+
+        <ImageView
+            android:id="@+id/microphoneIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:alpha="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerCrop"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/hitApplicationIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_toRightOf="@id/microphoneIcon"
+            android:alpha="1"
+            android:scaleType="centerCrop"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
