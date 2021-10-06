@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">内置FTP服务器示例</string>
+    <string name="app_name">太极FTP服务器</string>
+    <string name="copyUrl">复制地址</string>
 </resources>

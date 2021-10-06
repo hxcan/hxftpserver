@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">BuitinFtp Demo</string>
+    <string name="app_name">Hx Ftp Server</string>
+    <string name="copyUrl">Copy url</string>
 </resources>

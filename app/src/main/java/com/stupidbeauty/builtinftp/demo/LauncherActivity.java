@@ -4,20 +4,40 @@ import android.app.Activity;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import java.util.Random;
-import com.stupidbeauty.hxlauncher.asynctask.FileExtractTask;
 import android.text.format.Formatter;
 import android.view.View;
 import android.widget.TextView;
 import com.stupidbeauty.builtinftp.BuiltinFtpServer;
-// import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import android.content.ClipboardManager;
+import butterknife.OnClick;
+import android.content.ClipData;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
+
 
 public class LauncherActivity extends Activity 
 {
     private BuiltinFtpServer builtinFtpServer=new BuiltinFtpServer(this); //!< The builtin ftp server.
 
     @Bind(R.id.statustextView) TextView statustextView; //!< Label to show status text.
+    
+    @OnClick(R.id.copyUrlButton)
+    public void copyUrlButton()
+    {
+//     陈欣
+
+String stringNodeCopied= statustextView.getText().toString();
+
+            ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = android.content.ClipData.newPlainText("Copied", stringNodeCopied);
+
+            clipboard.setPrimaryClip(clip);
+    }
 
     /**
     * Choose a random port.
@@ -54,17 +74,5 @@ public class LauncherActivity extends Activity
         String ftpUrl="ftp://"+ ipAddress + ":"+ actualPort +"/"; // Construct the ftp server url.
 
         statustextView.setText(ftpUrl); // Show the FTP url
-
-        startExtractFiles(); // Start extracting file for demonstration.
     } //protected void onCreate(Bundle savedInstanceState)
-    
-    /**
-    *  Start extracting files for demonstration.
-    */
-    private void startExtractFiles()
-    {
-        FileExtractTask fileExtractTask =new FileExtractTask(  ); // Create the  async task.
-
-        fileExtractTask.execute(this); // Execute the task.
-    } //private void startExtractFiles()
 }
