@@ -1,37 +1,59 @@
-BuiltinFtp: Embed a FTP server into the Android application you are developing, to operate the private files of the application with your computer, to help your debug process
+HxFtpServer: Hx FTP Server, a simple FTP server application for Android
 ===
 
-[![](https://jitpack.io/v/hxcan/builtinftp.svg)](https://jitpack.io/#hxcan/builtinftp)
-
-Summary 
+1 Quick download
 ==
 
-This is an Android library, the title has explained its functionality.
+Click this link:
+https://stupidbeauty.com/ArticleImages/1907/HxFtpServer.4501.2021.10.8.apk
 
-Source code: https://github.com/hxcan/builtinftp
+![](https://stupidbeauty.com/ArticleImages/1908/0.png)
 
-Demo application: https://github.com/hxcan/builtinftpdemo
-
-![](https://stupidbeauty.com/ArticleImages/1903/0.jpg)
-
-Add dependency
+2 Change log
 ==
 
-Follow the instructions here: https://jitpack.io/#hxcan/builtinftp
-
-Remember to replace the Tag to the latest tag value, currently it is “2021.9.60”.
-
-Start the builtin FTP server
+2.1 4501.2021.10.8
 ==
 
-Refer to the code in the demo application: https://github.com/hxcan/builtinftpdemo/blob/master/app/src/main/java/com/stupidbeauty/builtinftp/demo/LauncherActivity.java#L45
+Version 4501.2021.10.8, is released with the following changes:
 
-To support more FTP clients
-===
+    1. Initial version, with basic functionality, expose the external storage with a FTP server, which enables you to operate the files in your phone with a computer FTP client.
+    
+3 Explaination
+==
 
-If your FTP client did not work well with this FTP server, please report an issue: https://github.com/hxcan/builtinftp/issues
+This application will start a FTP server, which enables you to operate the files in the external storage of your phone with a computer FTP client.
 
-Mysterious text
-===
+4 How to use
+==
 
-################### #"#$#&#(#*#,#.#0#2#4#6#8#:#<#>#@#B
+4.1 Download and install
+==
+
+4.1.1 Download and install manually
+==
+
+Visit this url to download the apk:
+https://stupidbeauty.com/ArticleImages/1907/HxFtpServer.4501.2021.10.8.apk
+
+Or scan this QR code:
+
+![](https://stupidbeauty.com/ArticleImages/1908/1.png)
+
+You can then install the apk manually.
+
+4.2 Use it
+==
+
+Launch this application, and connect to the FTP url shown on the screen with your computer FTP client.
+
+![](https://stupidbeauty.com/ArticleImages/1908/2.jpg)
+
+5 Privacy policy
+==
+
+5.1 External storage
+==
+
+This application need to read and write the external storage for its basic functionality to work correctly.
+

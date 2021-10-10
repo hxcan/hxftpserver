@@ -12,8 +12,8 @@ android {
         applicationId "com.stupidbeauty.hxftpserver"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 4499
-        versionName "4499.2021.9.5"
+        versionCode 4501
+        versionName "4501.2021.10.8"
     }
 
     buildTypes {
@@ -32,6 +32,6 @@ dependencies {
     implementation 'com.stupidbeauty:VictoriaFresh:2020.7.27'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.github.hxcan:ftpserver:2021.10.15'
+    implementation 'com.github.hxcan:ftpserver:2021.10.17'
     compile 'com.upokecenter:cbor:4.2.0'
 }
