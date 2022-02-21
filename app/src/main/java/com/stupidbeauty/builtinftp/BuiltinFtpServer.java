@@ -14,15 +14,24 @@ import java.util.Date;
 import java.time.format.DateTimeFormatter;
 import java.io.File;
 import com.koushikdutta.async.AsyncServerSocket;
+import com.stupidbeauty.ftpserver.lib.EventListener;
 
 public class BuiltinFtpServer
 {
     private static final String TAG="BuiltinFtpServer"; //!< 输出调试信息时使用的标记
     private ErrorListener errorListener=null; //!< Error listener.
+    private EventListener eventListener=null; //!< Event listener.
     private FtpServerErrorListener ftpServerErrorListener=null; //!< The ftp server error listner. Chen xin.
     private int port=1421; //!< Port.
     private FtpServer ftpServer=null; //!< Ftp server object.
     private boolean allowActiveMode=true; //!<  Whether to allow active mode.
+    
+    public void setEventListener(EventListener eventListener)
+    {
+        this.eventListener=eventListener;
+        
+        ftpServer.setEventListener(eventListener);
+    } //public void setEventListener(EventListener eventListener)
     
     public void setErrorListener(ErrorListener errorListener)    
     {

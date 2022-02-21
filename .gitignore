@@ -3,3 +3,5 @@
 app/build/
 build/
 local.properties
+.exzignore
+app/.exzignore

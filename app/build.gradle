@@ -6,14 +6,15 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
+        buildToolsVersion = "30.0.3"
         applicationId "com.stupidbeauty.hxftpserver"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 4501
-        versionName "4501.2021.10.8"
+        versionCode 4506
+        versionName "4506.2021.10.8"
     }
 
     buildTypes {
@@ -32,6 +33,7 @@ dependencies {
     implementation 'com.stupidbeauty:VictoriaFresh:2020.7.27'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.github.hxcan:ftpserver:2021.10.17'
+    implementation 'com.github.hxcan:ftpserver:2022.2.14'
+    compile 'com.github.hxcan:rotatingactiveuser:2021.11.30'
     compile 'com.upokecenter:cbor:4.2.0'
 }

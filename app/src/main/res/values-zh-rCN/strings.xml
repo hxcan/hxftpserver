@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">太极FTP服务器</string>
     <string name="copyUrl">复制地址</string>
+    <string name="availableSpace">可用空间：</string>
 </resources>
