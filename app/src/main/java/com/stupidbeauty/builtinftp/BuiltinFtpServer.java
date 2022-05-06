@@ -18,60 +18,69 @@ import com.stupidbeauty.ftpserver.lib.EventListener;
 
 public class BuiltinFtpServer
 {
-    private static final String TAG="BuiltinFtpServer"; //!< 输出调试信息时使用的标记
-    private ErrorListener errorListener=null; //!< Error listener.
-    private EventListener eventListener=null; //!< Event listener.
-    private FtpServerErrorListener ftpServerErrorListener=null; //!< The ftp server error listner. Chen xin.
-    private int port=1421; //!< Port.
-    private FtpServer ftpServer=null; //!< Ftp server object.
-    private boolean allowActiveMode=true; //!<  Whether to allow active mode.
+  private static final String TAG="BuiltinFtpServer"; //!< 输出调试信息时使用的标记
+  private ErrorListener errorListener=null; //!< Error listener.
+  private EventListener eventListener=null; //!< Event listener.
+  private FtpServerErrorListener ftpServerErrorListener=null; //!< The ftp server error listner. Chen xin.
+  private int port=1421; //!< Port.
+  private FtpServer ftpServer=null; //!< Ftp server object.
+  private boolean allowActiveMode=true; //!<  Whether to allow active mode.
     
-    public void setEventListener(EventListener eventListener)
-    {
-        this.eventListener=eventListener;
+  public void setEventListener(EventListener eventListener)
+  {
+    this.eventListener=eventListener;
         
-        ftpServer.setEventListener(eventListener);
-    } //public void setEventListener(EventListener eventListener)
+    ftpServer.setEventListener(eventListener);
+  } //public void setEventListener(EventListener eventListener)
     
-    public void setErrorListener(ErrorListener errorListener)    
-    {
-        this.errorListener = errorListener;
-    } //public void setErrorListener(ErrorListener errorListener)    
+  public void setErrorListener(ErrorListener errorListener)    
+  {
+    this.errorListener = errorListener;
+  } //public void setErrorListener(ErrorListener errorListener)    
     
-    public void onError(Integer errorCode) 
+  public void onError(Integer errorCode) 
+  {
+    if (errorListener!=null)
     {
-        if (errorListener!=null)
-        {
-            errorListener.onError(errorCode); // Report error.
-        }
-        else // Not listener
-        {
-//             throw new BindException();
-            Exception ex = new BindException();
-            throw new RuntimeException(ex);
-        }
-    } //public void onError(Integer errorCode)
-    
-    /**
-    * Set to allow or not allow active mode.
-    */
-    public void setAllowActiveMode(boolean allowActiveMode)
-    {
-        this.allowActiveMode=allowActiveMode;
-    } //private void setAllowActiveMode(allowActiveMode)
-    
-    public void setPort(int port)
-    {
-        this.port=port;
-    } //public void setPort(int port)
-        
-    private BuiltinFtpServer() {
+      errorListener.onError(errorCode); // Report error.
     }
+    else // Not listener
+    {
+      //             throw new BindException();
+      Exception ex = new BindException();
+      throw new RuntimeException(ex);
+    }
+  } //public void onError(Integer errorCode)
+    
+  /**
+  * Set to allow or not allow active mode.
+  */
+  public void setAllowActiveMode(boolean allowActiveMode)
+  {
+    this.allowActiveMode=allowActiveMode;
+  } //private void setAllowActiveMode(allowActiveMode)
+    
+  /**
+  * 获取实际的端口。
+  */
+  public int getActualPort()
+  {
+    return port;
+  }
+    
+  public void setPort(int port)
+  {
+    this.port=port;
+  } //public void setPort(int port)
+        
+  private BuiltinFtpServer() 
+  {
+  }
 
-    public BuiltinFtpServer(Context context) 
-    {
-        this.context = context;
-    }
+  public BuiltinFtpServer(Context context) 
+  {
+    this.context = context;
+  }
 
     private Context context; //!< Context.
 

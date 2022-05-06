@@ -1,5 +1,6 @@
 package com.stupidbeauty.builtinftp.demo;
 
+import com.stupidbeauty.hxlauncher.service.DownloadNotificationService; 
 import com.stupidbeauty.ftpserver.lib.EventListener;
 import android.app.Activity;
 import android.net.wifi.WifiManager;
@@ -25,76 +26,78 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import com.stupidbeauty.hxlauncher.manager.ActiveUserReportManager;
 import android.os.Debug;
+import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
 
 public class LauncherActivity extends Activity 
 {
-    private ActiveUserReportManager activeUserReportManager=null; //!< 活跃用户统计管理器。陈欣。
-    private BuiltinFtpServer builtinFtpServer=new BuiltinFtpServer(this); //!< The builtin ftp server.
+  private ActiveUserReportManager activeUserReportManager=null; //!< 活跃用户统计管理器。陈欣。
+  private BuiltinFtpServer builtinFtpServer=null; //!< The builtin ftp server.
 
-    @Bind(R.id.statustextView) TextView statustextView; //!< Label to show status text.
-    @Bind(R.id.availableSpaceView) TextView availableSpaceView; //!< 可用空间。
+  @Bind(R.id.statustextView) TextView statustextView; //!< Label to show status text.
+  @Bind(R.id.availableSpaceView) TextView availableSpaceView; //!< 可用空间。
     
-    @OnClick(R.id.copyUrlButton)
-    public void copyUrlButton()
-    {
-//     陈欣
+  @OnClick(R.id.copyUrlButton)
+  public void copyUrlButton()
+  {
+    //     陈欣
 
-        String stringNodeCopied= statustextView.getText().toString();
+    String stringNodeCopied= statustextView.getText().toString();
 
-        ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = android.content.ClipData.newPlainText("Copied", stringNodeCopied);
+    ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+    ClipData clip = android.content.ClipData.newPlainText("Copied", stringNodeCopied);
 
-        clipboard.setPrimaryClip(clip);
-    }
+    clipboard.setPrimaryClip(clip);
+  }
+
+  @Override
+  /**
+  * The activity is being created.
+  */
+  protected void onCreate(Bundle savedInstanceState)
+  {
+    super.onCreate(savedInstanceState);
+
+    setContentView(R.layout.launcher_activity);
+
+    ButterKnife.bind(this); // Inject view.
+
+    WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+    String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
+      
+    HxLauncherApplication hxLauncherApplication= HxLauncherApplication.getInstance() ; // 获取应用程序实例。
+    builtinFtpServer=hxLauncherApplication.getBuiltinFtpServer(); // 获取FTP服务器实例对象。
+    
+    int actualPort=builtinFtpServer.getActualPort(); // 获取实际的端口。
+
+    String ftpUrl="ftp://"+ ipAddress + ":"+ actualPort +"/"; // Construct the ftp server url.
+
+    statustextView.setText(ftpUrl); // Show the FTP url
+        
+    initializeEventListener(); // 初始化事件监听器。
+        
+    startTimeCheckService(); // 启动下载通知服务。陈欣。
+  } //protected void onCreate(Bundle savedInstanceState)
 
     /**
-    * Choose a random port.
-    */
-    private int chooseRandomPort() 
-    {
-        Random random=new Random(); // Get the random.
+	 * 启动时间检查服务。
+	 */
+	private void startTimeCheckService()
+	{
+      Intent serviceIntent = new Intent(this, DownloadNotificationService.class); //创建意图。
+		
+//       serviceIntent.putExtra("applicationName", applicationName);
 
-        int randomIndex=random.nextInt(65535-1025)+1025; // Choose a random port.
-
-        return randomIndex;
-    } //private int chooseRandomPort()
+      startService(serviceIntent); //启动服务。
+	} //private void startTimeCheckService()
 
     @Override
-    /**
-     * The activity is being created.
-     */
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-
-        int actualPort=chooseRandomPort(); // Choose a random port.
-        builtinFtpServer.setPort(actualPort); // Set the port.
-        builtinFtpServer.setAllowActiveMode(false); // Do not allow active mode.
-        builtinFtpServer.start(); // Start the builtin ftp server.
-
-        setContentView(R.layout.launcher_activity);
-
-        ButterKnife.bind(this); // Inject view.
-
-        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-        String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
-
-        String ftpUrl="ftp://"+ ipAddress + ":"+ actualPort +"/"; // Construct the ftp server url.
-
-        statustextView.setText(ftpUrl); // Show the FTP url
-        
-        
-        initializeEventListener(); // 初始化事件监听器。
-    } //protected void onCreate(Bundle savedInstanceState)
-
-        @Override
     /**
      * 活动重新处于活跃状态。
      */
     protected void onResume()
     {
-        long startTimestamp=System.currentTimeMillis(); // 记录开始时间戳。
-        super.onResume(); //超类继续工作。
+      long startTimestamp=System.currentTimeMillis(); // 记录开始时间戳。
+      super.onResume(); //超类继续工作。
 
         refreshAvailableSpace(); // 刷新可用空间数量。
 
