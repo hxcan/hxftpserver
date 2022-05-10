@@ -1,5 +1,6 @@
 package com.stupidbeauty.builtinftp.demo;
 
+import com.stupidbeauty.voiceui.VoiceUi;
 import com.stupidbeauty.hxlauncher.service.DownloadNotificationService; 
 import com.stupidbeauty.ftpserver.lib.EventListener;
 import android.app.Activity;
@@ -27,9 +28,17 @@ import java.io.IOException;
 import com.stupidbeauty.hxlauncher.manager.ActiveUserReportManager;
 import android.os.Debug;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
+import java.util.Timer;
+import java.util.TimerTask;
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 
 public class LauncherActivity extends Activity 
 {
+  private VoiceUi voiceUi=null; //!< 语音交互对象。
+  private Timer timerObj = null; //!< 用于报告下载完毕的定时器。
+
   private ActiveUserReportManager activeUserReportManager=null; //!< 活跃用户统计管理器。陈欣。
   private BuiltinFtpServer builtinFtpServer=null; //!< The builtin ftp server.
 
@@ -39,8 +48,6 @@ public class LauncherActivity extends Activity
   @OnClick(R.id.copyUrlButton)
   public void copyUrlButton()
   {
-    //     陈欣
-
     String stringNodeCopied= statustextView.getText().toString();
 
     ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
@@ -60,6 +67,8 @@ public class LauncherActivity extends Activity
     setContentView(R.layout.launcher_activity);
 
     ButterKnife.bind(this); // Inject view.
+    
+    voiceUi=new VoiceUi(this); // 创建语音交互对象。
 
     WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
     String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
@@ -85,8 +94,6 @@ public class LauncherActivity extends Activity
 	{
       Intent serviceIntent = new Intent(this, DownloadNotificationService.class); //创建意图。
 		
-//       serviceIntent.putExtra("applicationName", applicationName);
-
       startService(serviceIntent); //启动服务。
 	} //private void startTimeCheckService()
 
@@ -99,9 +106,9 @@ public class LauncherActivity extends Activity
       long startTimestamp=System.currentTimeMillis(); // 记录开始时间戳。
       super.onResume(); //超类继续工作。
 
-        refreshAvailableSpace(); // 刷新可用空间数量。
+      refreshAvailableSpace(); // 刷新可用空间数量。
 
-        createActiveUserReportManager(); // 创建管理器，活跃用户统计。陈欣
+      createActiveUserReportManager(); // 创建管理器，活跃用户统计。陈欣
     } //protected void onResume()
 
     /**
@@ -109,12 +116,12 @@ public class LauncherActivity extends Activity
     */
     private void createActiveUserReportManager()
     {
-        if (activeUserReportManager==null) // 还不存在管理器。
-        {
-            activeUserReportManager=new ActiveUserReportManager(); // 创建管理器。
+      if (activeUserReportManager==null) // 还不存在管理器。
+      {
+        activeUserReportManager=new ActiveUserReportManager(); // 创建管理器。
             
-            activeUserReportManager.startReportActiveUser(); // 开始报告活跃用户。
-        } //if (activeUserReportManager==null)
+        activeUserReportManager.startReportActiveUser(); // 开始报告活跃用户。
+      } //if (activeUserReportManager==null)
     } //private void createActiveUserReportManager()
 
     
@@ -123,23 +130,55 @@ public class LauncherActivity extends Activity
     */
     private void initializeEventListener()
     {
-        EventListener eventListener=new FtpEventListener(this); // 创建事件监听器。
+      EventListener eventListener=new FtpEventListener(this); // 创建事件监听器。
         
-        builtinFtpServer.setEventListener(eventListener); // 设置事件监听器。
+      builtinFtpServer.setEventListener(eventListener); // 设置事件监听器。
     } //private void initializeEventListener()
+    
+    /**
+    * 告知文件下载开始。
+    */
+    public void notifyDownloadStart()
+    {
+      if (timerObj!=null) // 定时器存在
+      {
+        timerObj.cancel(); // 取消。
+      } // if (timerObj!=null) // 定时器存在
+    } // notifyDownloadStart(); // 告知文件下载开始。
+    
+    /**
+    * 告知文件下载完毕。
+    */
+    public void notifyDownloadFinish()
+    {
+      // 陈欣。启动一个定时器。
+      
+      timerObj = new Timer();
+      TimerTask timerTaskObj = new TimerTask() 
+      {
+        public void run() 
+        {
+//           startBultinFtpServer(); // 启动内置 FTP 服务器。
+          String downloadFinished = getResources().getString(R.string.downloadFinished); // 读取 说明 字符串。
+
+          voiceUi.say(downloadFinished); // 发声。
+        }
+      };
+      timerObj.schedule(timerTaskObj, 1000); // 延时启动。
+    } // notifyDownloadFinish(); // 告知文件下载完毕。
     
     /**
     * 刷新可用空间数量。
     */
     public void refreshAvailableSpace() 
     {
-        File file = new File(Constants.DirPath.FARMING_BOOK_APP_SD_CARD_PATH); //保存的图片文件。
+      File file = new File(Constants.DirPath.FARMING_BOOK_APP_SD_CARD_PATH); //保存的图片文件。
 
-        long usableSpaceBytes=file.getUsableSpace(); //获取可用的字节数。
+      long usableSpaceBytes=file.getUsableSpace(); //获取可用的字节数。
 
-        double usableSpaceMiB=((double)(usableSpaceBytes))/1024.0/1024.0; // 获取可用的 MiB 数量。
-        double roundedSpaceMiB=Math.round(usableSpaceMiB*10)/10.0;
+      double usableSpaceMiB=((double)(usableSpaceBytes))/1024.0/1024.0; // 获取可用的 MiB 数量。
+      double roundedSpaceMiB=Math.round(usableSpaceMiB*10)/10.0;
         
-        availableSpaceView.setText(""+roundedSpaceMiB+"MB"); // 显示数量。
+      availableSpaceView.setText(""+roundedSpaceMiB+"MB"); // 显示数量。
     } //private void refreshAvailableSpace()
 }

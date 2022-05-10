@@ -30,10 +30,11 @@ android {
 dependencies {
   compile 'com.jakewharton:butterknife:7.0.1'
   annotationProcessor 'com.jakewharton:butterknife:7.0.1'
-  implementation 'com.stupidbeauty:VictoriaFresh:2020.7.27'
+//   implementation 'com.stupidbeauty:VictoriaFresh:2020.7.27'
   implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
   implementation 'androidx.appcompat:appcompat:1.2.0'
-  implementation 'com.github.hxcan:ftpserver:2022.4.6'
+  implementation 'com.github.hxcan:ftpserver:2022.5.12'
   compile 'com.github.hxcan:rotatingactiveuser:2021.11.30'
   compile 'com.upokecenter:cbor:4.2.0'
+  implementation 'com.github.hxcan:voiceui:2022.5.14'
 }
