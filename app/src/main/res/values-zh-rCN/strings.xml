@@ -3,4 +3,5 @@
   <string name="copyUrl">复制地址</string>
   <string name="availableSpace">可用空间：</string>
   <string name="downloadFinished">文件下载完毕</string>
+  <string name="allowUnsafeDeletei">允许非安全删除</string>
 </resources>

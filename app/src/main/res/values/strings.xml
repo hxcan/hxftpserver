@@ -3,4 +3,5 @@
   <string name="copyUrl">Copy url</string>
   <string name="availableSpace">Available space: </string>
   <string name="downloadFinished">Download finished</string>
+  <string name="allowUnsafeDeletei">Allow unsafe delete</string>
 </resources>

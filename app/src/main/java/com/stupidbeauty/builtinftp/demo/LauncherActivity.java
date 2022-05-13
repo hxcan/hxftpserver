@@ -1,5 +1,10 @@
 package com.stupidbeauty.builtinftp.demo;
 
+import android.util.Log;
+import java.util.Date;    
+import java.time.format.DateTimeFormatter;
+import java.io.File;
+import com.koushikdutta.async.AsyncServerSocket;
 import com.stupidbeauty.voiceui.VoiceUi;
 import com.stupidbeauty.hxlauncher.service.DownloadNotificationService; 
 import com.stupidbeauty.ftpserver.lib.EventListener;
@@ -36,6 +41,7 @@ import android.app.Activity;
 
 public class LauncherActivity extends Activity 
 {
+  private static final String TAG="LauncherActivity"; //!< 输出调试信息时使用的标记
   private VoiceUi voiceUi=null; //!< 语音交互对象。
   private Timer timerObj = null; //!< 用于报告下载完毕的定时器。
 
@@ -140,18 +146,30 @@ public class LauncherActivity extends Activity
     */
     public void notifyDownloadStart()
     {
+      cancelNotifyDownloadFinish(); // 取消通知。
+    } // notifyDownloadStart(); // 告知文件下载开始。
+    
+    /**
+    * 取消通知，文件下载完毕。
+    */
+    private void cancelNotifyDownloadFinish() 
+    {
       if (timerObj!=null) // 定时器存在
       {
         timerObj.cancel(); // 取消。
       } // if (timerObj!=null) // 定时器存在
-    } // notifyDownloadStart(); // 告知文件下载开始。
+    } // private void cancelNotifyDownloadFinish()
     
     /**
     * 告知文件下载完毕。
     */
     public void notifyDownloadFinish()
     {
+      Log.d(TAG, "notifyDownloadFinish"); // Debug.
+      
       // 陈欣。启动一个定时器。
+      
+      cancelNotifyDownloadFinish(); // 取消通知，文件下载完毕。
       
       timerObj = new Timer();
       TimerTask timerTaskObj = new TimerTask() 
@@ -161,10 +179,13 @@ public class LauncherActivity extends Activity
 //           startBultinFtpServer(); // 启动内置 FTP 服务器。
           String downloadFinished = getResources().getString(R.string.downloadFinished); // 读取 说明 字符串。
 
+          Log.d(TAG, "notifyDownloadFinish, text: " + downloadFinished); // Debug.
+
           voiceUi.say(downloadFinished); // 发声。
+          Log.d(TAG, "notifyDownloadFinish, said: " + downloadFinished); // Debug.
         }
       };
-      timerObj.schedule(timerTaskObj, 1000); // 延时启动。
+      timerObj.schedule(timerTaskObj, 18000); // 延时启动。
     } // notifyDownloadFinish(); // 告知文件下载完毕。
     
     /**
