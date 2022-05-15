@@ -1,5 +1,9 @@
 package com.stupidbeauty.hxlauncher.application;
 
+import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
+import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import android.os.Debug;
 import com.upokecenter.cbor.CBORException;
 import com.upokecenter.cbor.CBORObject;
@@ -66,6 +70,17 @@ public class HxLauncherApplication extends Application
     Random random=new Random(); // Get the random.
 
     int randomIndex=random.nextInt(65535-1025)+1025; // Choose a random port.
+
+    boolean builtinShortcutsVisible = PreferenceManagerUtil.hasPortNumber(); // 保存了随机端口号。
+    
+    if (builtinShortcutsVisible) // 有保存 随机端口号。
+    {
+      randomIndex=PreferenceManagerUtil.getPortNumber(); // 获取保存了的随机端口号。
+    } // if (builtinShortcutsVisible) // 有保存 随机端口号。
+    else // 未保存随机端口号。
+    {
+      PreferenceManagerUtil.setPortNumber(randomIndex); // 保存随机端口号。
+    } // else // 未保存随机端口号。
 
     return randomIndex;
   } //private int chooseRandomPort()
