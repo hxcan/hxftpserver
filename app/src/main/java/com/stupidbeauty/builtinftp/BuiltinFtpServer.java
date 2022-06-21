@@ -3,6 +3,7 @@ package com.stupidbeauty.builtinftp;
 import android.content.Context;
 import android.os.AsyncTask;
 import com.stupidbeauty.ftpserver.lib.FtpServer;
+import com.stupidbeauty.ftpserver.lib.UserManager;
 import java.net.BindException;
 import android.os.Environment;
 import android.os.LocaleList;
@@ -18,6 +19,7 @@ import com.stupidbeauty.ftpserver.lib.EventListener;
 
 public class BuiltinFtpServer
 {
+  private boolean allowAnonymous=true; //!< Whether to allow anonymous.
   private static final String TAG="BuiltinFtpServer"; //!< 输出调试信息时使用的标记
   private ErrorListener errorListener=null; //!< Error listener.
   private EventListener eventListener=null; //!< Event listener.
@@ -59,9 +61,19 @@ public class BuiltinFtpServer
   {
     this.allowActiveMode=allowActiveMode;
   } //private void setAllowActiveMode(allowActiveMode)
+  
+  /**
+  * Set whether to allow anonymous.
+  */
+  public void setAllowAnonymous(boolean allowAnonymous)
+  {
+    this.allowAnonymous=allowAnonymous;
+    
+    assessSetUserManager(); // Set user mnager.
+  } // public void setAllowAnonymous(bool allowAnonymous)
     
   /**
-  * 获取实际的端口。
+  * Query the actual port.
   */
   public int getActualPort()
   {
@@ -82,16 +94,39 @@ public class BuiltinFtpServer
     this.context = context;
   }
 
-    private Context context; //!< Context.
+  private Context context; //!< Context.
 
-    public void start()
-    {
-        ftpServerErrorListener=new FtpServerErrorListener(this);
+  public void start()
+  {
+    ftpServerErrorListener=new FtpServerErrorListener(this);
     
-        ftpServer = new FtpServer("0.0.0.0", port, context, allowActiveMode);
-        ftpServer.setErrorListener(ftpServerErrorListener); // Set error listner. Chen xin.
-        Log.d(TAG, "start, rootDirectory: " + Environment.getExternalStorageDirectory()); // Debug.
+    ftpServer = new FtpServer("0.0.0.0", port, context, allowActiveMode);
+    ftpServer.setErrorListener(ftpServerErrorListener); // Set error listner. Chen xin.
+    Log.d(TAG, "start, rootDirectory: " + Environment.getExternalStorageDirectory()); // Debug.
 
-        ftpServer.setRootDirectory(Environment.getExternalStorageDirectory()); // 设置根目录。
-    }
+    ftpServer.setRootDirectory(Environment.getExternalStorageDirectory()); // Set the root directory.
+    
+    assessSetUserManager(); // Assess set user manager.
+    
+  }
+  
+  /**
+  * Assess set user manager.
+  */
+  private void assessSetUserManager()
+  {
+    UserManager userManager=null; // Create user manager.
+
+    if (!allowAnonymous) // Not allow anonymous
+    {
+      userManager=new UserManager(); // Create user manager.
+      
+      userManager.addUser("stupidbeauty", "ftpserver");
+    } // if (!allowAnonymous) // Not allow anonymous
+    
+    if (ftpServer!=null)
+    {
+      ftpServer.setUserManager(userManager); // Set user manager.
+    } // if (ftpServer!=null)
+  } // private void assessSetUserManager()
 }

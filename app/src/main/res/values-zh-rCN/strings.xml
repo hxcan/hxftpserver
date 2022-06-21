@@ -4,4 +4,7 @@
   <string name="availableSpace">可用空间：</string>
   <string name="downloadFinished">文件下载完毕</string>
   <string name="allowUnsafeDeletei">允许非安全删除</string>
+  <string name="allowAnonymousetei">允许匿名访问</string>
+  <string name="userNamee">用户名：</string>
+  <string name="passWorde">密码：</string>
 </resources>

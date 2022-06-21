@@ -97,9 +97,12 @@ public class HxLauncherApplication extends Application
 
     mContext = getApplicationContext(); //获取应用程序上下文。
     
+    boolean allowAnonymous=PreferenceManagerUtil.getAllowAnonymous(); // Get settings, whether allow anonymous.
+    
     int actualPort=chooseRandomPort(); // Choose a random port.
     builtinFtpServer.setPort(actualPort); // Set the port.
     builtinFtpServer.setAllowActiveMode(false); // Do not allow active mode.
+    builtinFtpServer.setAllowAnonymous(allowAnonymous); // Whether allow anonymous.
     builtinFtpServer.start(); // Start the builtin ftp server.
   } //public void onCreate()
 

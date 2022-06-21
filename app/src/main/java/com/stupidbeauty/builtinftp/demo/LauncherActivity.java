@@ -1,5 +1,12 @@
 package com.stupidbeauty.builtinftp.demo;
 
+import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
+import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import android.os.Debug;
+import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
 import android.util.Log;
 import java.util.Date;    
 import java.time.format.DateTimeFormatter;
@@ -38,6 +45,11 @@ import java.util.TimerTask;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.widget.CheckBox;
+import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
+import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
+import butterknife.Bind;
+import android.widget.RelativeLayout;
 
 public class LauncherActivity extends Activity 
 {
@@ -50,6 +62,8 @@ public class LauncherActivity extends Activity
 
   @Bind(R.id.statustextView) TextView statustextView; //!< Label to show status text.
   @Bind(R.id.availableSpaceView) TextView availableSpaceView; //!< 可用空间。
+  @Bind(R.id.allowAnonymousetei) CheckBox allowAnonymousetei; //!< Allow anonymous check box.
+  @Bind(R.id.userNamePassWordayout) RelativeLayout userNamePassWordayout; //!< User name pass word layout.
     
   @OnClick(R.id.copyUrlButton)
   public void copyUrlButton()
@@ -91,26 +105,69 @@ public class LauncherActivity extends Activity
     initializeEventListener(); // 初始化事件监听器。
         
     startTimeCheckService(); // 启动下载通知服务。陈欣。
+    
+    loadSettings(); // Load settings.
   } //protected void onCreate(Bundle savedInstanceState)
+  
+  /**
+    * 载入选项。
+    */
+  private void loadSettings()
+  {
+    boolean builtinShortcutsVisible= PreferenceManagerUtil.getAllowAnonymous(); //内置快捷方式是否可见。
 
-    /**
-	 * 启动时间检查服务。
-	 */
-	private void startTimeCheckService()
-	{
-      Intent serviceIntent = new Intent(this, DownloadNotificationService.class); //创建意图。
-		
-      startService(serviceIntent); //启动服务。
-	} //private void startTimeCheckService()
-
-    @Override
-    /**
-     * 活动重新处于活跃状态。
-     */
-    protected void onResume()
+    allowAnonymousetei.setChecked(builtinShortcutsVisible); //切换是否选中。
+    
+    toggleUserNamePassWordVisibility(builtinShortcutsVisible); // Toggle user name pass word visibility.
+  } //private void loadPreference()
+  
+  /** 
+  *  Toggle user name pass word visibility.
+  */
+  private void toggleUserNamePassWordVisibility(boolean isChecked)
+  {
+    if (isChecked) // Allow anonymous
     {
-      long startTimestamp=System.currentTimeMillis(); // 记录开始时间戳。
-      super.onResume(); //超类继续工作。
+      userNamePassWordayout.setVisibility(View.INVISIBLE); // Set the visibility of user name pass word layout.
+    } //isChecked
+    else // Not allow anonymous
+    {
+      userNamePassWordayout.setVisibility(View.VISIBLE); // Set the visibility of user name pass word layout.
+    }
+  } // private void toggleUserNamePassWordVisibility(boolean isChecked)
+
+  /**
+  * Toggle, whether allow anonymouse.
+  */
+  @OnCheckedChanged(R.id.allowAnonymousetei)
+  public void toggleAllowAnonymouse(boolean isChecked)
+  {
+    PreferenceManagerUtil.setAllowAnonymous(isChecked); //保存选项。
+
+    builtinFtpServer.setAllowAnonymous(isChecked); // SEt whether aloow anonymous.
+    
+    toggleUserNamePassWordVisibility(isChecked); // Toggle user name pass word visibility.
+    
+  } //public void toggleBuiltinShortcuts()
+
+  /**
+  * 启动时间检查服务。
+  */
+  private void startTimeCheckService()
+  {
+    Intent serviceIntent = new Intent(this, DownloadNotificationService.class); //创建意图。
+		
+    startService(serviceIntent); //启动服务。
+  } //private void startTimeCheckService()
+
+  @Override
+  /**
+  * 活动重新处于活跃状态。
+  */
+  protected void onResume()
+  {
+    long startTimestamp=System.currentTimeMillis(); // 记录开始时间戳。
+    super.onResume(); //超类继续工作。
 
       refreshAvailableSpace(); // 刷新可用空间数量。
 
@@ -129,7 +186,6 @@ public class LauncherActivity extends Activity
         activeUserReportManager.startReportActiveUser(); // 开始报告活跃用户。
       } //if (activeUserReportManager==null)
     } //private void createActiveUserReportManager()
-
     
     /**
     * 初始化事件监听器。

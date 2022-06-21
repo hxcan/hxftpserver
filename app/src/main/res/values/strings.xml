@@ -4,4 +4,9 @@
   <string name="availableSpace">Available space: </string>
   <string name="downloadFinished">Download finished</string>
   <string name="allowUnsafeDeletei">Allow unsafe delete</string>
+  <string name="allowAnonymousetei">Allow anonymous</string>
+  <string name="stupidbeautypace">stupidbeauty</string>
+  <string name="ftpserverw">ftpserver</string>
+  <string name="userNamee">user name:</string>
+  <string name="passWorde">pass word:</string>
 </resources>

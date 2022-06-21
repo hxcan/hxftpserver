@@ -116,9 +116,9 @@ public class PreferenceManagerUtil
 	 */
 	public static void setBuiltinShortcutsVisible(Boolean hasInit)
 	{
-		Context ct = HxLauncherApplication.getAppContext(); //获取应用程序上下文。
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ct); //获取共享配置对象。
-		sp.edit().putBoolean(Constants.Common.BuitinShortcutsVisible, hasInit).commit(); //保存。
+      Context ct = HxLauncherApplication.getAppContext(); //获取应用程序上下文。
+      SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ct); //获取共享配置对象。
+      sp.edit().putBoolean(Constants.Common.BuitinShortcutsVisible, hasInit).commit(); //保存。
 	} //public static void saveHasFAQInit(Boolean hasInit)s
 
 	/**
@@ -127,10 +127,9 @@ public class PreferenceManagerUtil
 	 */
 	public static boolean isHiveLayout()
 	{
-		Context ct = HxLauncherApplication.getAppContext();
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ct);
-		return sp.getBoolean(Constants.Common.UseHiveLayout, false);
-
+      Context ct = HxLauncherApplication.getAppContext();
+      SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ct);
+      return sp.getBoolean(Constants.Common.UseHiveLayout, false);
 	} //public static boolean isHiveLayout()
 
 	/**
@@ -138,11 +137,29 @@ public class PreferenceManagerUtil
 	*/
 	public static boolean isBuiltinShortcutsVisible()
 	{
-		Context ct = HxLauncherApplication.getAppContext();
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ct);
-		return sp.getBoolean(Constants.Common.BuitinShortcutsVisible, true);
+      Context ct = HxLauncherApplication.getAppContext();
+      SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ct);
+      return sp.getBoolean(Constants.Common.BuitinShortcutsVisible, true);
 	}
 
+	/**
+	 * Set whether to allow anonymous.
+	 * @param hasInit Whether to allow anonymous.
+	 */
+	public static void setAllowAnonymous(Boolean hasInit)
+	{
+      Context ct = HxLauncherApplication.getAppContext(); //获取应用程序上下文。
+      SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ct); //获取共享配置对象。
+      sp.edit().putBoolean(Constants.Common.AllowAnonymous, hasInit).commit(); //保存。
+	} //public static void saveHasFAQInit(Boolean hasInit)s
 
-
+    /**
+	* wHETHER to allow anonymous
+	*/
+	public static boolean getAllowAnonymous()
+	{
+      Context ct = HxLauncherApplication.getAppContext();
+      SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ct);
+      return sp.getBoolean(Constants.Common.AllowAnonymous, true);
+	}
 }
