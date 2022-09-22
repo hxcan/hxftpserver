@@ -25,6 +25,7 @@ public class BuiltinFtpServer
   private EventListener eventListener=null; //!< Event listener.
   private FtpServerErrorListener ftpServerErrorListener=null; //!< The ftp server error listner. Chen xin.
   private int port=1421; //!< Port.
+  private String ip=null; //!< ip.
   private FtpServer ftpServer=null; //!< Ftp server object.
   private boolean allowActiveMode=true; //!<  Whether to allow active mode.
     
@@ -84,8 +85,18 @@ public class BuiltinFtpServer
   {
     this.port=port;
   } //public void setPort(int port)
+
+  public String getIp()
+  {
+    return ip;
+  }
         
-  private BuiltinFtpServer() 
+  public void setIp(String ip)
+  {
+    this.ip=ip;
+  } //public void setPort(int port)
+
+  private BuiltinFtpServer()
   {
   }
 
@@ -100,14 +111,13 @@ public class BuiltinFtpServer
   {
     ftpServerErrorListener=new FtpServerErrorListener(this);
     
-    ftpServer = new FtpServer("0.0.0.0", port, context, allowActiveMode);
-    ftpServer.setErrorListener(ftpServerErrorListener); // Set error listner. Chen xin.
+    ftpServer = new FtpServer("0.0.0.0", port, context, allowActiveMode, ftpServerErrorListener, ip);
+//     ftpServer.setErrorListener(ftpServerErrorListener); // Set error listner. Chen xin.
     Log.d(TAG, "start, rootDirectory: " + Environment.getExternalStorageDirectory()); // Debug.
 
     ftpServer.setRootDirectory(Environment.getExternalStorageDirectory()); // Set the root directory.
     
     assessSetUserManager(); // Assess set user manager.
-    
   }
   
   /**

@@ -1,5 +1,19 @@
 package com.stupidbeauty.hxlauncher.application;
 
+import java.net.NetworkInterface;
+import java.util.Enumeration;
+import java.net.SocketException;
+import android.net.LinkAddress;
+import android.net.LinkProperties;
+import android.net.Network;
+import android.net.ConnectivityManager;
+import java.nio.ByteOrder;
+import java.math.BigInteger;
+import android.net.wifi.WifiManager;
+import java.util.Random;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import android.net.Uri;
 import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
 import butterknife.Bind;
@@ -85,6 +99,125 @@ public class HxLauncherApplication extends Application
     return randomIndex;
   } //private int chooseRandomPort()
 
+  /**
+  * Detect the ip.
+  */
+  private String detectIp()
+  {
+    String ipAddress = null;
+
+    WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+    ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
+
+    Log.d(TAG, "109, detectIp, ipAddress: " + ipAddress); // Debug.
+
+    if (ipAddress.equals("0.0.0.0")) // hotspot
+    {
+      ipAddress= getHotspotIPAddress(); // Get hotspot ip addrss
+      Log.d(TAG, "114, detectIp, ipAddress: " + ipAddress); // Debug.
+
+      ipAddress= getByConnectivityManager(); // Get hotspot ip addrss
+      Log.d(TAG, "117, detectIp, ipAddress: " + ipAddress); // Debug.
+
+      ipAddress= getIpAddress(); // Get hotspot ip addrss
+      Log.d(TAG, "120, detectIp, ipAddress: " + ipAddress); // Debug.
+    } // if (ipAddress.equals("0.0.0.0")) // hotspot
+
+    return ipAddress;
+  } // private String detectIp()
+
+  private String getByConnectivityManager()
+  {
+    ConnectivityManager conMgr = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+    Network network=conMgr.getActiveNetwork();
+    LinkProperties linkProperties=conMgr.getLinkProperties(network);
+
+    List<LinkAddress> linkAddresses= linkProperties.getLinkAddresses ();
+
+
+    InetAddress inetAddress=linkAddresses.get(0).getAddress();
+
+    String ipAddressString= inetAddress.getHostAddress();
+
+    return ipAddressString;
+  }
+
+  private String getIpAddress()
+  {
+    String ip = "";
+    boolean found=false;
+    try
+    {
+      Enumeration<NetworkInterface> enumNetworkInterfaces = NetworkInterface.getNetworkInterfaces();
+      while (enumNetworkInterfaces.hasMoreElements())
+      {
+        NetworkInterface networkInterface = enumNetworkInterfaces.nextElement();
+        Enumeration<InetAddress> enumInetAddress = networkInterface.getInetAddresses();
+        while (enumInetAddress.hasMoreElements())
+        {
+          InetAddress inetAddress = enumInetAddress.nextElement();
+
+          if (inetAddress.isSiteLocalAddress())
+          {
+            ip = inetAddress.getHostAddress();
+            Log.d(TAG, "164, getIpAddress, ipAddress: " + ip); // Debug.
+
+            if (ip.startsWith("192.168."))
+            {
+              found=true;
+              break;
+            }
+          }
+        }
+        if (found)
+        {
+          break;
+        }
+      }
+    }
+    catch (SocketException e)
+    {
+      e.printStackTrace();
+      ip += "Something Wrong! " + e.toString() + "\n";
+    }
+    return ip;
+  }
+
+  private String getHotspotIPAddress()
+  {
+    WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+
+//     int ipAddress = wifiManager.getDhcpInfo().serverAddress;
+    int ipAddress = wifiManager.getDhcpInfo().gateway;
+
+    Log.d(TAG, "114, getHotspotIPAddress, ipAddress: " + ipAddress); // Debug.
+
+    if (ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN))
+    {
+      ipAddress = Integer.reverseBytes(ipAddress);
+      Log.d(TAG, "152, getHotspotIPAddress, ipAddress: " + ipAddress); // Debug.
+    }
+
+    byte[] ipByteArray = BigInteger.valueOf(ipAddress).toByteArray();
+
+    Log.d(TAG, "157, getHotspotIPAddress, ipByteArray: " + ipByteArray.toString()); // Debug.
+
+    String ipAddressString;
+    try
+    {
+      ipAddressString = InetAddress.getByAddress(ipByteArray).getHostAddress();
+      Log.d(TAG, "163, getHotspotIPAddress, ipAddressString: " + ipAddressString); // Debug.
+    }
+    catch (UnknownHostException ex)
+    {
+      ipAddressString = "";
+      Log.d(TAG, "168, getHotspotIPAddress, ipAddressString: " + ipAddressString); // Debug.
+    }
+
+    return ipAddressString;
+  }
+
   @Override
   /**
   * 程序被创建。
@@ -101,6 +234,10 @@ public class HxLauncherApplication extends Application
     
     int actualPort=chooseRandomPort(); // Choose a random port.
     builtinFtpServer.setPort(actualPort); // Set the port.
+
+    String actualIp = detectIp(); // Detect the ip.
+    builtinFtpServer.setIp(actualIp); // Set the ip.
+
     builtinFtpServer.setAllowActiveMode(false); // Do not allow active mode.
     builtinFtpServer.setAllowAnonymous(allowAnonymous); // Whether allow anonymous.
     builtinFtpServer.start(); // Start the builtin ftp server.

@@ -90,15 +90,16 @@ public class LauncherActivity extends Activity
     
     voiceUi=new VoiceUi(this); // 创建语音交互对象。
 
-    WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-    String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
+//     WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+//     String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
       
     HxLauncherApplication hxLauncherApplication= HxLauncherApplication.getInstance() ; // 获取应用程序实例。
     builtinFtpServer=hxLauncherApplication.getBuiltinFtpServer(); // 获取FTP服务器实例对象。
     
     int actualPort=builtinFtpServer.getActualPort(); // 获取实际的端口。
+    String actualIp=builtinFtpServer.getIp(); // Get the actual ip.
 
-    String ftpUrl="ftp://"+ ipAddress + ":"+ actualPort +"/"; // Construct the ftp server url.
+    String ftpUrl="ftp://"+ actualIp + ":"+ actualPort +"/"; // Construct the ftp server url.
 
     statustextView.setText(ftpUrl); // Show the FTP url
         
