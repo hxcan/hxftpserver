@@ -75,6 +75,20 @@ public class LauncherActivity extends Activity
 
     clipboard.setPrimaryClip(clip);
   }
+  
+  /**
+  * Show ftp url
+  */
+  private void showFtpUrl() 
+  {
+    int actualPort=builtinFtpServer.getActualPort(); // 获取实际的端口。
+    String actualIp=builtinFtpServer.getIp(); // Get the actual ip.
+
+    String ftpUrl="ftp://"+ actualIp + ":"+ actualPort +"/"; // Construct the ftp server url.
+
+    statustextView.setText(ftpUrl); // Show the FTP url
+        
+  } // private void showFtpUrl() // Show ftp url
 
   @Override
   /**
@@ -96,13 +110,8 @@ public class LauncherActivity extends Activity
     HxLauncherApplication hxLauncherApplication= HxLauncherApplication.getInstance() ; // 获取应用程序实例。
     builtinFtpServer=hxLauncherApplication.getBuiltinFtpServer(); // 获取FTP服务器实例对象。
     
-    int actualPort=builtinFtpServer.getActualPort(); // 获取实际的端口。
-    String actualIp=builtinFtpServer.getIp(); // Get the actual ip.
-
-    String ftpUrl="ftp://"+ actualIp + ":"+ actualPort +"/"; // Construct the ftp server url.
-
-    statustextView.setText(ftpUrl); // Show the FTP url
-        
+    showFtpUrl(); // Show ftp url.
+    
     initializeEventListener(); // 初始化事件监听器。
         
     startTimeCheckService(); // 启动下载通知服务。陈欣。
@@ -216,6 +225,14 @@ public class LauncherActivity extends Activity
         timerObj.cancel(); // 取消。
       } // if (timerObj!=null) // 定时器存在
     } // private void cancelNotifyDownloadFinish()
+    
+    /**
+    *  告知 ip change.
+    */
+    public void notifyIpChange()
+    {
+      showFtpUrl(); // Show ftp url
+    } // public void notifyIpChange()
     
     /**
     * 告知文件下载完毕。

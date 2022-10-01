@@ -88,7 +88,14 @@ public class BuiltinFtpServer
 
   public String getIp()
   {
-    return ip;
+    String result=ip;
+    
+    if (ftpServer!=null)
+    {
+      result=ftpServer.getIp();
+    } // if (ftpserver!=null)
+    
+    return result;
   }
         
   public void setIp(String ip)
@@ -116,6 +123,7 @@ public class BuiltinFtpServer
     Log.d(TAG, "start, rootDirectory: " + Environment.getExternalStorageDirectory()); // Debug.
 
     ftpServer.setRootDirectory(Environment.getExternalStorageDirectory()); // Set the root directory.
+    ftpServer.setAutoDetectIp(true); // Auto detect ip.
     
     assessSetUserManager(); // Assess set user manager.
   }

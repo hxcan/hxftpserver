@@ -29,6 +29,10 @@ public class FtpEventListener implements EventListener
     {
       launcherActivity.notifyDownloadStart(); // 告知文件下载开始。
     }
+    else if (eventCode.equals(IP_CHANGE)) // ip changed.
+    {
+      launcherActivity.notifyIpChange(); // 告知 ip change.
+    }
   }
     
   public FtpEventListener(LauncherActivity launcherActivity)
