@@ -84,7 +84,7 @@ public class DownloadNotificationService extends Service
     // The PendingIntent to launch our activity if the user selects this notification
     PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, LauncherActivity.class), 0);
 		
-    String downloadingText="Downloading " + contentText; // 构造字符串，正在下载。陈欣。
+    String downloadingText="Running " + contentText; // 构造字符串，正在下载。陈欣。
 		
     NotificationChannel chan = new NotificationChannel( "#include", "My Foreground Service", NotificationManager.IMPORTANCE_LOW);
             

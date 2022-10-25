@@ -3,6 +3,7 @@
   <string name="copyUrl">Copy url</string>
   <string name="availableSpace">Available space: </string>
   <string name="downloadFinished">Download finished</string>
+  <string name="ipChanged">IP changed</string>
   <string name="allowUnsafeDeletei">Allow unsafe delete</string>
   <string name="allowAnonymousetei">Allow anonymous</string>
   <string name="stupidbeautypace">stupidbeauty</string>

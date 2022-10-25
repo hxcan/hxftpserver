@@ -232,6 +232,12 @@ public class LauncherActivity extends Activity
     public void notifyIpChange()
     {
       showFtpUrl(); // Show ftp url
+
+      String downloadFinished = getResources().getString(R.string.ipChanged); // 读取 说明 字符串。
+
+      Log.d(TAG, "notifyDownloadFinish, text: " + downloadFinished); // Debug.
+
+      voiceUi.say(downloadFinished); // 发声。
     } // public void notifyIpChange()
     
     /**
