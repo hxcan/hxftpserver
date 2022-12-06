@@ -16,8 +16,8 @@ android
     applicationId "com.stupidbeauty.hxftpserver"
     minSdkVersion 21
     targetSdkVersion 29
-    versionCode 4603
-    versionName "4603.2022.10.1"
+    versionCode 4620
+    versionName "4620.2022.11.24"
   }
 
   buildTypes 
@@ -41,5 +41,5 @@ dependencies
   implementation 'com.github.hxcan:ftpserver:2022.10.25'
   compile 'com.github.hxcan:rotatingactiveuser:2021.11.30'
   compile 'com.upokecenter:cbor:4.2.0'
-  implementation 'com.github.hxcan:voiceui:2022.5.15'
+  implementation 'com.github.hxcan:voiceui:2022.12.6'
 }

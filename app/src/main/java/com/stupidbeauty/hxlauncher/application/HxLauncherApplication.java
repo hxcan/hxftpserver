@@ -116,32 +116,12 @@ public class HxLauncherApplication extends Application
       ipAddress= getHotspotIPAddress(); // Get hotspot ip addrss
       Log.d(TAG, "114, detectIp, ipAddress: " + ipAddress); // Debug.
 
-      ipAddress= getByConnectivityManager(); // Get hotspot ip addrss
-      Log.d(TAG, "117, detectIp, ipAddress: " + ipAddress); // Debug.
-
       ipAddress= getIpAddress(); // Get hotspot ip addrss
       Log.d(TAG, "120, detectIp, ipAddress: " + ipAddress); // Debug.
     } // if (ipAddress.equals("0.0.0.0")) // hotspot
 
     return ipAddress;
   } // private String detectIp()
-
-  private String getByConnectivityManager()
-  {
-    ConnectivityManager conMgr = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-    Network network=conMgr.getActiveNetwork();
-    LinkProperties linkProperties=conMgr.getLinkProperties(network);
-
-    List<LinkAddress> linkAddresses= linkProperties.getLinkAddresses ();
-
-
-    InetAddress inetAddress=linkAddresses.get(0).getAddress();
-
-    String ipAddressString= inetAddress.getHostAddress();
-
-    return ipAddressString;
-  }
 
   private String getIpAddress()
   {
