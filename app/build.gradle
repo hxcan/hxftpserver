@@ -38,7 +38,7 @@ dependencies
   annotationProcessor 'com.jakewharton:butterknife:7.0.1'
   implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
   implementation 'androidx.appcompat:appcompat:1.2.0'
-  implementation 'com.github.hxcan:ftpserver:2022.10.25'
+  implementation 'com.github.hxcan:ftpserver:2022.12.14'
   compile 'com.github.hxcan:rotatingactiveuser:2021.11.30'
   compile 'com.upokecenter:cbor:4.2.0'
   implementation 'com.github.hxcan:voiceui:2022.12.6'

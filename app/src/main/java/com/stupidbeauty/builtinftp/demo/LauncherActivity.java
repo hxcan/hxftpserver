@@ -1,5 +1,10 @@
 package com.stupidbeauty.builtinftp.demo;
 
+import android.media.MediaScannerConnection;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
 import butterknife.Bind;
@@ -267,6 +272,43 @@ public class LauncherActivity extends Activity
       };
       timerObj.schedule(timerTaskObj, 18000); // 延时启动。
     } // notifyDownloadFinish(); // 告知文件下载完毕。
+    
+    /**
+     * 要求扫描照片。
+     * @param path 照片文件的路径。
+     */
+    private void scanFile(String path)
+    {
+        MediaScannerConnection.scanFile(this,
+          new String[] { path }, null,
+          new MediaScannerConnection.OnScanCompletedListener() 
+          {
+            public void onScanCompleted(String path, Uri uri) 
+            {
+              Log.i("TAG", "Finished scanning " + path);
+            }
+          });
+    } //private void scanFile(String path)
+
+    /**
+    * Notify upload finish.
+    */
+    public void notifyUploadFinish(Object eventContent)
+    {
+      // chen xin . notify upload finish
+      
+      File uploadedFile=(File)(eventContent);
+
+      requestScanFile(uploadedFile); // Request scan file.
+    } // notifyDownloadFinish(); // 告知文件下载完毕。
+    
+    /**
+    * Request scan file.
+    */
+    private void requestScanFile(File uploadedFile) 
+    {
+      scanFile(uploadedFile.getAbsolutePath()); // scan this file.
+    } // private void requestScanFile(File uploadedFile)
     
     /**
     * 刷新可用空间数量。

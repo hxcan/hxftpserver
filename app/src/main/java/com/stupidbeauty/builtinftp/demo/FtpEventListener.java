@@ -15,6 +15,11 @@ public class FtpEventListener implements EventListener
   @Override
   public void onEvent(String eventCode)
   {
+  } // public void onEvent(String eventCode)
+    
+  @Override
+  public void onEvent(String eventCode, Object eventContent)
+  {
     Log.d(TAG, "onEvent, eventCode: " + eventCode);
     
     if (eventCode.equals(DELETE)) // 文件删除。
@@ -25,6 +30,10 @@ public class FtpEventListener implements EventListener
     {
       launcherActivity.notifyDownloadFinish(); // 告知文件下载完毕。
     }
+    else if (eventCode.equals(UPLOAD_FINISH)) // file upload finish
+    {
+      launcherActivity.notifyUploadFinish(eventContent); // notify upload finish.
+    } // else if (eventCode.equals(UP_FINISH)) // file upload finish
     else if (eventCode.equals(DOWNLOAD_START)) // 文件下载开始。
     {
       launcherActivity.notifyDownloadStart(); // 告知文件下载开始。
@@ -33,7 +42,7 @@ public class FtpEventListener implements EventListener
     {
       launcherActivity.notifyIpChange(); // 告知 ip change.
     }
-  }
+  } // public void onEvent(String eventCode)
     
   public FtpEventListener(LauncherActivity launcherActivity)
   {
