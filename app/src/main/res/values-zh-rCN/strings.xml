@@ -8,4 +8,40 @@
   <string name="allowAnonymousetei">允许匿名访问</string>
   <string name="userNamee">用户名：</string>
   <string name="passWorde">密码：</string>
+  <string name="needExternalStorageManagerPermission">需要特殊权限“管理全部文件”才能正常工作。如果你愿意授予该权限，请点击下面的按钮，将会带你跳转到一个系统设置页面。在该页面，可以真正授予权限。</string>
+  <string name="grantPermission">授予权限</string>
+  <string name="builtinShortcuts">内置快捷方式</string>
+  <string name="grantManageAllFilesPermission">授予管理全部文件权限</string>
+  <string name="apn_setting_username">你可以为FTP设置一个自定义的顶级目录。按下面的按钮以开始设置。</string>
+  <string name="setting_tab_name">设置</string>
+  <string name="about_info_coverage">覆盖范围</string>
+  <string name="myAccount">我的账号</string>
+  <string name="freeCredit">免费语音指令额度：</string>
+  <string name="paidCredit">付费语音指令额度</string>
+
+  <string name="setRootDirectoryunt">设置顶级目录</string>
+  <string name="applicationAlias">应用别名</string>
+  <string name="applicationFrequency">应用频率</string>
+  <string name="firstStepEnableLanIme">自动运行</string>
+  <string name="sayToMeAppName">对我说:\"%1$s\"</string>
+  <string name="appNamePrompt">相机</string>
+
+
+  <string name="stopWeb">停止载入</string>
+  <string name="selectRootDirectoryin">选择顶级目录</string>
+  <string name="hxLauncherSettings">太极FTP服务器设置</string>
+  <string name="enterPassword">输入密码</string>
+  <string name="forgotPassword">忘记密码？</string>
+
+
+
+  <string name="unlink_not_right">不对</string>
+  <string name="about_help_feedback_title">帮助及反馈</string>
+  <string name="login_in">登录</string>
+  <string name="login_login_button">登录</string>
+  <string name="loginout_loginout_button">退出</string>
+  <string name="button_ok">确定</string>
+  <string name="goAndEnableLocationService">去启用</string>
+  <string name="pleaseSetHxLauncherAsTheDefaultLauncher">请将灵桌面设置为默认桌面。</string>
+  <string name="msg_intent_failed">对不起，你所请求的应用程序无法启动</string>
 </resources>

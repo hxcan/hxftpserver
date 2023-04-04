@@ -26,12 +26,10 @@ public class Constants
         public static final String UnlinkVoiceCommand="com.stupidbeauty.hxlauncher.unlinkVoiceCommand"; //!<断开语音指令的链接
     } //public final class FAQLangKey
 
-    public final class Url
+    public final class RequestCode
     {
-//        public static final String WebSocketServerUrl = "ws://192.168.120.132:20402/";
-        public static final String WebSocketServerUrl = "ws://192.168.0.108:20402/";
-
-    }
+      public static final int RootDirectoryPermissionRequestCode = 111252; //!< Request code for browseing root diretory.
+    } // public final class RequestCode
 
     public final class Numbers
     {

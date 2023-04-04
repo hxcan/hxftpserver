@@ -1,5 +1,10 @@
 package com.stupidbeauty.builtinftp;
 
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
 import android.content.Context;
 import android.os.AsyncTask;
 import com.stupidbeauty.ftpserver.lib.FtpServer;
@@ -127,6 +132,22 @@ public class BuiltinFtpServer
     
     assessSetUserManager(); // Assess set user manager.
   }
+
+  /**
+  * Mount virtual path.
+  */
+  public void mountVirtualPath(String path , Uri uri)
+  {
+    ftpServer.mountVirtualPath(path, uri);
+  } // public void mountVirtualPath(String path , Uri uri)
+  
+  /**
+  * Answ4er the browse docuembnt tree reqeust.
+  */
+  public void answerBrowseDocumentTreeReqeust(int requestCode, Uri uri) 
+  {
+    ftpServer.answerBrowseDocumentTreeReqeust(requestCode, uri);
+  } // public void answerBrowseDocumentTreeReqeust(int requestCode, Uri uri)
   
   /**
   * Assess set user manager.

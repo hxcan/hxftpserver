@@ -4,10 +4,15 @@ HxFtpServer: Hx FTP Server, a simple FTP server application for Android
 1 Quick download
 ==
 
-Click this link:
-https://stupidbeauty.com/ArticleImages/1907/HxFtpServer.4603.2022.10.1.e.apk
+The latest version can be found here:
 
-![](https://stupidbeauty.com/ArticleImages/1907/HxFtpServer.4603.2022.10.1.e.apk.1038607880.png)
+https://stupidbeauty.com/?_=/article/1908/HxFtpServer:%20Hx%20FTP%20Server,%20a%20simple%20FTP%20server%20application%20for%20Android
+
+Precompiled old version:
+
+https://stupidbeauty.com/ArticleImages/1907/HxFtpServer.4623.2023.4.4.e.apk
+
+![](https://stupidbeauty.com/ArticleImages/1907/HxFtpServer.4623.2023.4.4.e.apk.1151948330.png)
 
 2 Explaination
 ==

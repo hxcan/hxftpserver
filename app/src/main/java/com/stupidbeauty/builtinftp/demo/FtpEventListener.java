@@ -34,6 +34,14 @@ public class FtpEventListener implements EventListener
     {
       launcherActivity.notifyUploadFinish(eventContent); // notify upload finish.
     } // else if (eventCode.equals(UP_FINISH)) // file upload finish
+    else if (eventCode.equals(NEED_BROWSE_DOCUMENT_TREE)) // need browse document tree
+    {
+      launcherActivity.browseDocumentTree(eventContent); // browse document tree.
+    } // else if (eventCode.equals(UP_FINISH)) // file upload finish
+    else if (eventCode.equals(NEED_EXTERNAL_STORAGE_MANAGER_PERMISSION)) // notify need external storage manger permission
+    {
+      launcherActivity.guideExternalStorageManagerPermission(eventContent); // guide, external storage manager permission.
+    } // else if (eventCode.equals(UP_FINISH)) // file upload finish
     else if (eventCode.equals(DOWNLOAD_START)) // 文件下载开始。
     {
       launcherActivity.notifyDownloadStart(); // 告知文件下载开始。

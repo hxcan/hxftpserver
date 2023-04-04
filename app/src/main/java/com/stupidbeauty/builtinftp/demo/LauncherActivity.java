@@ -1,5 +1,13 @@
 package com.stupidbeauty.builtinftp.demo;
 
+import com.stupidbeauty.hxlauncher.activity.ApplicationInformationActivity;
+import com.stupidbeauty.hxlauncher.SettingsActivity;
+import com.android.volley.RequestQueue;
+import com.google.gson.Gson;
+import com.stupidbeauty.codeposition.CodePosition;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.BufferedReader;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,6 +15,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
+import com.stupidbeauty.ftpserver.lib.DocumentTreeBrowseRequest;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import android.os.Debug;
@@ -70,6 +79,17 @@ public class LauncherActivity extends Activity
   @Bind(R.id.allowAnonymousetei) CheckBox allowAnonymousetei; //!< Allow anonymous check box.
   @Bind(R.id.userNamePassWordayout) RelativeLayout userNamePassWordayout; //!< User name pass word layout.
     
+  @OnClick(R.id.shareIcon)
+  public void shareViaText()
+  {
+    Log.d(TAG, "gotoLoginActivity, 119."); //Debug.
+    Intent launchIntent=new Intent(this, SettingsActivity.class); // 启动意图。
+
+    startActivity(launchIntent); //启动活动。
+
+    Log.d(TAG, "gotoLoginActivity, 122."); //Debug.
+  } // public void shareViaText()
+
   @OnClick(R.id.copyUrlButton)
   public void copyUrlButton()
   {
@@ -289,8 +309,54 @@ public class LauncherActivity extends Activity
             }
           });
     } //private void scanFile(String path)
-
+    
     /**
+    * guide, external storage manager permission.
+    */
+    public void guideExternalStorageManagerPermission(Object eventContent)
+    {
+      Log.d(TAG, "gotoLoginActivity, 119."); //Debug.
+      Intent launchIntent=new Intent(this, ApplicationInformationActivity.class); //启动意图。
+
+      startActivity(launchIntent); //启动活动。
+
+      Log.d(TAG, "gotoLoginActivity, 122."); //Debug.
+    } // public void guideExternalStorageManagerPermission(Object eventContent)
+    
+    /**
+    * browse document tree.
+    */
+    public void browseDocumentTree(Object eventContent)
+    {
+      DocumentTreeBrowseRequest requestObject=(DocumentTreeBrowseRequest)(eventContent); // Get the request object.
+      Intent intent=requestObject.getIntent(); // Get the intent.
+      int yourrequestcode=requestObject.getRequestCode(); // Get the request code.
+      startActivityForResult(intent, yourrequestcode);
+    } // public void browseDocumentTree(Object eventContent)
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) 
+    {
+      Log.d(TAG, CodePosition.newInstance().toString()+  ", request code: " + requestCode + ", result code: " + resultCode + ", uri to use: " + resultData); // Debug.
+//       if (requestCode == your-request-code && resultCode == Activity.RESULT_OK) 
+      if (resultCode == Activity.RESULT_OK) 
+      {
+        // The result data contains a URI for the document or directory that
+        // the user selected.
+        Uri uri = null;
+        if (resultData != null) // There is result data
+        {
+          uri = resultData.getData();
+          Log.d(TAG, CodePosition.newInstance().toString()+  ", request code: " + requestCode + ", result code: " + resultCode + ", uri to use: " + uri.toString()); // Debug.
+          // Perform operations on the document using its URI.
+          
+          //           Chen xin.
+          builtinFtpServer.answerBrowseDocumentTreeReqeust(requestCode, uri); // Answ4er the browse docuembnt tree reqeust.
+        } // if (resultData != null) // There is result data
+      }
+    }
+
+  /**
     * Notify upload finish.
     */
     public void notifyUploadFinish(Object eventContent)
