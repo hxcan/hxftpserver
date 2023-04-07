@@ -124,46 +124,7 @@ public class DownloadNotificationService extends Service
 // 		showNotification(contentText);
 
 		startHttpServer(); //启动HTTP服务器
-
-		listenClipboard(); //监听剪贴板。
 	} //public void onCreate()
-
-	/**
-	 * 监听剪贴板。
-	 */
-	private void listenClipboard()
-	{
-		ClipboardManager cb = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-
-		cb.addPrimaryClipChangedListener(new ClipboardManager.OnPrimaryClipChangedListener() {
-
-        @Override
-        /**
-            * 主剪贴板内容发生变化。
-            */
-        public void onPrimaryClipChanged()
-        {
-          // 具体实现
-          ClipboardManager cb = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-
-          ClipData clipData=cb.getPrimaryClip(); //获取剪贴板数据。
-
-          ClipData.Item item=clipData.getItemAt(0); //获取当前条目。
-
-          if (item!=null) //条目不为空指针。
-          {
-            CharSequence charSequence=item.getText(); //获取字节序列。
-
-            if (charSequence!=null) //字节序列不为空指针。
-            {
-              String clipContent=charSequence.toString(); //获取剪贴板内容。
-
-              Log.d(TAG,"onPrimaryClipChanged,剪贴板内容："+clipContent); //Debug.
-            } //if (charSequence!=null) //字节序列不为空指针。
-          } //if (item!=null) //条目不为空指针。
-        }  //public void onPrimaryClipChanged()
-    });
-} //private void listenClipboard()
 
 	/**
 	 * 启动HTTP服务器，用于对同一个局域网内其它平板的请求进行响应.

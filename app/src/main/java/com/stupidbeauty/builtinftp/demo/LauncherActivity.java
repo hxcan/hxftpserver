@@ -1,5 +1,9 @@
 package com.stupidbeauty.builtinftp.demo;
 
+import androidx.documentfile.provider.DocumentFile;
+import java.io.File;
+import com.koushikdutta.async.callback.CompletedCallback;
+import com.koushikdutta.async.callback.ListenCallback;
 import com.stupidbeauty.hxlauncher.activity.ApplicationInformationActivity;
 import com.stupidbeauty.hxlauncher.SettingsActivity;
 import com.android.volley.RequestQueue;
@@ -363,9 +367,22 @@ public class LauncherActivity extends Activity
     {
       // chen xin . notify upload finish
       
-      File uploadedFile=(File)(eventContent);
-
-      requestScanFile(uploadedFile); // Request scan file.
+      // File uploadedFile=(File)(eventContent);
+      DocumentFile uploadedFile=(DocumentFile)(eventContent);
+      
+      Uri uri=uploadedFile.getUri();
+      
+      String scheme=uri.getScheme();
+      
+      // File rawFile=new File(path);
+      
+      if (scheme.equals("file")) // It is a file
+      {
+        String path=uri.getPath();
+        
+        File rawFile=new File(path);
+        requestScanFile(rawFile); // Request scan file.
+      } // if (scheme.equals("file")) // It is a file
     } // notifyDownloadFinish(); // 告知文件下载完毕。
     
     /**
