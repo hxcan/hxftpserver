@@ -98,6 +98,17 @@ public class RootDirectorySettingActivity extends Activity
     builtinFtpServer=hxLauncherApplication.getBuiltinFtpServer(); // 获取FTP服务器实例对象。
     builtinFtpServer.setExternalStoragePerformanceOptimize(isChecked); // Set option.
   } //public void toggleUseHiveLayout(boolean isChecked)
+  
+  @OnClick(R.id.resetRootDirectoryss)
+  public void resetRootDirectoryss()
+  {
+    HxLauncherApplication hxLauncherApplication= HxLauncherApplication.getInstance() ; // 获取应用程序实例。
+    BuiltinFtpServer builtinFtpServer=null; //!< The builtin ftp server.
+    builtinFtpServer=hxLauncherApplication.getBuiltinFtpServer(); // 获取FTP服务器实例对象。
+    builtinFtpServer.unmountVirtualPath("/"); // un Mount virtual path.
+    
+    queryRootDirectory(); // Show root directory.
+  } // public void resetRootDirectoryss()
 
 	/**
 	 * 跳转到登录界面。

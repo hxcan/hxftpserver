@@ -142,6 +142,14 @@ public class BuiltinFtpServer
   } // public Uri getVirtualPath(String path)
 
   /**
+  *  un Mount virtual path.
+  */
+  public void unmountVirtualPath(String path)
+  {
+    ftpServer.unmountVirtualPath(path);
+  } // public void unmountVirtualPath(String path)
+  
+  /**
   * Mount virtual path.
   */
   public void mountVirtualPath(String path , Uri uri)
