@@ -59,7 +59,7 @@ import com.stupidbeauty.builtinftp.demo.R;
 // import com.stupidbeauty.hxlauncher.VoicePackageMapItemMessageProtos;
 // import com.stupidbeauty.hxlauncher.VoicePackageMapMessageProtos;
 // import com.stupidbeauty.hxlauncher.bean.VoiceCommandHitDataObject;
-import com.android.volley.RequestQueue;
+// import com.android.volley.RequestQueue;
 import com.google.gson.Gson;
 // import com.google.protobuf.ByteString;
 // import com.huiti.msclearnfootball.AnswerAvailableEvent;
@@ -164,7 +164,7 @@ public class ApplicationInformationActivity extends Activity
 
     private int mCurrMsg = -1;
 
-    private RequestQueue mQueue; //!<Volley请求队列。
+    // private RequestQueue mQueue; //!<Volley请求队列。
 
     @OnClick(R.id.loveAnimation)
     public void deleteItem()

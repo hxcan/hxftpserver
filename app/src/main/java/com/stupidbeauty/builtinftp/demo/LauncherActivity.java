@@ -6,7 +6,7 @@ import com.koushikdutta.async.callback.CompletedCallback;
 import com.koushikdutta.async.callback.ListenCallback;
 import com.stupidbeauty.hxlauncher.activity.ApplicationInformationActivity;
 import com.stupidbeauty.hxlauncher.SettingsActivity;
-import com.android.volley.RequestQueue;
+// import com.android.volley.RequestQueue;
 import com.google.gson.Gson;
 import com.stupidbeauty.codeposition.CodePosition;
 import java.io.FileDescriptor;

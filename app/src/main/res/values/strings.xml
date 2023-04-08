@@ -12,7 +12,7 @@
   <string name="passWorde">pass word:</string>
   <string name="darkBackgroundImage">Dark the background image</string>
   <string name="hxLauncherSettings">HxFtpServer Settings</string>
-  <string name="hiveLayout">Hive layout</string>
+  <string name="externalStoragePerformanceOptimizempty">External storage performance optimize</string>
   <string name="setRootDirectoryunt">Set root directory</string>
   <string name="setting_tab_name">Setting</string>
   <string name="empty" translatable="false" />
@@ -29,13 +29,10 @@
     <string name="sayToMeAppName">Say to me:\"%1$s\"</string>
     <string name="appNamePrompt">Messages</string>
   <string name="myAccount">My account</string>
-  <string name="freeCredit">Free speech credit:</string>
+  <string name="freeCredit">Current root directory:</string>
   <string name="paidCredit">Paid speech credit</string>
     <string name="applicationAlias">Application alias</string>
     <string name="pleaseSetHxLauncherAsTheDefaultLauncher">Please set HxLauncher as the default launcher.</string>
-
-
-
   <string name="applicationFrequency">Application frequency</string>
 
 
@@ -55,10 +52,6 @@
   <string name="login_login_button">Login</string>
   <string name="loginout_loginout_button">Log Out</string>
   <string name="button_ok">OK</string>
-  <string name="firstStepEnableLanIme">Auto run</string>
+  <string name="resetRootDirectoryin">Reset root directory</string>
   <string name="msg_intent_failed">Sorry, the requested application could not be launched.</string>
-
-
-
-
 </resources>

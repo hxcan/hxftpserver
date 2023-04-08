@@ -132,6 +132,14 @@ public class BuiltinFtpServer
     
     assessSetUserManager(); // Assess set user manager.
   }
+  
+  /**
+  *  Get the uri of specified virtual path.
+  */
+  public Uri getVirtualPath(String path)
+  {
+    return ftpServer.getVirtualPath(path);
+  } // public Uri getVirtualPath(String path)
 
   /**
   * Mount virtual path.
@@ -140,6 +148,14 @@ public class BuiltinFtpServer
   {
     ftpServer.mountVirtualPath(path, uri);
   } // public void mountVirtualPath(String path , Uri uri)
+  
+  /**
+  * Set option. Whether to do external storage perforamnce optimize.
+  */
+  public void setExternalStoragePerformanceOptimize(boolean isChecked)
+  {
+    ftpServer.setExternalStoragePerformanceOptimize(isChecked);
+  } // public void setExternalStoragePerformanceOptimize(boolean isChecked)
   
   /**
   * Answ4er the browse docuembnt tree reqeust.

@@ -40,13 +40,14 @@ dependencies
   annotationProcessor 'com.jakewharton:butterknife:7.0.1'
   implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
   implementation 'androidx.appcompat:appcompat:1.2.0'
-  implementation 'com.github.hxcan:ftpserver:2023.4.12'
+  implementation 'com.github.hxcan:ftpserver:2023.4.22'
+  implementation 'com.github.hxcan:victoriafresh.android:2023.3.13'
 
 //   implementation 'com.github.hxcan:ftpserver:9004051'
   
   implementation 'com.github.hxcan:rotatingactiveuser:2021.11.30'
   implementation 'com.upokecenter:cbor:4.2.0'
-  implementation 'com.github.hxcan:voiceui:2022.12.6'
+  implementation 'com.github.hxcan:voiceui:2023.4.8'
   implementation 'com.github.hxcan:CodePosition:2023.3.29'
   implementation 'com.patrickpissurno:ripple-effect:1.3.1'
   implementation "androidx.documentfile:documentfile:1.0.1"

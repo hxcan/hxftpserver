@@ -11,7 +11,7 @@ import com.stupidbeauty.hxlauncher.activity.ApplicationInformationActivity;
 import android.util.Log;
 import android.widget.CheckBox;
 import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
-import com.stupidbeauty.hxlauncher.activity.AccountActivity;
+import com.stupidbeauty.hxftpserver.activity.RootDirectorySettingActivity;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,21 +38,7 @@ public class SettingsActivity extends Activity
       setContentView(R.layout.settings_activity); //设置界面内容。
 
       ButterKnife.bind(this); //视图注入。
-
-      loadPreference(); //载入选项。
     } //protected void onCreate(Bundle savedInstanceState)
-
-    /**
-     * 载入选项。
-     */
-    private void loadPreference()
-    {
-      boolean builtinShortcutsVisible= PreferenceManagerUtil.isBuiltinShortcutsVisible(); //内置快捷方式是否可见。
-
-      builtinShortcutscheckBox.setChecked(builtinShortcutsVisible); //切换是否选中。
-
-      boolean useHiveLayout=PreferenceManagerUtil.isHiveLayout(); //是否要使用蜂窝布局
-    } //private void loadPreference()
 
     @OnClick(R.id.ratelanime_button1)
     /**
@@ -134,7 +120,7 @@ public class SettingsActivity extends Activity
     @OnClick(R.id.myAccountbutton1)
     public void gotoAccountActivity()
     {
-      Intent launchIntent=new Intent(this, AccountActivity.class); // 启动意图。
+      Intent launchIntent=new Intent(this, RootDirectorySettingActivity.class); // The intent to launch.
       startActivity(launchIntent); //启动活动。
     } //public void gotoAccountActivity()
 }

@@ -211,6 +211,7 @@ public class HxLauncherApplication extends Application
     mContext = getApplicationContext(); //获取应用程序上下文。
     
     boolean allowAnonymous=PreferenceManagerUtil.getAllowAnonymous(); // Get settings, whether allow anonymous.
+    boolean externalStoragePerformanceOPtimize=PreferenceManagerUtil.getExternalStoragePerformanceOptimize(); // Get settings, whether do external storage performance optimize.
     
     int actualPort=chooseRandomPort(); // Choose a random port.
     builtinFtpServer.setPort(actualPort); // Set the port.
@@ -221,6 +222,7 @@ public class HxLauncherApplication extends Application
     builtinFtpServer.setAllowActiveMode(false); // Do not allow active mode.
     builtinFtpServer.setAllowAnonymous(allowAnonymous); // Whether allow anonymous.
     builtinFtpServer.start(); // Start the builtin ftp server.
+    builtinFtpServer.setExternalStoragePerformanceOptimize(externalStoragePerformanceOPtimize); // Set option.
   } //public void onCreate()
 
   /**

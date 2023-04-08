@@ -20,7 +20,7 @@
               android:launchMode="singleInstance" />
     <activity android:name="com.stupidbeauty.hxlauncher.SettingsActivity" android:label="@string/hxLauncherSettings" >
     </activity>
-    <activity android:name="com.stupidbeauty.hxlauncher.activity.AccountActivity" android:label="@string/setRootDirectoryunt" 
+    <activity android:name="com.stupidbeauty.hxftpserver.activity.RootDirectorySettingActivity" android:label="@string/setRootDirectoryunt" 
       android:theme="@style/AppTheme" 
               />
     <activity android:name="com.stupidbeauty.hxlauncher.AutoRunSettingsActivity" android:theme="@android:style/Theme.Holo.Light"/>

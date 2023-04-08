@@ -111,14 +111,14 @@ public class PreferenceManagerUtil
 	} //public static void setUseHiveLayout(Boolean isChecked)
 
 	/**
-	 * 保存状态，常见问题数据库是否已经初始化。
-	 * @param hasInit 是否已经初始化。
+	 * Save the settings. Whether to do external storage performance optimize.
+	 * @param isChecked Do it or not.
 	 */
-	public static void setBuiltinShortcutsVisible(Boolean hasInit)
+	public static void setExternalStoragePerformanceOptimize(boolean isChecked)
 	{
-      Context ct = HxLauncherApplication.getAppContext(); //获取应用程序上下文。
-      SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ct); //获取共享配置对象。
-      sp.edit().putBoolean(Constants.Common.BuitinShortcutsVisible, hasInit).commit(); //保存。
+    Context ct = HxLauncherApplication.getAppContext(); //获取应用程序上下文。
+    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ct); //获取共享配置对象。
+    sp.edit().putBoolean(Constants.Common.ExternalStoragePerformanceOptimize, isChecked).commit(); // save the settings.
 	} //public static void saveHasFAQInit(Boolean hasInit)s
 
 	/**
@@ -133,13 +133,13 @@ public class PreferenceManagerUtil
 	} //public static boolean isHiveLayout()
 
 	/**
-	* 是否显示内置快捷方式。陈欣
+	* Get settings, whether do external storage performance optimize.()
 	*/
-	public static boolean isBuiltinShortcutsVisible()
+	public static boolean getExternalStoragePerformanceOptimize()
 	{
-      Context ct = HxLauncherApplication.getAppContext();
-      SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ct);
-      return sp.getBoolean(Constants.Common.BuitinShortcutsVisible, true);
+    Context ct = HxLauncherApplication.getAppContext();
+    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ct);
+    return sp.getBoolean(Constants.Common.ExternalStoragePerformanceOptimize, false);
 	}
 
 	/**
