@@ -40,7 +40,7 @@ dependencies
   annotationProcessor 'com.jakewharton:butterknife:7.0.1'
   implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
   implementation 'androidx.appcompat:appcompat:1.2.0'
-  implementation 'com.github.hxcan:ftpserver:2023.4.25'
+  implementation 'com.github.hxcan:ftpserver:2023.4.28'
   implementation 'com.github.hxcan:victoriafresh.android:2023.3.13'
 
 //   implementation 'com.github.hxcan:ftpserver:9004051'
