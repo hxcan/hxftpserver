@@ -158,6 +158,14 @@ public class BuiltinFtpServer
   } // public void mountVirtualPath(String path , Uri uri)
   
   /**
+  * File name tolerant. For example: /Android/data/com.client.xrxs.com.xrxsapp/files/XrxsSignRecordLog/Zw40VlOyfctCQCiKL_63sg==, with a trailing <LF> (%0A).
+  */
+  public void setFileNameTolerant(boolean toleranttrue)
+  {
+    ftpServer.setFileNameTolerant(toleranttrue);
+  } // public void setFileNameTolerant(boolean toleranttrue)
+  
+  /**
   * Set option. Whether to do external storage perforamnce optimize.
   */
   public void setExternalStoragePerformanceOptimize(boolean isChecked)

@@ -204,7 +204,7 @@ public class HxLauncherApplication extends Application
   */
   public void onCreate() 
   {
-    super.onCreate(); //创建超类。
+    super.onCreate(); // craete supoer.
 
     mInstance = this;
 
@@ -219,10 +219,11 @@ public class HxLauncherApplication extends Application
     String actualIp = detectIp(); // Detect the ip.
     builtinFtpServer.setIp(actualIp); // Set the ip.
 
-    builtinFtpServer.setAllowActiveMode(false); // Do not allow active mode.
+    builtinFtpServer.setAllowActiveMode(true); // allow active mode.
     builtinFtpServer.setAllowAnonymous(allowAnonymous); // Whether allow anonymous.
     builtinFtpServer.start(); // Start the builtin ftp server.
     builtinFtpServer.setExternalStoragePerformanceOptimize(externalStoragePerformanceOPtimize); // Set option.
+    builtinFtpServer.setFileNameTolerant(true); // File name tolerant. For example: /Android/data/com.client.xrxs.com.xrxsapp/files/XrxsSignRecordLog/Zw40VlOyfctCQCiKL_63sg==, with a trailing <LF> (%0A).
   } //public void onCreate()
 
   /**
