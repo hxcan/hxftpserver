@@ -32,7 +32,10 @@ public class FtpEventListener implements EventListener
     }
     else if (eventCode.equals(UPLOAD_FINISH)) // file upload finish
     {
-      launcherActivity.notifyUploadFinish(eventContent); // notify upload finish.
+      if (eventContent!=null) // The event content eists
+      {
+        launcherActivity.notifyUploadFinish(eventContent); // notify upload finish.
+      } // if (eventContent!=null) // The event content eists
     } // else if (eventCode.equals(UP_FINISH)) // file upload finish
     else if (eventCode.equals(NEED_BROWSE_DOCUMENT_TREE)) // need browse document tree
     {
