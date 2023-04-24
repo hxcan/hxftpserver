@@ -33,9 +33,9 @@
 
 
 
-  <string name="unlink_not_right">不对</string>
+  <string name="controlConnectionEndedUnexpectedlyged">控制连接异常断开</string>
   <string name="externalStoragePerformanceOptimizempty">外置存储性能优化</string>
-  <string name="login_in">登录</string>
+  <string name="urlCopiedged">网址已复制</string>
   <string name="login_login_button">登录</string>
   <string name="loginout_loginout_button">退出</string>
   <string name="button_ok">确定</string>

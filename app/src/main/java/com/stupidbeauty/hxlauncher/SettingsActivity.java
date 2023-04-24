@@ -21,24 +21,22 @@ import com.stupidbeauty.builtinftp.demo.R;
 
 public class SettingsActivity extends Activity
 {
-    @Bind(R.id.builtinShortcutscheckBox) CheckBox builtinShortcutscheckBox; //!<内置快捷方式是否可见。
+  private static String OptimizeRepairGooglePlayUrl="https://play.google.com/store/apps/details?id=com.stupidbeauty.hxlauncher"; //!<灵桌面应用程序的google play地址。
 
-    private static String OptimizeRepairGooglePlayUrl="https://play.google.com/store/apps/details?id=com.stupidbeauty.hxlauncher"; //!<灵桌面应用程序的google play地址。
+  private static final String TAG="SettingsActivity"; //!<输出调试信息时使用的标记。
 
-    private static final String TAG="SettingsActivity"; //!<输出调试信息时使用的标记。
+  @Override
+  /**
+    * 活动被创建。
+    */
+  protected void onCreate(Bundle savedInstanceState)
+  {
+    super.onCreate(savedInstanceState);
 
-    @Override
-    /**
-     * 活动被创建。
-     */
-    protected void onCreate(Bundle savedInstanceState)
-    {
-      super.onCreate(savedInstanceState);
+    setContentView(R.layout.settings_activity); //设置界面内容。
 
-      setContentView(R.layout.settings_activity); //设置界面内容。
-
-      ButterKnife.bind(this); //视图注入。
-    } //protected void onCreate(Bundle savedInstanceState)
+    ButterKnife.bind(this); //视图注入。
+  } //protected void onCreate(Bundle savedInstanceState)
 
     @OnClick(R.id.ratelanime_button1)
     /**

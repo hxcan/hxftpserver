@@ -103,7 +103,13 @@ public class LauncherActivity extends Activity
     ClipData clip = android.content.ClipData.newPlainText("Copied", stringNodeCopied);
 
     clipboard.setPrimaryClip(clip);
-  }
+    
+    String downloadFinished = getResources().getString(R.string.urlCopiedged); // Load the text content.
+
+    Log.d(TAG, "notifyDownloadFinish, text: " + downloadFinished); // Debug.
+
+    voiceUi.say(downloadFinished); // 发声。
+  } // public void copyUrlButton()
   
   /**
   * Show ftp url

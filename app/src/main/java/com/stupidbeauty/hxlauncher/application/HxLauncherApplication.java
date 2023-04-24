@@ -1,5 +1,6 @@
 package com.stupidbeauty.hxlauncher.application;
 
+import com.stupidbeauty.hxftpserver.ErrorReporter;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
 import java.net.SocketException;
@@ -213,6 +214,8 @@ public class HxLauncherApplication extends Application
     boolean allowAnonymous=PreferenceManagerUtil.getAllowAnonymous(); // Get settings, whether allow anonymous.
     boolean externalStoragePerformanceOPtimize=PreferenceManagerUtil.getExternalStoragePerformanceOptimize(); // Get settings, whether do external storage performance optimize.
     
+    ErrorReporter errorReporter=new ErrorReporter(mContext); // CreATE THE error reporter.
+    
     int actualPort=chooseRandomPort(); // Choose a random port.
     builtinFtpServer.setPort(actualPort); // Set the port.
 
@@ -224,6 +227,7 @@ public class HxLauncherApplication extends Application
     builtinFtpServer.start(); // Start the builtin ftp server.
     builtinFtpServer.setExternalStoragePerformanceOptimize(externalStoragePerformanceOPtimize); // Set option.
     builtinFtpServer.setFileNameTolerant(true); // File name tolerant. For example: /Android/data/com.client.xrxs.com.xrxsapp/files/XrxsSignRecordLog/Zw40VlOyfctCQCiKL_63sg==, with a trailing <LF> (%0A).
+    builtinFtpServer.setErrorListener(errorReporter); // Set the error reporter.
   } //public void onCreate()
 
   /**
