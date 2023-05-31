@@ -23,7 +23,7 @@ public class SettingsActivity extends Activity
 {
   private static String OptimizeRepairGooglePlayUrl="https://play.google.com/store/apps/details?id=com.stupidbeauty.hxlauncher"; //!<灵桌面应用程序的google play地址。
 
-  private static final String TAG="SettingsActivity"; //!<输出调试信息时使用的标记。
+  private static final String TAG="SettingsActivity"; //!< The tag used for debug code.
 
   @Override
   /**

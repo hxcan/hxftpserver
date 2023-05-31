@@ -22,10 +22,15 @@ public class FtpEventListener implements EventListener
   {
     Log.d(TAG, "onEvent, eventCode: " + eventCode);
     
-    if (eventCode.equals(DELETE)) // 文件删除。
+    if (eventCode.equals(DELETE)) // File deleted
     {
       launcherActivity.refreshAvailableSpace(); // 刷新可用的空间。
-    }
+
+      if (eventContent!=null) // The event content eists
+      {
+        launcherActivity.notifyDelete(eventContent); // notify file delete.
+      } // if (eventContent!=null) // The event content eists
+    } // if (eventCode.equals(DELETE)) // File deleted
     else if (eventCode.equals(DOWNLOAD_FINISH)) // 文件下载完毕。
     {
       launcherActivity.notifyDownloadFinish(); // 告知文件下载完毕。

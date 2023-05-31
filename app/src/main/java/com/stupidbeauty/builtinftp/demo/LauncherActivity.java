@@ -6,7 +6,6 @@ import com.koushikdutta.async.callback.CompletedCallback;
 import com.koushikdutta.async.callback.ListenCallback;
 import com.stupidbeauty.hxlauncher.activity.ApplicationInformationActivity;
 import com.stupidbeauty.hxlauncher.SettingsActivity;
-// import com.android.volley.RequestQueue;
 import com.google.gson.Gson;
 import com.stupidbeauty.codeposition.CodePosition;
 import java.io.FileDescriptor;
@@ -214,10 +213,10 @@ public class LauncherActivity extends Activity
     long startTimestamp=System.currentTimeMillis(); // 记录开始时间戳。
     super.onResume(); //超类继续工作。
 
-      refreshAvailableSpace(); // 刷新可用空间数量。
+    refreshAvailableSpace(); // 刷新可用空间数量。
 
-      createActiveUserReportManager(); // 创建管理器，活跃用户统计。陈欣
-    } //protected void onResume()
+    createActiveUserReportManager(); // 创建管理器，活跃用户统计。陈欣
+  } //protected void onResume()
 
     /**
     * 创建管理器，活跃用户统计。陈欣
@@ -365,22 +364,24 @@ public class LauncherActivity extends Activity
         } // if (resultData != null) // There is result data
       }
     }
-
-  /**
-    * Notify upload finish.
+    
+    /**
+    * notify file delete.
     */
-    public void notifyUploadFinish(Object eventContent)
+    public void notifyDelete(Object eventContent)
+    {
+      scanDocumentFile(eventContent);
+    } // public void notifyDelete(Object eventContent)
+    
+    private void scanDocumentFile(Object eventContent)
     {
       // chen xin . notify upload finish
       
-      // File uploadedFile=(File)(eventContent);
       DocumentFile uploadedFile=(DocumentFile)(eventContent);
       
       Uri uri=uploadedFile.getUri();
       
       String scheme=uri.getScheme();
-      
-      // File rawFile=new File(path);
       
       if (scheme.equals("file")) // It is a file
       {
@@ -389,6 +390,14 @@ public class LauncherActivity extends Activity
         File rawFile=new File(path);
         requestScanFile(rawFile); // Request scan file.
       } // if (scheme.equals("file")) // It is a file
+    } // private void scanDocumentFile(Object eventContent)
+
+    /**
+    * Notify upload finish.
+    */
+    public void notifyUploadFinish(Object eventContent)
+    {
+      scanDocumentFile(eventContent);
     } // notifyDownloadFinish(); // 告知文件下载完毕。
     
     /**
