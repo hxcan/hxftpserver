@@ -67,22 +67,14 @@ import com.google.gson.Gson;
 import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
 // import com.stupidbeauty.hxlauncher.asynctask.TranslateRequestSendTask;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
-// import com.stupidbeauty.hxlauncher.asynctask.VoiceAssociationDataSendTask;
-// import com.stupidbeauty.hxlauncher.asynctask.VoiceShortcutAssociationDataSendTask;
-// import com.stupidbeauty.hxlauncher.bean.ApplicationNameInternationalizationData;
-// import com.stupidbeauty.hxlauncher.bean.ApplicationNamePair;
-// import com.stupidbeauty.hxlauncher.bean.HxShortcutInfo;
-// import com.stupidbeauty.hxlauncher.callback.LauncherAppsCallback;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Stack;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-// import io.github.g00fy2.versioncompare.Version;
-// import com.stupidbeauty.hxlauncher.interfaces.LocalServerListLoadListener;
 import static android.content.Intent.ACTION_PACKAGE_CHANGED;
 import static android.content.Intent.ACTION_PACKAGE_REPLACED;
 import static android.content.Intent.EXTRA_COMPONENT_NAME;
@@ -101,10 +93,10 @@ public class ApplicationInformationActivity extends Activity
 
 //   private BuiltinShortcutsManager builtinShortcutsManager=new BuiltinShortcutsManager(); //!<内置快捷方式管理器
 
-  @Bind(R.id.hitApplicationIcon) ImageView hitApplicationIcon; //!<命中的应用的图标。
-  @Bind(R.id.microphoneIcon) ImageView microphoneIcon; //!< 升级按钮图标。
-  @Bind(R.id.applicationName2) TextView applicationName2; //!< Application name text view.
-  @Bind(R.id.launcher_activity) RelativeLayout launcher_activity; //!<整个启动活动
+  @BindView(R.id.hitApplicationIcon) ImageView hitApplicationIcon; //!<命中的应用的图标。
+  @BindView(R.id.microphoneIcon) ImageView microphoneIcon; //!< 升级按钮图标。
+  @BindView(R.id.applicationName2) TextView applicationName2; //!< Application name text view.
+  @BindView(R.id.launcher_activity) RelativeLayout launcher_activity; //!<整个启动活动
 
   private HashMap<String, Long> packageItemLastLaunchTimestampMap=new HashMap<>(); //!<包名加类名的字符串与最后一次启动时间戳之间的映射。
 
@@ -120,21 +112,17 @@ public class ApplicationInformationActivity extends Activity
 
     private static final String PERMISSION_FINE_LOCATIN = Manifest.permission.ACCESS_FINE_LOCATION; //!<位置权限
 
-//     private MultiMap<String, PackageItemInfo> voicePackageNameMap; //!<语音识别结果与包条目信息之间的映射关系。本设备独有的
-    //    private HashMap<String, PackageItemInfo> voicePackageNameMap; //!<语音识别结果与包条目信息之间的映射关系。本设备独有的
-//     private HashMap<String, HxShortcutInfo> voiceShortcutIdMap=new HashMap<>(); //!<语音识别结果与快捷方式编号之间的映射关系．
+    @BindView(R.id.wallpaper) ImageView wallpaper; //!<墙纸视图。
 
-    @Bind(R.id.wallpaper) ImageView wallpaper; //!<墙纸视图。
-
-    @Bind(R.id.progressBar) ProgressBar progressBar; //!<进度条。
+    @BindView(R.id.progressBar) ProgressBar progressBar; //!<进度条。
 
     private String voiceRecognizeResultString; //!<语音识别结果。
 
     int ret = 0;
 
-    @Bind(R.id.applicationIconrightimageView2) ImageView applicationIconrightimageView2; //!< 应用图标图片。陈欣。
+    @BindView(R.id.applicationIconrightimageView2) ImageView applicationIconrightimageView2; //!< 应用图标图片。陈欣。
 
-    @Bind(R.id.statustextView) TextView statustextView; //!< 用来显示状态的文字标签。
+    @BindView(R.id.statustextView) TextView statustextView; //!< 用来显示状态的文字标签。
 
     private int recognizeCounter=0; //!<识别计数器．
 
@@ -153,8 +141,6 @@ public class ApplicationInformationActivity extends Activity
     private String activityName; //!< 活动名字。
 
     private int mCurrMsg = -1;
-
-    // private RequestQueue mQueue; //!<Volley请求队列。
 
     @OnClick(R.id.loveAnimation)
     public void deleteItem()

@@ -28,7 +28,7 @@ import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
 import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
 import com.koushikdutta.async.http.server.HttpServerRequestCallback;
 import com.stupidbeauty.builtinftp.BuiltinFtpServer;
-import butterknife.Bind;
+// import butterknife.Bind;
 import butterknife.ButterKnife;
 import android.content.ClipboardManager;
 import butterknife.OnClick;

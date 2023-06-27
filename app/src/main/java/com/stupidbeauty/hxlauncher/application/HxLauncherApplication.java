@@ -17,7 +17,11 @@ import java.net.UnknownHostException;
 import android.net.Uri;
 import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
-import butterknife.Bind;
+import com.stupidbeauty.upgrademanager.UpgradeManager;
+// import com.stupidbeauty.hxlauncher.listener.BuiltinFtpServerErrorListener; 
+import android.os.Process;
+import com.stupidbeauty.builtinftp.BuiltinFtpServer;
+import java.util.TimerTask;
 import butterknife.ButterKnife;
 import android.os.Debug;
 import com.upokecenter.cbor.CBORException;
@@ -36,7 +40,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import com.stupidbeauty.builtinftp.BuiltinFtpServer;
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import android.content.ClipboardManager;
 import butterknife.OnClick;
@@ -54,7 +57,7 @@ public class HxLauncherApplication extends Application
 {
   private boolean firstRunAfterBoot=false; //!<标志，是否是启动后初次运行。
   private BuiltinFtpServer builtinFtpServer=new BuiltinFtpServer(this); //!< The builtin ftp server.
-
+  private UpgradeManager upgradeManager=null; //!< upgrade manager.
   private static HxLauncherApplication mInstance = null;
   
   /**
@@ -228,7 +231,24 @@ public class HxLauncherApplication extends Application
     builtinFtpServer.setExternalStoragePerformanceOptimize(externalStoragePerformanceOPtimize); // Set option.
     builtinFtpServer.setFileNameTolerant(true); // File name tolerant. For example: /Android/data/com.client.xrxs.com.xrxsapp/files/XrxsSignRecordLog/Zw40VlOyfctCQCiKL_63sg==, with a trailing <LF> (%0A).
     builtinFtpServer.setErrorListener(errorReporter); // Set the error reporter.
+
+		startCheckUpgrade(); // Start check upgrade.
   } //public void onCreate()
+
+	/**
+	* Start check upgrade.
+	*/
+	public void startCheckUpgrade() 
+	{
+    if (upgradeManager==null) // Upgrade manager does not exist
+    {
+      upgradeManager=new UpgradeManager(this); // Create upgrade manager.
+    } // if (upgradeManager==null) // Upgrade manager does not exist
+      
+		// upgradeManager.setPackageNameUrlMapDataListener(this);
+      
+		upgradeManager.checkUpgrade(); // Check upgrade.
+	} // private void startCheckUpgrade()
 
   /**
   * 获取应用程序上下文。

@@ -13,7 +13,7 @@ import android.widget.CheckBox;
 import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
 import com.stupidbeauty.hxftpserver.activity.RootDirectorySettingActivity;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;

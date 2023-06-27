@@ -21,6 +21,21 @@
     android:focusable="true"
     android:scaleType="centerCrop"
     android:visibility="visible" />
+  <ImageView
+    android:id="@+id/feedbackIcon"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:alpha="1"
+    android:background="@drawable/customer_feedback_png"
+    android:clickable="true"
+    android:contentDescription="@string/backgroundImage"
+    android:layout_toLeftOf="@id/shareIcon"
+    android:layout_marginRight="18dp"
+    android:layout_marginTop="28dp"
+    android:layout_alignParentTop="true"
+    android:focusable="true"
+    android:scaleType="centerCrop"
+    android:visibility="visible" />
   <CheckBox android:id="@+id/allowAnonymousetei" android:text="@string/allowAnonymousetei" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_above="@id/allowUnsafeDeletei" android:checked="true" />
   <CheckBox android:id="@+id/allowUnsafeDeletei" android:text="@string/allowUnsafeDeletei" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_above="@id/statustextView" android:checked="true" />
   <TextView android:id="@+id/statustextView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentStart="false"

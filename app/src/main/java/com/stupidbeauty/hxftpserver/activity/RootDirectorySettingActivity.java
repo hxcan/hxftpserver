@@ -3,13 +3,13 @@ package com.stupidbeauty.hxftpserver.activity;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import com.stupidbeauty.builtinftp.BuiltinFtpServer;
-import butterknife.Bind;
+// import butterknife.Bind;
 import butterknife.ButterKnife;
 import android.content.ClipboardManager;
 import butterknife.OnClick;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
 import com.stupidbeauty.ftpserver.lib.DocumentTreeBrowseRequest;
-import butterknife.Bind;
+// import butterknife.Bind;
 import butterknife.ButterKnife;
 import android.os.Debug;
 import com.stupidbeauty.codeposition.CodePosition;
@@ -43,36 +43,32 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import butterknife.ButterKnife;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import com.stupidbeauty.builtinftp.demo.R;
 import android.widget.TextView;
 import android.widget.CheckBox;
 import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
-// import com.stupidbeauty.hxlauncher.activity.AccountActivity;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
-import butterknife.Bind;
+import butterknife.BindView;
 
 public class RootDirectorySettingActivity extends Activity
 {
 	private static final String TAG = "RootDirectorySettingActivity"; //!< Tag used in debug code.
 	private static final int TIMEOUT = 30000;
 
-	@Bind(R.id.paidCreditPrompttextView6) TextView paidCreditPrompttextView6; //!< Root directory path.
-  @Bind(R.id.paidCredittextView7) CheckBox paidCredittextView7; //!< Whether to do external storage performance optimize.
+	@BindView(R.id.paidCreditPrompttextView6) TextView paidCreditPrompttextView6; //!< Root directory path.
+  @BindView(R.id.paidCredittextView7) CheckBox paidCredittextView7; //!< Whether to do external storage performance optimize.
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent resultData) 
   {
-    Log.d(TAG, CodePosition.newInstance().toString()+  ", request code: " + requestCode + ", result code: " + resultCode + ", uri to use: " + resultData); // Debug.
-    //       if (requestCode == your-request-code && resultCode == Activity.RESULT_OK) 
     if (resultCode == Activity.RESULT_OK)  // Success. -1
     {
       Uri uri = null;
       if (resultData != null) // There is result data
       {
         uri = resultData.getData();
-        Log.d(TAG, CodePosition.newInstance().toString()+  ", request code: " + requestCode + ", result code: " + resultCode + ", uri to use: " + uri.toString()); // Debug.
         
         HxLauncherApplication hxLauncherApplication= HxLauncherApplication.getInstance() ; // 获取应用程序实例。
         BuiltinFtpServer builtinFtpServer=null; //!< The builtin ftp server.

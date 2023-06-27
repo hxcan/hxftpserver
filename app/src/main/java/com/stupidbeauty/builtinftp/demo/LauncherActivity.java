@@ -1,5 +1,6 @@
 package com.stupidbeauty.builtinftp.demo;
 
+import com.stupidbeauty.feedback.Feedback;
 import androidx.documentfile.provider.DocumentFile;
 import java.io.File;
 import com.koushikdutta.async.callback.CompletedCallback;
@@ -19,7 +20,7 @@ import android.os.HandlerThread;
 import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
 import com.stupidbeauty.ftpserver.lib.DocumentTreeBrowseRequest;
-import butterknife.Bind;
+// import butterknife.Bind;
 import butterknife.ButterKnife;
 import android.os.Debug;
 import butterknife.OnCheckedChanged;
@@ -40,7 +41,7 @@ import android.text.format.Formatter;
 import android.view.View;
 import android.widget.TextView;
 import com.stupidbeauty.builtinftp.BuiltinFtpServer;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import android.content.ClipboardManager;
 import butterknife.OnClick;
@@ -65,7 +66,7 @@ import android.app.Activity;
 import android.widget.CheckBox;
 import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
-import butterknife.Bind;
+import butterknife.BindView;
 import android.widget.RelativeLayout;
 
 public class LauncherActivity extends Activity 
@@ -77,10 +78,10 @@ public class LauncherActivity extends Activity
   private ActiveUserReportManager activeUserReportManager=null; //!< 活跃用户统计管理器。陈欣。
   private BuiltinFtpServer builtinFtpServer=null; //!< The builtin ftp server.
 
-  @Bind(R.id.statustextView) TextView statustextView; //!< Label to show status text.
-  @Bind(R.id.availableSpaceView) TextView availableSpaceView; //!< 可用空间。
-  @Bind(R.id.allowAnonymousetei) CheckBox allowAnonymousetei; //!< Allow anonymous check box.
-  @Bind(R.id.userNamePassWordayout) RelativeLayout userNamePassWordayout; //!< User name pass word layout.
+  @BindView(R.id.statustextView) TextView statustextView; //!< Label to show status text.
+  @BindView(R.id.availableSpaceView) TextView availableSpaceView; //!< 可用空间。
+  @BindView(R.id.allowAnonymousetei) CheckBox allowAnonymousetei; //!< Allow anonymous check box.
+  @BindView(R.id.userNamePassWordayout) RelativeLayout userNamePassWordayout; //!< User name pass word layout.
     
   @OnClick(R.id.shareIcon)
   public void shareViaText()
@@ -91,6 +92,14 @@ public class LauncherActivity extends Activity
     startActivity(launchIntent); //启动活动。
 
     Log.d(TAG, "gotoLoginActivity, 122."); //Debug.
+  } // public void shareViaText()
+
+  @OnClick(R.id.feedbackIcon)
+  public void showFeedbackUit()
+  {
+    Feedback feedback = new Feedback(this, "caihuosheng@gmail.com");
+    
+    feedback.showFeedbackUi(); // Show feedback ui.
   } // public void shareViaText()
 
   @OnClick(R.id.copyUrlButton)
