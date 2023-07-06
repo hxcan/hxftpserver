@@ -422,7 +422,8 @@ public class LauncherActivity extends Activity
     */
     public void refreshAvailableSpace() 
     {
-      File file = new File(Constants.DirPath.FARMING_BOOK_APP_SD_CARD_PATH); //保存的图片文件。
+      // File file = new File(Constants.DirPath.FARMING_BOOK_APP_SD_CARD_PATH); //保存的图片文件。
+      File file = getFilesDir(); // The files dir.
 
       long usableSpaceBytes=file.getUsableSpace(); //获取可用的字节数。
 
