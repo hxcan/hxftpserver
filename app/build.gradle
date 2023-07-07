@@ -40,7 +40,7 @@ dependencies
   implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
   implementation 'androidx.appcompat:appcompat:1.2.0'
   implementation 'com.github.hxcan:upgrademanager:2023.5.8'
-  implementation 'com.github.hxcan:ftpserver:2023.7.8'
+  implementation 'com.github.hxcan:ftpserver:2023.7.10'
   implementation 'com.github.hxcan:feedback:2023.6.35'
 
 //   implementation 'com.github.hxcan:ftpserver:0e976e4'
