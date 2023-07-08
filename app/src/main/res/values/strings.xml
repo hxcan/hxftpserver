@@ -31,8 +31,8 @@
   <string name="myAccount">My account</string>
   <string name="freeCredit">Current root directory:</string>
   <string name="paidCredit">Paid speech credit</string>
-    <string name="applicationAlias">Application alias</string>
-    <string name="pleaseSetHxLauncherAsTheDefaultLauncher">Please set HxLauncher as the default launcher.</string>
+  <string name="applicationAlias">Application alias</string>
+  <string name="pleaseSetHxLauncherAsTheDefaultLauncher">Please set HxLauncher as the default launcher.</string>
   <string name="applicationFrequency">Application frequency</string>
   <string name="grantManageAllFilesPermission">Grant manage all files permission</string>
   <string name="stopWeb">Stop</string>
@@ -41,7 +41,7 @@
   <string name="enterPassword">Enter password</string>
   <string name="forgotPassword">Forgot password?</string>
   <string name="apn_setting_username">You can set a custom root directory for the ftp server. Start by pressing the button below.</string>
-
+  <string name="firstStepEnableLanIme">Auto start</string>
   <string name="about_info_coverage">Coverage</string>
   <string name="unlink_not_right">Not right</string>
   <string name="about_help_feedback_title">Help And Feedback</string>

@@ -414,7 +414,10 @@ public class LauncherActivity extends Activity
     */
     private void requestScanFile(File uploadedFile) 
     {
-      scanFile(uploadedFile.getAbsolutePath()); // scan this file.
+      if (uploadedFile!=null) // The file exists
+      {
+        scanFile(uploadedFile.getAbsolutePath()); // scan this file.
+      } // if (uploadedFile!=null) // The file exists
     } // private void requestScanFile(File uploadedFile)
     
     /**
