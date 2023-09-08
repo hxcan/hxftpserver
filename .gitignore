@@ -6,3 +6,4 @@ local.properties
 .exzignore
 app/.exzignore
 get.file.convert.h.txt
+scpLock.cx
