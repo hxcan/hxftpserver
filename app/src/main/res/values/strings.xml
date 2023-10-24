@@ -37,12 +37,12 @@
   <string name="grantManageAllFilesPermission">Grant manage all files permission</string>
   <string name="stopWeb">Stop</string>
   <string name="forwardWeb">Forward</string>
-  <string name="register">Register</string>
+  <string name="startServerl">Start server</string>
   <string name="enterPassword">Enter password</string>
   <string name="forgotPassword">Forgot password?</string>
   <string name="apn_setting_username">You can set a custom root directory for the ftp server. Start by pressing the button below.</string>
   <string name="firstStepEnableLanIme">Auto start</string>
-  <string name="about_info_coverage">Coverage</string>
+  <string name="stopServerl">Stop server</string>
   <string name="unlink_not_right">Not right</string>
   <string name="about_help_feedback_title">Help And Feedback</string>
   <string name="urlCopiedged">Url copied</string>

@@ -119,13 +119,22 @@ public class BuiltinFtpServer
 
   private Context context; //!< Context.
 
+  /**
+  * Stop the ftp server.
+  */
+  public void stop()
+  {
+    ftpServer.stop();
+    
+    ftpServer = null;
+    ftpServerErrorListener = null;
+  } // public void stop()
+  
   public void start()
   {
-    ftpServerErrorListener=new FtpServerErrorListener(this);
+    ftpServerErrorListener = new FtpServerErrorListener(this);
     
     ftpServer = new FtpServer("0.0.0.0", port, context, allowActiveMode, ftpServerErrorListener, ip);
-//     ftpServer.setErrorListener(ftpServerErrorListener); // Set error listner. Chen xin.
-    Log.d(TAG, "start, rootDirectory: " + Environment.getExternalStorageDirectory()); // Debug.
 
     ftpServer.setRootDirectory(Environment.getExternalStorageDirectory()); // Set the root directory.
     ftpServer.setAutoDetectIp(true); // Auto detect ip.

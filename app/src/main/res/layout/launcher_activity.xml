@@ -35,12 +35,34 @@
     android:layout_alignParentTop="true"
     android:focusable="true"
     android:scaleType="centerCrop"
-    android:visibility="visible" />
+    android:visibility="visible" 
+  />
+  <Button android:id="@+id/startServerlButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/feedbackIcon"
+    android:layout_centerHorizontal="true" android:textColor="@color/yellow" android:textSize="28sp" android:text="@string/startServerl" 
+    android:visibility="invisible" 
+  />
+  <Button android:id="@+id/stopServerlButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/startServerlButton"
+    android:layout_centerHorizontal="true" android:textColor="@color/yellow" android:textSize="28sp" android:text="@string/stopServerl" />
   <CheckBox android:id="@+id/allowAnonymousetei" android:text="@string/allowAnonymousetei" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_above="@id/allowUnsafeDeletei" android:checked="true" />
   <CheckBox android:id="@+id/allowUnsafeDeletei" android:text="@string/allowUnsafeDeletei" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_above="@id/statustextView" android:checked="true" />
   <TextView android:id="@+id/statustextView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentStart="false"
     android:layout_alignParentLeft="false" android:layout_centerVertical="true" android:textColor="@color/yellow" android:textSize="28sp"
     tools:visibility="visible" />
+  <ImageView
+    android:id="@+id/maskUrlLineImagecon"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:alpha="0.48"
+    android:background="@drawable/z00various2016028giftwrapvarity700400"
+    android:clickable="true"
+    android:contentDescription="@string/backgroundImage"
+    android:layout_alignRight="@id/statustextView"
+    android:layout_alignTop="@id/statustextView"
+    android:layout_alignLeft="@id/statustextView"
+    android:layout_alignBottom="@id/statustextView"
+    android:focusable="true"
+    android:scaleType="centerCrop"
+    android:visibility="invisible" />
   <Button android:id="@+id/copyUrlButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/statustextView"
     android:layout_centerHorizontal="true" android:textColor="@color/yellow" android:textSize="28sp" android:text="@string/copyUrl" />
   <RelativeLayout android:id="@+id/userNamePassWordayout" android:layout_width="wrap_content" android:layout_height="wrap_content"

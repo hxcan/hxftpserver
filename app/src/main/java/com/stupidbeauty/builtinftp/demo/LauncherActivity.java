@@ -20,7 +20,7 @@ import android.os.HandlerThread;
 import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
 import com.stupidbeauty.ftpserver.lib.DocumentTreeBrowseRequest;
-// import butterknife.Bind;
+import android.widget.Button;
 import butterknife.ButterKnife;
 import android.os.Debug;
 import butterknife.OnCheckedChanged;
@@ -64,6 +64,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
 import butterknife.BindView;
@@ -74,11 +75,12 @@ public class LauncherActivity extends Activity
   private static final String TAG="LauncherActivity"; //!< 输出调试信息时使用的标记
   private VoiceUi voiceUi=null; //!< 语音交互对象。
   private Timer timerObj = null; //!< 用于报告下载完毕的定时器。
-
   private ActiveUserReportManager activeUserReportManager=null; //!< 活跃用户统计管理器。陈欣。
   private BuiltinFtpServer builtinFtpServer=null; //!< The builtin ftp server.
-
+  @BindView(R.id.stopServerlButton) Button stopServerlButton; //!< the stop server button.
+  @BindView(R.id.startServerlButton) Button startServerlButton; //!< the start server button.
   @BindView(R.id.statustextView) TextView statustextView; //!< Label to show status text.
+  @BindView(R.id.maskUrlLineImagecon) ImageView maskUrlLineImagecon; //!< The mask on the url line.
   @BindView(R.id.availableSpaceView) TextView availableSpaceView; //!< 可用空间。
   @BindView(R.id.allowAnonymousetei) CheckBox allowAnonymousetei; //!< Allow anonymous check box.
   @BindView(R.id.userNamePassWordayout) RelativeLayout userNamePassWordayout; //!< User name pass word layout.
@@ -86,12 +88,9 @@ public class LauncherActivity extends Activity
   @OnClick(R.id.shareIcon)
   public void shareViaText()
   {
-    Log.d(TAG, "gotoLoginActivity, 119."); //Debug.
     Intent launchIntent=new Intent(this, SettingsActivity.class); // 启动意图。
 
     startActivity(launchIntent); //启动活动。
-
-    Log.d(TAG, "gotoLoginActivity, 122."); //Debug.
   } // public void shareViaText()
 
   @OnClick(R.id.feedbackIcon)
@@ -101,6 +100,30 @@ public class LauncherActivity extends Activity
     
     feedback.showFeedbackUi(); // Show feedback ui.
   } // public void shareViaText()
+  
+  @OnClick(R.id.stopServerlButton)
+  public void stopServerlButton()
+  {
+    builtinFtpServer.stop(); // Stop the ftp server.
+    
+    stopServerlButton.setVisibility(View.INVISIBLE); // Hide the stop server button.
+    startServerlButton.setVisibility(View.VISIBLE); // Show the start server button.
+    maskUrlLineImagecon.setVisibility(View.VISIBLE); // Mask the url line.
+    
+    stopPersistantNotification(); // Stop the persistent notification.
+  } // public void stopServerlButton()
+
+  @OnClick(R.id.startServerlButton)
+  public void startServerlButton()
+  {
+    builtinFtpServer.start(); // Start the ftp server.
+    
+    stopServerlButton.setVisibility(View.VISIBLE); // Hide the stop server button.
+    startServerlButton.setVisibility(View.INVISIBLE); // Show the start server button.
+    maskUrlLineImagecon.setVisibility(View.INVISIBLE); // Mask the url line.
+
+    startTimeCheckService(); // Show persistent notification.
+  } // public void stopServerlButton()
 
   @OnClick(R.id.copyUrlButton)
   public void copyUrlButton()
@@ -113,8 +136,6 @@ public class LauncherActivity extends Activity
     clipboard.setPrimaryClip(clip);
     
     String downloadFinished = getResources().getString(R.string.urlCopiedged); // Load the text content.
-
-    Log.d(TAG, "notifyDownloadFinish, text: " + downloadFinished); // Debug.
 
     voiceUi.say(downloadFinished); // 发声。
   } // public void copyUrlButton()
@@ -147,11 +168,8 @@ public class LauncherActivity extends Activity
     
     voiceUi=new VoiceUi(this); // 创建语音交互对象。
 
-//     WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-//     String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
-      
     HxLauncherApplication hxLauncherApplication= HxLauncherApplication.getInstance() ; // 获取应用程序实例。
-    builtinFtpServer=hxLauncherApplication.getBuiltinFtpServer(); // 获取FTP服务器实例对象。
+    builtinFtpServer = hxLauncherApplication.getBuiltinFtpServer(); // 获取FTP服务器实例对象。
     
     showFtpUrl(); // Show ftp url.
     
@@ -200,7 +218,6 @@ public class LauncherActivity extends Activity
     builtinFtpServer.setAllowAnonymous(isChecked); // SEt whether aloow anonymous.
     
     toggleUserNamePassWordVisibility(isChecked); // Toggle user name pass word visibility.
-    
   } //public void toggleBuiltinShortcuts()
 
   /**
@@ -212,6 +229,16 @@ public class LauncherActivity extends Activity
 		
     startService(serviceIntent); //启动服务。
   } //private void startTimeCheckService()
+  
+  /**
+  * Stop the persistent notification.
+  */
+  private void stopPersistantNotification()
+  {
+    Intent serviceIntent = new Intent(this, DownloadNotificationService.class); //创建意图。
+		
+    stopService(serviceIntent); // Stop the service.
+  } // private void stopPersistantNotification()
 
   @Override
   /**
