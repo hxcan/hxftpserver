@@ -31,6 +31,10 @@ public class FtpEventListener implements EventListener
         launcherActivity.notifyDelete(eventContent); // notify file delete.
       } // if (eventContent!=null) // The event content eists
     } // if (eventCode.equals(DELETE)) // File deleted
+    else if (eventCode.equals(RENAME)) // File renamed
+    {
+      launcherActivity.notifyRename(eventContent); // notify file rename.
+    } // if (eventCode.equals(DELETE)) // File deleted
     else if (eventCode.equals(DOWNLOAD_FINISH)) // 文件下载完毕。
     {
       launcherActivity.notifyDownloadFinish(); // 告知文件下载完毕。

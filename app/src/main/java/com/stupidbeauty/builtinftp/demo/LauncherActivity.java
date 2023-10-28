@@ -33,6 +33,7 @@ import com.koushikdutta.async.AsyncServerSocket;
 import com.stupidbeauty.voiceui.VoiceUi;
 import com.stupidbeauty.hxlauncher.service.DownloadNotificationService; 
 import com.stupidbeauty.ftpserver.lib.EventListener;
+import com.stupidbeauty.ftpserver.lib.RenameInformationObject;
 import android.app.Activity;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -382,24 +383,56 @@ public class LauncherActivity extends Activity
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) 
     {
-      Log.d(TAG, CodePosition.newInstance().toString()+  ", request code: " + requestCode + ", result code: " + resultCode + ", uri to use: " + resultData); // Debug.
-//       if (requestCode == your-request-code && resultCode == Activity.RESULT_OK) 
-      if (resultCode == Activity.RESULT_OK) 
+      if (resultCode == Activity.RESULT_OK) // Select success
       {
-        // The result data contains a URI for the document or directory that
-        // the user selected.
+        // The result data contains a URI for the document or directory that // the user selected.
         Uri uri = null;
         if (resultData != null) // There is result data
         {
           uri = resultData.getData();
-          Log.d(TAG, CodePosition.newInstance().toString()+  ", request code: " + requestCode + ", result code: " + resultCode + ", uri to use: " + uri.toString()); // Debug.
-          // Perform operations on the document using its URI.
           
-          //           Chen xin.
           builtinFtpServer.answerBrowseDocumentTreeReqeust(requestCode, uri); // Answ4er the browse docuembnt tree reqeust.
         } // if (resultData != null) // There is result data
-      }
-    }
+      } // if (resultCode == Activity.RESULT_OK) // Select success
+    } // public void onActivityResult(int requestCode, int resultCode, Intent resultData) 
+    
+    /**
+    * notify file rename.
+    */
+    public void notifyRename(Object eventContent)
+    {
+      RenameInformationObject uploadedFile=(RenameInformationObject)(eventContent);
+      
+      DocumentFile fileObject = uploadedFile.getFile(); // Gett he file object.
+
+      scanDocumentFile(fileObject);
+      
+      // Scan the original file name to make the system forget it:
+      String oroiginalName = uploadedFile.getOriginalName(); // Get the original name.
+      
+      Uri uri=fileObject.getUri();
+      
+      String scheme=uri.getScheme();
+      
+      if (scheme.equals("file")) // It is a file
+      {
+        String path=uri.getPath();
+
+        File rawFile=new File(path);
+
+        File parentVirtualFile=rawFile.getParentFile();
+          
+        String currentTryingPath=parentVirtualFile.getPath();
+
+        // File parentDirectory = 
+        String oroiginalFilePath = currentTryingPath + "/" + oroiginalName; // Construct the original ifle path.
+        
+        File OroiginalFile = new File(oroiginalFilePath);
+        
+        requestScanFile(OroiginalFile); // Request scan file.
+      } // if (scheme.equals("file")) // It is a file
+
+    } // public void notifyRename(Object eventContent)
     
     /**
     * notify file delete.
