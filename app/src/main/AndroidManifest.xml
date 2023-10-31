@@ -22,5 +22,15 @@
       android:theme="@style/AppTheme" 
       />
     <activity android:name="com.stupidbeauty.hxlauncher.AutoRunSettingsActivity" android:theme="@android:style/Theme.Holo.Light"/>
+    <activity  android:screenOrientation="portrait" 
+      android:name="com.stupidbeauty.pdflearn.activity.PdfLearnActivity"
+      android:launchMode="singleInstance" 
+      android:windowSoftInputMode="adjustResize" >
+      <intent-filter>
+        <action android:name="android.intent.action.SEND" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="*/*"/>
+      </intent-filter>
+    </activity>
   </application>
 </manifest>

@@ -19,7 +19,7 @@ import android.util.Log;
 import java.util.Date;    
 import java.time.format.DateTimeFormatter;
 import java.io.File;
-import com.koushikdutta.async.AsyncServerSocket;
+// import com.koushikdutta.async.AsyncServerSocket;
 import com.stupidbeauty.ftpserver.lib.EventListener;
 
 public class BuiltinFtpServer
@@ -163,7 +163,17 @@ public class BuiltinFtpServer
   */
   public void mountVirtualPath(String path , Uri uri)
   {
-    ftpServer.mountVirtualPath(path, uri);
+    boolean takePermission = true; // Take permsion by default.
+
+    mountVirtualPath(path, uri, takePermission);
+  } // public void mountVirtualPath(String path , Uri uri)
+  
+  /**
+  * Mount virtual path.
+  */
+  public void mountVirtualPath(String path , Uri uri, boolean takePermission)
+  {
+    ftpServer.mountVirtualPath(path, uri, takePermission);
   } // public void mountVirtualPath(String path , Uri uri)
   
   /**

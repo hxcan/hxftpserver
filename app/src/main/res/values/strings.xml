@@ -51,4 +51,7 @@
   <string name="button_ok">OK</string>
   <string name="resetRootDirectoryin">Reset root directory</string>
   <string name="msg_intent_failed">Sorry, the requested application could not be launched.</string>
+    <string name="slash">/</string>
+
+
 </resources>

@@ -48,7 +48,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+// import com.bumptech.glide.Glide;
 // import com.stupidbeauty.grebe.DownloadRequestor;
 // import com.stupidbeauty.hxlauncher.ApplicationInformationAdapter;
 // import com.stupidbeauty.hxlauncher.BuiltinShortcutsManager;
@@ -60,7 +60,7 @@ import com.stupidbeauty.builtinftp.demo.R;
 // import com.stupidbeauty.hxlauncher.VoicePackageMapMessageProtos;
 // import com.stupidbeauty.hxlauncher.bean.VoiceCommandHitDataObject;
 // import com.android.volley.RequestQueue;
-import com.google.gson.Gson;
+// import com.google.gson.Gson;
 // import com.google.protobuf.ByteString;
 // import com.huiti.msclearnfootball.AnswerAvailableEvent;
 // import com.huiti.msclearnfootball.VoiceRecognizeResult;

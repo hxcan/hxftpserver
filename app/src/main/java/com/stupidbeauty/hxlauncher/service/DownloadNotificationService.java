@@ -23,10 +23,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
-import com.koushikdutta.async.http.server.AsyncHttpServer;
-import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
-import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
-import com.koushikdutta.async.http.server.HttpServerRequestCallback;
+// import com.koushikdutta.async.http.server.AsyncHttpServer;
+// import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
+// import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
+// import com.koushikdutta.async.http.server.HttpServerRequestCallback;
 import com.stupidbeauty.builtinftp.BuiltinFtpServer;
 // import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -118,29 +118,5 @@ public class DownloadNotificationService extends Service
     super.onCreate(); //创建超类。
 
 		mNM = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-
-        String contentText = getString(R.string.app_name);
-
-// 		showNotification(contentText);
-
-		startHttpServer(); //启动HTTP服务器
 	} //public void onCreate()
-
-	/**
-	 * 启动HTTP服务器，用于对同一个局域网内其它平板的请求进行响应.
-	 **/
-	private void startHttpServer()
-	{
-      AsyncHttpServer server=new AsyncHttpServer(); //Create the async server.
-
-      HttpServerRequestCallback callback=new HttpServerRequestCallback()
-      {
-        @Override
-        public void onRequest(AsyncHttpServerRequest request, AsyncHttpServerResponse response)
-        {
-          response.send("Hello!!!"); //是啊，今天休息。等下出去晒太阳。
-        } //public void onRequest(AsyncHttpServerRequest request,AsyncHttpServerResponse response)
-      };
-      server.get("/", callback); //设置路径对应的回调对象.
-	} //private void startHttpServer()
 }

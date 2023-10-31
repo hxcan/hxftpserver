@@ -3,11 +3,9 @@ package com.stupidbeauty.builtinftp.demo;
 import com.stupidbeauty.feedback.Feedback;
 import androidx.documentfile.provider.DocumentFile;
 import java.io.File;
-import com.koushikdutta.async.callback.CompletedCallback;
-import com.koushikdutta.async.callback.ListenCallback;
 import com.stupidbeauty.hxlauncher.activity.ApplicationInformationActivity;
 import com.stupidbeauty.hxlauncher.SettingsActivity;
-import com.google.gson.Gson;
+// import com.google.gson.Gson;
 import com.stupidbeauty.codeposition.CodePosition;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
@@ -29,7 +27,7 @@ import android.util.Log;
 import java.util.Date;    
 import java.time.format.DateTimeFormatter;
 import java.io.File;
-import com.koushikdutta.async.AsyncServerSocket;
+// import com.koushikdutta.async.AsyncServerSocket;
 import com.stupidbeauty.voiceui.VoiceUi;
 import com.stupidbeauty.hxlauncher.service.DownloadNotificationService; 
 import com.stupidbeauty.ftpserver.lib.EventListener;
@@ -152,7 +150,6 @@ public class LauncherActivity extends Activity
     String ftpUrl="ftp://"+ actualIp + ":"+ actualPort +"/"; // Construct the ftp server url.
 
     statustextView.setText(ftpUrl); // Show the FTP url
-        
   } // private void showFtpUrl() // Show ftp url
 
   @Override

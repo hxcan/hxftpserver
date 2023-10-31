@@ -6,8 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+// import com.google.gson.Gson;
+// import com.google.gson.reflect.TypeToken;
 // import com.stupidbeauty.hxlauncher.BuildConfig;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
 

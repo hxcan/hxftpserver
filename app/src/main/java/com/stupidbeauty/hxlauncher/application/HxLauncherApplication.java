@@ -18,7 +18,8 @@ import android.net.Uri;
 import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
 import com.stupidbeauty.upgrademanager.UpgradeManager;
-// import com.stupidbeauty.hxlauncher.listener.BuiltinFtpServerErrorListener; 
+
+import com.stupidbeauty.hxlauncher.factory.MessageFactory;
 import android.os.Process;
 import com.stupidbeauty.builtinftp.BuiltinFtpServer;
 import java.util.TimerTask;
@@ -48,6 +49,12 @@ import android.text.format.Formatter;
 import android.view.View;
 import android.widget.TextView;
 import com.stupidbeauty.builtinftp.BuiltinFtpServer;
+import com.stupidbeauty.hxlauncher.factory.MessageFactory;
+import com.stupidbeauty.hxlauncher.bean.ApplicationNameInternationalizationData;
+import com.stupidbeauty.hxlauncher.bean.WakeLockPackageNameSetData;
+import com.stupidbeauty.hxlauncher.datastore.RuntimeInformationStore;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 应用程序对象。
@@ -55,11 +62,22 @@ import com.stupidbeauty.builtinftp.BuiltinFtpServer;
  */
 public class HxLauncherApplication extends Application
 {
+	private MessageFactory messageFactory=new MessageFactory(); //!<消息工厂。
   private boolean firstRunAfterBoot=false; //!<标志，是否是启动后初次运行。
   private BuiltinFtpServer builtinFtpServer=new BuiltinFtpServer(this); //!< The builtin ftp server.
   private UpgradeManager upgradeManager=null; //!< upgrade manager.
   private static HxLauncherApplication mInstance = null;
+
+	private ApplicationNameInternationalizationData applicationNameInternationalizationData ; //!<应用程序可读名字国际化数据。
   
+	public ApplicationNameInternationalizationData getApplicationNameInternationalizationData() {
+		return applicationNameInternationalizationData;
+	}
+
+	public MessageFactory getMessageFactory() {
+		return messageFactory;
+	}
+
   /**
   *  返回 The builtin ftp server.
   */
