@@ -236,22 +236,30 @@ public class HxLauncherApplication extends Application
     boolean externalStoragePerformanceOPtimize=PreferenceManagerUtil.getExternalStoragePerformanceOptimize(); // Get settings, whether do external storage performance optimize.
     
     ErrorReporter errorReporter=new ErrorReporter(mContext); // CreATE THE error reporter.
-    
-    int actualPort=chooseRandomPort(); // Choose a random port.
-    builtinFtpServer.setPort(actualPort); // Set the port.
+
+    selectPort(); // Select a port.
 
     String actualIp = detectIp(); // Detect the ip.
     builtinFtpServer.setIp(actualIp); // Set the ip.
 
+    builtinFtpServer.setErrorListener(errorReporter); // Set the error reporter.
     builtinFtpServer.setAllowActiveMode(true); // allow active mode.
     builtinFtpServer.setAllowAnonymous(allowAnonymous); // Whether allow anonymous.
-    builtinFtpServer.start(); // Start the builtin ftp server.
     builtinFtpServer.setExternalStoragePerformanceOptimize(externalStoragePerformanceOPtimize); // Set option.
     builtinFtpServer.setFileNameTolerant(true); // File name tolerant. For example: /Android/data/com.client.xrxs.com.xrxsapp/files/XrxsSignRecordLog/Zw40VlOyfctCQCiKL_63sg==, with a trailing <LF> (%0A).
-    builtinFtpServer.setErrorListener(errorReporter); // Set the error reporter.
+    builtinFtpServer.start(); // Start the builtin ftp server.
 
 		startCheckUpgrade(); // Start check upgrade.
   } //public void onCreate()
+  
+  /**
+  * Select another port.
+  */
+  public void selectPort()
+  {
+    int actualPort=chooseRandomPort(); // Choose a random port.
+    builtinFtpServer.setPort(actualPort); // Set the port.
+  } // public void selectPort()
 
 	/**
 	* Start check upgrade.

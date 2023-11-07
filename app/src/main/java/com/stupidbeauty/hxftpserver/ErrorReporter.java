@@ -23,7 +23,6 @@ import java.net.UnknownHostException;
 import android.net.Uri;
 import com.stupidbeauty.farmingbookapp.PreferenceManagerUtil;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
-// import butterknife.Bind;
 import butterknife.ButterKnife;
 import android.os.Debug;
 import com.upokecenter.cbor.CBORException;
@@ -84,84 +83,20 @@ public class ErrorReporter implements ErrorListener
 
       voiceUi.say(downloadFinished); // 发声。
     } // if (errorCode==Constants.ErrorCode.ControlConnectionEndedUnexpectedly) // Connection ended unexpectedly
+    else if (errorCode==Constants.ErrorCode.ADDRESS_ALREADY_IN_USE) // Address already in use
+    {
+      HxLauncherApplication hxLauncherApplication= HxLauncherApplication.getInstance() ; // 获取应用程序实例。
+      hxLauncherApplication.selectPort(); // Select another port.
+      
+      BuiltinFtpServer builtinFtpServer=null; // The builtin ftp server.
+      builtinFtpServer = hxLauncherApplication.getBuiltinFtpServer(); // 获取FTP服务器实例对象。
+      builtinFtpServer.start(); // Start again.
+    } // else if (errorCode==Constants.ErrorCode.ADDRESS_ALREADY_IN_USE) // Address already in use
   } // public void onError(Integer errorCode)
   
-  public static HxLauncherApplication getInstance() 
-  {
-    if (mInstance == null) 
-    {
-      mInstance = new HxLauncherApplication();
-    }
-    return mInstance;
-  }
-
   private static Context mContext;
   private static final String TAG="ErrorReporter"; //!< The tag used for debug.
 	
-  /**
-  * Choose a random port.
-  */
-  private int chooseRandomPort() 
-  {
-    Random random=new Random(); // Get the random.
-
-    int randomIndex=random.nextInt(65535-1025)+1025; // Choose a random port.
-
-    boolean builtinShortcutsVisible = PreferenceManagerUtil.hasPortNumber(); // 保存了随机端口号。
-    
-    if (builtinShortcutsVisible) // 有保存 随机端口号。
-    {
-      randomIndex=PreferenceManagerUtil.getPortNumber(); // 获取保存了的随机端口号。
-    } // if (builtinShortcutsVisible) // 有保存 随机端口号。
-    else // 未保存随机端口号。
-    {
-      PreferenceManagerUtil.setPortNumber(randomIndex); // 保存随机端口号。
-    } // else // 未保存随机端口号。
-
-    return randomIndex;
-  } //private int chooseRandomPort()
-
-  private String getIpAddress()
-  {
-    String ip = "";
-    boolean found=false;
-    try
-    {
-      Enumeration<NetworkInterface> enumNetworkInterfaces = NetworkInterface.getNetworkInterfaces();
-      while (enumNetworkInterfaces.hasMoreElements())
-      {
-        NetworkInterface networkInterface = enumNetworkInterfaces.nextElement();
-        Enumeration<InetAddress> enumInetAddress = networkInterface.getInetAddresses();
-        while (enumInetAddress.hasMoreElements())
-        {
-          InetAddress inetAddress = enumInetAddress.nextElement();
-
-          if (inetAddress.isSiteLocalAddress())
-          {
-            ip = inetAddress.getHostAddress();
-            Log.d(TAG, "164, getIpAddress, ipAddress: " + ip); // Debug.
-
-            if (ip.startsWith("192.168."))
-            {
-              found=true;
-              break;
-            }
-          }
-        }
-        if (found)
-        {
-          break;
-        }
-      }
-    }
-    catch (SocketException e)
-    {
-      e.printStackTrace();
-      ip += "Something Wrong! " + e.toString() + "\n";
-    }
-    return ip;
-  }
-
   /**
   * 获取应用程序上下文。
   * @return 应用程序上下文。

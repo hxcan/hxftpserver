@@ -19,7 +19,6 @@ import android.util.Log;
 import java.util.Date;    
 import java.time.format.DateTimeFormatter;
 import java.io.File;
-// import com.koushikdutta.async.AsyncServerSocket;
 import com.stupidbeauty.ftpserver.lib.EventListener;
 
 public class BuiltinFtpServer
@@ -33,6 +32,8 @@ public class BuiltinFtpServer
   private String ip=null; //!< ip.
   private FtpServer ftpServer=null; //!< Ftp server object.
   private boolean allowActiveMode=true; //!<  Whether to allow active mode.
+  private boolean externalStoragePerformanceOptimize = true; //!< If we should enable external storage performance optimization.
+  private boolean fileNameTolerant = true; //!< if we should tolerate invalid file name.
     
   public void setEventListener(EventListener eventListener)
   {
@@ -138,6 +139,10 @@ public class BuiltinFtpServer
 
     ftpServer.setRootDirectory(Environment.getExternalStorageDirectory()); // Set the root directory.
     ftpServer.setAutoDetectIp(true); // Auto detect ip.
+
+    ftpServer.setExternalStoragePerformanceOptimize(externalStoragePerformanceOptimize);
+    ftpServer.setFileNameTolerant(fileNameTolerant);
+
     
     assessSetUserManager(); // Assess set user manager.
   }
@@ -181,7 +186,11 @@ public class BuiltinFtpServer
   */
   public void setFileNameTolerant(boolean toleranttrue)
   {
-    ftpServer.setFileNameTolerant(toleranttrue);
+    if (ftpServer!=null) // The ftp server object exists
+    {
+      fileNameTolerant = toleranttrue; // Remember it.
+      ftpServer.setFileNameTolerant(toleranttrue);
+    } // if (ftpServer!=null) // The ftp server object exists
   } // public void setFileNameTolerant(boolean toleranttrue)
   
   /**
@@ -189,7 +198,11 @@ public class BuiltinFtpServer
   */
   public void setExternalStoragePerformanceOptimize(boolean isChecked)
   {
-    ftpServer.setExternalStoragePerformanceOptimize(isChecked);
+    if (ftpServer!=null) // The ftp server object exists
+    {
+      externalStoragePerformanceOptimize = isChecked; // Remember it.
+      ftpServer.setExternalStoragePerformanceOptimize(isChecked);
+    } // if (ftpServer!=null) // The ftp server object exists
   } // public void setExternalStoragePerformanceOptimize(boolean isChecked)
   
   /**
