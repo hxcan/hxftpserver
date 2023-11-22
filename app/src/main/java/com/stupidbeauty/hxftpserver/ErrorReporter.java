@@ -86,7 +86,8 @@ public class ErrorReporter implements ErrorListener
     else if (errorCode==Constants.ErrorCode.ADDRESS_ALREADY_IN_USE) // Address already in use
     {
       HxLauncherApplication hxLauncherApplication= HxLauncherApplication.getInstance() ; // 获取应用程序实例。
-      hxLauncherApplication.selectPort(); // Select another port.
+      boolean forceNewPort = true; // Force to use a new port.
+      hxLauncherApplication.selectPort(forceNewPort); // Select another port.
       
       BuiltinFtpServer builtinFtpServer=null; // The builtin ftp server.
       builtinFtpServer = hxLauncherApplication.getBuiltinFtpServer(); // 获取FTP服务器实例对象。

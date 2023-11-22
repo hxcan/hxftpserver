@@ -101,24 +101,31 @@ public class HxLauncherApplication extends Application
   /**
   * Choose a random port.
   */
-  private int chooseRandomPort() 
+  private int chooseRandomPort(boolean forceNewPort) 
   {
     Random random=new Random(); // Get the random.
 
-    int randomIndex=random.nextInt(65535-1025)+1025; // Choose a random port.
+    int newPortNumber = random.nextInt(65535-1025)+1025; // Choose a random port.
 
-    boolean builtinShortcutsVisible = PreferenceManagerUtil.hasPortNumber(); // 保存了随机端口号。
+    boolean hasExistingPortNumberle = PreferenceManagerUtil.hasPortNumber(); // 保存了随机端口号。
     
-    if (builtinShortcutsVisible) // 有保存 随机端口号。
+    if (hasExistingPortNumberle) // 有保存 随机端口号。
     {
-      randomIndex=PreferenceManagerUtil.getPortNumber(); // 获取保存了的随机端口号。
+      if (forceNewPort) // Forced to use new port.
+      {
+        PreferenceManagerUtil.setPortNumber(newPortNumber); // 保存随机端口号。
+      } // if (forceNewPort) // Forced to use new port.
+      else // Not forced to use new port.
+      {
+        newPortNumber = PreferenceManagerUtil.getPortNumber(); // 获取保存了的随机端口号。
+      } // else // Not forced to use new port.
     } // if (builtinShortcutsVisible) // 有保存 随机端口号。
     else // 未保存随机端口号。
     {
-      PreferenceManagerUtil.setPortNumber(randomIndex); // 保存随机端口号。
+      PreferenceManagerUtil.setPortNumber(newPortNumber); // 保存随机端口号。
     } // else // 未保存随机端口号。
 
-    return randomIndex;
+    return newPortNumber;
   } //private int chooseRandomPort()
 
   /**
@@ -251,13 +258,21 @@ public class HxLauncherApplication extends Application
 
 		startCheckUpgrade(); // Start check upgrade.
   } //public void onCreate()
-  
+
   /**
   * Select another port.
   */
   public void selectPort()
   {
-    int actualPort=chooseRandomPort(); // Choose a random port.
+    selectPort(false); // Use exisintg port if possible.
+  } // public void selectPort()
+
+  /**
+  * Select another port.
+  */
+  public void selectPort(boolean forceuseNewPort)
+  {
+    int actualPort = chooseRandomPort(forceuseNewPort); // Choose a random port.
     builtinFtpServer.setPort(actualPort); // Set the port.
   } // public void selectPort()
 
