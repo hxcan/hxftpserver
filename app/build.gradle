@@ -13,16 +13,16 @@ android
     targetCompatibility JavaVersion.VERSION_1_8
   }
 
-  compileSdkVersion 30
+  compileSdkVersion 33
 
   defaultConfig 
   {
     buildToolsVersion = "30.0.3"
     applicationId "com.stupidbeauty.hxftpserver"
     minSdkVersion 21
-    targetSdkVersion 30
-    versionCode 4673
-    versionName "4673.2023.7.8"
+    targetSdkVersion 33
+    versionCode 4681
+    versionName "4681.2024.2.4"
   } // defaultConfig 
 
   buildTypes 
@@ -45,7 +45,7 @@ dependencies
   implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
   implementation 'androidx.appcompat:appcompat:1.2.0'
   implementation 'com.github.hxcan:upgrademanager:2023.9.6'
-  implementation 'com.github.hxcan:ftpserver:2023.10.45'
+  implementation 'com.github.hxcan:ftpserver:2024.4.21'
   implementation 'com.github.hxcan:feedback:2023.10.24'
 
 //   implementation 'com.github.hxcan:ftpserver:3b21c14'

@@ -1,5 +1,22 @@
 package com.stupidbeauty.builtinftp.demo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import android.widget.Toast;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import butterknife.ButterKnife;
 import com.stupidbeauty.feedback.Feedback;
 import androidx.documentfile.provider.DocumentFile;
 import java.io.File;
@@ -71,9 +88,11 @@ import android.widget.RelativeLayout;
 
 public class LauncherActivity extends Activity 
 {
+	private static final int PERMISSIONS_REQUEST = 1;
   private static final String TAG="LauncherActivity"; //!< 输出调试信息时使用的标记
   private VoiceUi voiceUi=null; //!< 语音交互对象。
   private Timer timerObj = null; //!< 用于报告下载完毕的定时器。
+	private static final String PERMISSION_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
   private ActiveUserReportManager activeUserReportManager=null; //!< 活跃用户统计管理器。陈欣。
   private BuiltinFtpServer builtinFtpServer=null; //!< The builtin ftp server.
   @BindView(R.id.stopServerlButton) Button stopServerlButton; //!< the stop server button.
@@ -176,8 +195,73 @@ public class LauncherActivity extends Activity
     startTimeCheckService(); // 启动下载通知服务。陈欣。
     
     loadSettings(); // Load settings.
+
+    checkPermission(); // 检查权限。
   } //protected void onCreate(Bundle savedInstanceState)
   
+	private boolean hasPermission()
+	{
+		boolean result=false; //结果。
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //安卓6.
+		{
+        ArrayList<String> articleInfoArrayList = new ArrayList<>(); // 权限列表。
+        
+        articleInfoArrayList.add(PERMISSION_STORAGE);
+        
+        for(String permissionString: articleInfoArrayList) // 一个个检查
+        {
+          result=(checkSelfPermission(permissionString) == PackageManager.PERMISSION_GRANTED); //录音权限。
+          
+          if (!result) // 没有权限
+          {
+            break; // 没有权限。
+          } // if (!result) // 没有权限
+        } // for(String permissionString: articleInfoArrayList) // 一个个检查
+
+		} //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //安卓6.
+		else //旧版本。
+		{
+			result=true; //有权限。
+		} //else //旧版本。
+
+		return result;
+	} //private boolean hasPermission()
+
+	/**
+	 * 检查权限。
+	 */
+	private void checkPermission()
+	{
+		if (hasPermission()) // have permission
+		{
+		}
+		else 
+		{
+			requestPermission();
+		}
+
+	} //private void checkPermission()
+
+	private void requestPermission()
+	{
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+		{
+			if ( shouldShowRequestPermissionRationale(PERMISSION_STORAGE)) //应当告知原因。
+			{
+				Toast.makeText(this, "Camera AND storage permission are required for this demo", Toast.LENGTH_LONG).show();
+			} //if ( shouldShowRequestPermissionRationale(PERMISSION_STORAGE)  || shouldShowRequestPermissionRationale(PERMISSION_RECORD_AUDIO)) //应当告知原因。
+        
+      String[] permissionStringArray=new String[1];
+      permissionStringArray[0]=PERMISSION_STORAGE;
+      // permissionStringArray[0]=PERMISSION_RECORD_AUDIO;
+      // permissionStringArray[0]=PERMISSION_FINE_LOCATIN;
+      // permissionStringArray[0]=PERMISSION_INSTALL_PACKAGE;
+      // permissionStringArray[0]=PERMISSION_READ_CONTACTS;
+			requestPermissions(permissionStringArray, PERMISSIONS_REQUEST);
+		}
+	} //private void requestPermission()
+
   /**
     * 载入选项。
     */
