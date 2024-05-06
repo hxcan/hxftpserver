@@ -23,10 +23,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
-// import com.koushikdutta.async.http.server.AsyncHttpServer;
-// import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
-// import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
-// import com.koushikdutta.async.http.server.HttpServerRequestCallback;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.LocaleList;
+import android.os.Vibrator;
 import com.stupidbeauty.builtinftp.BuiltinFtpServer;
 // import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -86,9 +87,19 @@ public class DownloadNotificationService extends Service
 		
     String downloadingText="Running " + contentText; // 构造字符串，正在下载。陈欣。
 		
-    NotificationChannel chan = new NotificationChannel( "#include", "My Foreground Service", NotificationManager.IMPORTANCE_LOW);
+    Notification.Builder notificationBuilder= new Notification.Builder(this);
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) // NotificationChannel
+    {
+      NotificationChannel chan = new NotificationChannel( "#include", "My Foreground Service", NotificationManager.IMPORTANCE_LOW);
+              
+      mNM.createNotificationChannel(chan);
+      notificationBuilder.setChannelId("#include");
+    } //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //动态权限
+
+    // NotificationChannel chan = new NotificationChannel( "#include", "My Foreground Service", NotificationManager.IMPORTANCE_LOW);
             
-    mNM.createNotificationChannel(chan);
+    // mNM.createNotificationChannel(chan);
 
     // Set the info for the views that show in the notification panel.
     Notification notification = new Notification.Builder(this)
@@ -99,7 +110,7 @@ public class DownloadNotificationService extends Service
       .setContentText(downloadingText)  // the contents of the entry
       .setContentIntent(contentIntent)  // The intent to send when the entry is clicked
       .setPriority(Notification.PRIORITY_HIGH)   // heads-up
-      .setChannelId("#include")
+      // .setChannelId("#include")
       .build();
 
     continiusNotification=notification; //记录通知

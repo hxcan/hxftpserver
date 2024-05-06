@@ -299,7 +299,16 @@ public class PdfLearnActivity extends Activity
       uri = imageURI; // Get the shared file uri.
 
       DocumentFile sharedFilet=DocumentFile.fromSingleUri(this, uri); // 04-08 18:22:04.279 15010 15045 W System.err: java.lang.IllegalArgumentException: Invalid URI: file:///storage/emulated/0/DCIM/GoddessCamera
+      Log.d(TAG, "addImage." + CodePosition.newInstance().toString() + ", shared file : " + sharedFilet + ", uri: " + uri); //Debug.
+      
+      // 05-06 19:47:11.015  7395  7395 W DocumentFile: Failed query: java.lang.NullPointerException: Attempt to invoke interface method 'boolean android.database.Cursor.moveToFirst()' on a null object reference
       String fileNaturalName = sharedFilet.getName(); // Gte the natural name.
+      
+      Log.d(TAG, "addImage." + CodePosition.newInstance().toString() + ", file natural name: " + fileNaturalName); //Debug.
+      if (fileNaturalName == null) // Failed with DocumentFile interface. Old platform, file:// scehma.
+      {
+        fileNaturalName = uri.getLastPathSegment(); // Get directly from uri.
+      } // if (fileNaturalName == null) // Failed with DocumentFile interface. Old platform, file:// scehma.
 
       HxLauncherApplication hxLauncherApplication= HxLauncherApplication.getInstance() ; // 获取应用程序实例。
       BuiltinFtpServer builtinFtpServer=null; //!< The builtin ftp server.
@@ -307,6 +316,7 @@ public class PdfLearnActivity extends Activity
       
       boolean noTakePermission = false; // Do not take the permission.
       
+      Log.d(TAG, "addImage." + CodePosition.newInstance().toString() + ", file natural name: " + fileNaturalName); //Debug.
       builtinFtpServer.mountVirtualPath("/hxftpserver/" + fileNaturalName , uri, noTakePermission); // Mount virtual path.
       
       createPlaceHolderFile(fileNaturalName); // Create the place holder file.
@@ -353,8 +363,8 @@ public class PdfLearnActivity extends Activity
       {
         String type = Itnt.getType(); // Get the type.
         
-        imageURI = Itnt.getData();
-        Log.d(TAG, CodePosition.newInstance().toString()+  ", image uri: " + imageURI); // Debug.
+        // imageURI = Itnt.getData();
+        // Log.d(TAG, CodePosition.newInstance().toString()+  ", image uri: " + imageURI); // Debug.
 
         imageURI=Itnt.getParcelableExtra(Intent.EXTRA_STREAM); //获取图片地址。
         Log.d(TAG, CodePosition.newInstance().toString()+  ", image uri: " + imageURI); // Debug.
