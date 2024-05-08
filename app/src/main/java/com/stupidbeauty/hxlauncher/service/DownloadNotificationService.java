@@ -29,7 +29,11 @@ import android.os.Environment;
 import android.os.LocaleList;
 import android.os.Vibrator;
 import com.stupidbeauty.builtinftp.BuiltinFtpServer;
-// import butterknife.Bind;
+import com.stupidbeauty.codeposition.CodePosition;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.BufferedReader;
+import android.media.MediaScannerConnection;
 import butterknife.ButterKnife;
 import android.content.ClipboardManager;
 import butterknife.OnClick;
@@ -67,9 +71,10 @@ public class DownloadNotificationService extends Service
 
     String contentText = getString(R.string.app_name);
 
-    showNotification(contentText);
-
-    startForeground(NOTIFICATION, continiusNotification); //显示在前台
+    if (mNM.areNotificationsEnabled()) // Notifications enabled.
+    {
+      startForeground(NOTIFICATION, continiusNotification); //显示在前台
+    } // if (mNM.areNotificationsEnabled()) // Notifications enabled.
     
     HxLauncherApplication hxLauncherApplication= HxLauncherApplication.getInstance() ; // 获取应用程序实例。
     builtinFtpServer=hxLauncherApplication.getBuiltinFtpServer(); // 获取FTP服务器实例对象。
@@ -77,29 +82,31 @@ public class DownloadNotificationService extends Service
     return START_STICKY; //被杀死时，自动重启。
   } //public int onStartCommand(Intent intent, int flags, int startId)
 
-  private void showNotification(String contentText)
+  private void showNotification()
   {
+    Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
     // In this sample, we'll use the same text for the ticker and the expanded notification
     CharSequence text = getText(R.string.app_name);
 
     // The PendingIntent to launch our activity if the user selects this notification
-    PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, LauncherActivity.class), 0);
-		
-    String downloadingText="Running " + contentText; // 构造字符串，正在下载。陈欣。
-		
+    Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
+    // PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, FullscreenActivity.class), PendingIntent.FLAG_IMMUTABLE);
+    PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, LauncherActivity.class), PendingIntent.FLAG_IMMUTABLE);
+
+    String downloadingText="Running " + text; // 构造字符串，正在下载。陈欣。
+    Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
+
     Notification.Builder notificationBuilder= new Notification.Builder(this);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) // NotificationChannel
     {
+    Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
       NotificationChannel chan = new NotificationChannel( "#include", "My Foreground Service", NotificationManager.IMPORTANCE_LOW);
               
       mNM.createNotificationChannel(chan);
       notificationBuilder.setChannelId("#include");
+    Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
     } //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //动态权限
-
-    // NotificationChannel chan = new NotificationChannel( "#include", "My Foreground Service", NotificationManager.IMPORTANCE_LOW);
-            
-    // mNM.createNotificationChannel(chan);
 
     // Set the info for the views that show in the notification panel.
     Notification notification = new Notification.Builder(this)
@@ -112,11 +119,14 @@ public class DownloadNotificationService extends Service
       .setPriority(Notification.PRIORITY_HIGH)   // heads-up
       // .setChannelId("#include")
       .build();
+    Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
 
     continiusNotification=notification; //记录通知
 
     // Send the notification.
+    Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
     mNM.notify(NOTIFICATION, notification);
+    Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
   }
 
   /**
@@ -129,5 +139,11 @@ public class DownloadNotificationService extends Service
     super.onCreate(); //创建超类。
 
 		mNM = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+
+    if (mNM.areNotificationsEnabled()) // Notifications enabled.
+    {
+      showNotification(); // Show the notification.
+    } //     if (mNM.areNotificationsEnabled()) // Notifications enabled.
+
 	} //public void onCreate()
 }

@@ -92,7 +92,8 @@ public class LauncherActivity extends Activity
   private static final String TAG="LauncherActivity"; //!< 输出调试信息时使用的标记
   private VoiceUi voiceUi=null; //!< 语音交互对象。
   private Timer timerObj = null; //!< 用于报告下载完毕的定时器。
-	private static final String PERMISSION_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+  private static final String PERMISSION_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+  private static final String PERMISSION_NOTIFITION = Manifest.permission.POST_NOTIFICATIONS; //!< The permission of post notificaitons.
   private ActiveUserReportManager activeUserReportManager=null; //!< 活跃用户统计管理器。陈欣。
   private BuiltinFtpServer builtinFtpServer=null; //!< The builtin ftp server.
   @BindView(R.id.stopServerlButton) Button stopServerlButton; //!< the stop server button.
@@ -205,20 +206,20 @@ public class LauncherActivity extends Activity
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //安卓6.
 		{
-        ArrayList<String> articleInfoArrayList = new ArrayList<>(); // 权限列表。
+      ArrayList<String> permisionIdoArrayList = new ArrayList<>(); // 权限列表。
         
-        articleInfoArrayList.add(PERMISSION_STORAGE);
+      permisionIdoArrayList.add(PERMISSION_STORAGE);
+      permisionIdoArrayList.add( PERMISSION_NOTIFITION ); // Permission of notification.
         
-        for(String permissionString: articleInfoArrayList) // 一个个检查
-        {
-          result=(checkSelfPermission(permissionString) == PackageManager.PERMISSION_GRANTED); //录音权限。
+      for(String permissionString: permisionIdoArrayList) // Check the permissions one by one.
+      {
+        result=(checkSelfPermission(permissionString) == PackageManager.PERMISSION_GRANTED); //录音权限。
           
-          if (!result) // 没有权限
-          {
-            break; // 没有权限。
-          } // if (!result) // 没有权限
-        } // for(String permissionString: articleInfoArrayList) // 一个个检查
-
+        if (!result) // 没有权限
+        {
+          break; // 没有权限。
+        } // if (!result) // 没有权限
+      } // for(String permissionString: articleInfoArrayList) // 一个个检查
 		} //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //安卓6.
 		else //旧版本。
 		{
@@ -240,7 +241,6 @@ public class LauncherActivity extends Activity
 		{
 			requestPermission();
 		}
-
 	} //private void checkPermission()
 
 	private void requestPermission()
@@ -249,16 +249,13 @@ public class LauncherActivity extends Activity
 		{
 			if ( shouldShowRequestPermissionRationale(PERMISSION_STORAGE)) //应当告知原因。
 			{
-				Toast.makeText(this, "Camera AND storage permission are required for this demo", Toast.LENGTH_LONG).show();
+				Toast.makeText(this, "Notification AND storage permissions are required for this application", Toast.LENGTH_LONG).show();
 			} //if ( shouldShowRequestPermissionRationale(PERMISSION_STORAGE)  || shouldShowRequestPermissionRationale(PERMISSION_RECORD_AUDIO)) //应当告知原因。
         
-      String[] permissionStringArray=new String[1];
-      permissionStringArray[0]=PERMISSION_STORAGE;
-      // permissionStringArray[0]=PERMISSION_RECORD_AUDIO;
-      // permissionStringArray[0]=PERMISSION_FINE_LOCATIN;
-      // permissionStringArray[0]=PERMISSION_INSTALL_PACKAGE;
-      // permissionStringArray[0]=PERMISSION_READ_CONTACTS;
-			requestPermissions(permissionStringArray, PERMISSIONS_REQUEST);
+      String[] permissionStringArray = new String[2];
+      permissionStringArray[0] = PERMISSION_STORAGE;
+      permissionStringArray[1] = PERMISSION_NOTIFITION;
+      requestPermissions(permissionStringArray, PERMISSIONS_REQUEST);
 		}
 	} //private void requestPermission()
 
