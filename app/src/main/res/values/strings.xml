@@ -51,7 +51,7 @@
   <string name="button_ok">OK</string>
   <string name="resetRootDirectoryin">Reset root directory</string>
   <string name="msg_intent_failed">Sorry, the requested application could not be launched.</string>
-    <string name="slash">/</string>
-
-
+  <string name="slash">/</string>
+  <string name="notificationChannelIda">ddesscamera74345</string>
+  <string name="notificationChannelNameher">HxFtpServer keeps running</string>
 </resources>

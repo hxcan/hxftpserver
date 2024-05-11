@@ -43,9 +43,7 @@ public class DownloadNotificationService extends Service
 {
   private Notification continiusNotification=null; //!<记录的通知
   private BuiltinFtpServer builtinFtpServer=null; //!< The builtin ftp server.
-
-  private int NOTIFICATION = 163731;
-
+  private int NOTIFICATION = 373174633; //!< The notification id.
   private NotificationManager mNM;
 
   private long lastPublishTimestamp=0; //!<记录的上次发布局域网服务的时间戳。
@@ -67,12 +65,13 @@ public class DownloadNotificationService extends Service
   */
   public int onStartCommand(Intent intent, int flags, int startId) 
   {
-    Log.d(TAG,"onStartCommand,180"); //Debug.
+    Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
 
     String contentText = getString(R.string.app_name);
 
     if (mNM.areNotificationsEnabled()) // Notifications enabled.
     {
+      Log.d(TAG, CodePosition.newInstance().toString() + ", notification object: " + continiusNotification ); //Debug.
       startForeground(NOTIFICATION, continiusNotification); //显示在前台
     } // if (mNM.areNotificationsEnabled()) // Notifications enabled.
     
@@ -96,20 +95,22 @@ public class DownloadNotificationService extends Service
     String downloadingText="Running " + text; // 构造字符串，正在下载。陈欣。
     Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
 
-    Notification.Builder notificationBuilder= new Notification.Builder(this);
+    Notification.Builder notificationBuilder = new Notification.Builder(this);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) // NotificationChannel
     {
-    Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
-      NotificationChannel chan = new NotificationChannel( "#include", "My Foreground Service", NotificationManager.IMPORTANCE_LOW);
+      Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
+      String channelId = getString(R.string.notificationChannelIda); // Get the channel Id.
+      String channelName = getString(R.string.notificationChannelNameher); // Get the notification channel name.
+      NotificationChannel chan = new NotificationChannel( channelId, channelName, NotificationManager.IMPORTANCE_LOW);
               
       mNM.createNotificationChannel(chan);
-      notificationBuilder.setChannelId("#include");
-    Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
+      notificationBuilder.setChannelId(channelId);
+      Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
     } //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //动态权限
 
     // Set the info for the views that show in the notification panel.
-    Notification notification = new Notification.Builder(this)
+    Notification notification = notificationBuilder
       .setSmallIcon(R.drawable.ic_launcher)  // the status icon
       .setTicker(text)  // the status text
       .setWhen(System.currentTimeMillis())  // the time stamp
