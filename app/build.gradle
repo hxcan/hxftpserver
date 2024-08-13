@@ -14,6 +14,7 @@ android
   }
 
   compileSdkVersion 33
+  namespace 'com.stupidbeauty.builtinftp.demo'
 
   defaultConfig 
   {
@@ -45,7 +46,7 @@ dependencies
   implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
   implementation 'androidx.appcompat:appcompat:1.2.0'
   implementation 'com.github.hxcan:upgrademanager:2023.9.6'
-  implementation 'com.github.hxcan:ftpserver:2024.5.11'
+  implementation 'com.github.hxcan:ftpserver:2024.8.15'
   implementation 'com.github.hxcan:feedback:2023.10.24'
 
 //   implementation 'com.github.hxcan:ftpserver:3b21c14'
