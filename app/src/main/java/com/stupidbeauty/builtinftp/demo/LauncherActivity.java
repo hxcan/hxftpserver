@@ -86,12 +86,11 @@ import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
 import butterknife.BindView;
 import android.widget.RelativeLayout;
 
-public class LauncherActivity extends Activity 
+public class LauncherActivity extends Activity implements FtpEventListenerInterface
 {
 	private static final int PERMISSIONS_REQUEST = 1;
   private static final String TAG="LauncherActivity"; //!< 输出调试信息时使用的标记
   private VoiceUi voiceUi=null; //!< 语音交互对象。
-  private Timer timerObj = null; //!< 用于报告下载完毕的定时器。
   private static final String PERMISSION_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
   private static final String PERMISSION_NOTIFITION = Manifest.permission.POST_NOTIFICATIONS; //!< The permission of post notificaitons.
   private ActiveUserReportManager activeUserReportManager=null; //!< 活跃用户统计管理器。陈欣。
@@ -351,9 +350,10 @@ public class LauncherActivity extends Activity
     */
     private void initializeEventListener()
     {
-      EventListener eventListener=new FtpEventListener(this); // 创建事件监听器。
+      FtpEventListener eventListener = builtinFtpServer.getEventListener(); // get the 事件监听器。
         
-      builtinFtpServer.setEventListener(eventListener); // 设置事件监听器。
+      // builtinFtpServer.setEventListener(eventListener); // 设置事件监听器。
+      eventListener.registerCallback(this); // register callback.
     } //private void initializeEventListener()
     
     /**
@@ -361,19 +361,7 @@ public class LauncherActivity extends Activity
     */
     public void notifyDownloadStart()
     {
-      cancelNotifyDownloadFinish(); // 取消通知。
     } // notifyDownloadStart(); // 告知文件下载开始。
-    
-    /**
-    * 取消通知，文件下载完毕。
-    */
-    private void cancelNotifyDownloadFinish() 
-    {
-      if (timerObj!=null) // 定时器存在
-      {
-        timerObj.cancel(); // 取消。
-      } // if (timerObj!=null) // 定时器存在
-    } // private void cancelNotifyDownloadFinish()
     
     /**
     *  告知 ip change.
@@ -381,12 +369,6 @@ public class LauncherActivity extends Activity
     public void notifyIpChange()
     {
       showFtpUrl(); // Show ftp url
-
-      String downloadFinished = getResources().getString(R.string.ipChanged); // 读取 说明 字符串。
-
-      Log.d(TAG, "notifyDownloadFinish, text: " + downloadFinished); // Debug.
-
-      voiceUi.say(downloadFinished); // 发声。
     } // public void notifyIpChange()
     
     /**
@@ -394,57 +376,13 @@ public class LauncherActivity extends Activity
     */
     public void notifyDownloadFinish()
     {
-      Log.d(TAG, "notifyDownloadFinish"); // Debug.
-      
-      // 陈欣。启动一个定时器。
-      
-      cancelNotifyDownloadFinish(); // 取消通知，文件下载完毕。
-      
-      timerObj = new Timer();
-      TimerTask timerTaskObj = new TimerTask() 
-      {
-        public void run() 
-        {
-//           startBultinFtpServer(); // 启动内置 FTP 服务器。
-          String downloadFinished = getResources().getString(R.string.downloadFinished); // 读取 说明 字符串。
-
-          Log.d(TAG, "notifyDownloadFinish, text: " + downloadFinished); // Debug.
-
-          voiceUi.say(downloadFinished); // 发声。
-          Log.d(TAG, "notifyDownloadFinish, said: " + downloadFinished); // Debug.
-        }
-      };
-      timerObj.schedule(timerTaskObj, 18000); // 延时启动。
     } // notifyDownloadFinish(); // 告知文件下载完毕。
-    
-    /**
-     * 要求扫描照片。
-     * @param path 照片文件的路径。
-     */
-    private void scanFile(String path)
-    {
-        MediaScannerConnection.scanFile(this,
-          new String[] { path }, null,
-          new MediaScannerConnection.OnScanCompletedListener() 
-          {
-            public void onScanCompleted(String path, Uri uri) 
-            {
-              Log.i("TAG", "Finished scanning " + path);
-            }
-          });
-    } //private void scanFile(String path)
     
     /**
     * guide, external storage manager permission.
     */
     public void guideExternalStorageManagerPermission(Object eventContent)
     {
-      Log.d(TAG, "gotoLoginActivity, 119."); //Debug.
-      Intent launchIntent=new Intent(this, ApplicationInformationActivity.class); //启动意图。
-
-      startActivity(launchIntent); //启动活动。
-
-      Log.d(TAG, "gotoLoginActivity, 122."); //Debug.
     } // public void guideExternalStorageManagerPermission(Object eventContent)
     
     /**
@@ -479,37 +417,6 @@ public class LauncherActivity extends Activity
     */
     public void notifyRename(Object eventContent)
     {
-      RenameInformationObject uploadedFile=(RenameInformationObject)(eventContent);
-      
-      DocumentFile fileObject = uploadedFile.getFile(); // Gett he file object.
-
-      scanDocumentFile(fileObject);
-      
-      // Scan the original file name to make the system forget it:
-      String oroiginalName = uploadedFile.getOriginalName(); // Get the original name.
-      
-      Uri uri=fileObject.getUri();
-      
-      String scheme=uri.getScheme();
-      
-      if (scheme.equals("file")) // It is a file
-      {
-        String path=uri.getPath();
-
-        File rawFile=new File(path);
-
-        File parentVirtualFile=rawFile.getParentFile();
-          
-        String currentTryingPath=parentVirtualFile.getPath();
-
-        // File parentDirectory = 
-        String oroiginalFilePath = currentTryingPath + "/" + oroiginalName; // Construct the original ifle path.
-        
-        File OroiginalFile = new File(oroiginalFilePath);
-        
-        requestScanFile(OroiginalFile); // Request scan file.
-      } // if (scheme.equals("file")) // It is a file
-
     } // public void notifyRename(Object eventContent)
     
     /**
@@ -517,46 +424,14 @@ public class LauncherActivity extends Activity
     */
     public void notifyDelete(Object eventContent)
     {
-      scanDocumentFile(eventContent);
     } // public void notifyDelete(Object eventContent)
     
-    private void scanDocumentFile(Object eventContent)
-    {
-      // chen xin . notify upload finish
-      
-      DocumentFile uploadedFile=(DocumentFile)(eventContent);
-      
-      Uri uri=uploadedFile.getUri();
-      
-      String scheme=uri.getScheme();
-      
-      if (scheme.equals("file")) // It is a file
-      {
-        String path=uri.getPath();
-        
-        File rawFile=new File(path);
-        requestScanFile(rawFile); // Request scan file.
-      } // if (scheme.equals("file")) // It is a file
-    } // private void scanDocumentFile(Object eventContent)
-
     /**
     * Notify upload finish.
     */
     public void notifyUploadFinish(Object eventContent)
     {
-      scanDocumentFile(eventContent);
     } // notifyDownloadFinish(); // 告知文件下载完毕。
-    
-    /**
-    * Request scan file.
-    */
-    private void requestScanFile(File uploadedFile) 
-    {
-      if (uploadedFile!=null) // The file exists
-      {
-        scanFile(uploadedFile.getAbsolutePath()); // scan this file.
-      } // if (uploadedFile!=null) // The file exists
-    } // private void requestScanFile(File uploadedFile)
     
     /**
     * 刷新可用空间数量。

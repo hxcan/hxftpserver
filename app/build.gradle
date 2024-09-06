@@ -55,7 +55,7 @@ dependencies
   implementation 'com.upokecenter:cbor:4.2.0'
   implementation 'com.github.hxcan:voiceui:2023.6.27'
   implementation 'com.github.hxcan:CodePosition:2023.9.7'
-  implementation 'com.patrickpissurno:ripple-effect:1.3.1'
+  implementation 'com.github.hxcan:RippleEffect:2024.8.21'
   implementation "androidx.documentfile:documentfile:1.0.1"
   implementation 'com.google.android.material:material:1.2.1'
   implementation 'com.google.protobuf:protobuf-java:3.11.4'

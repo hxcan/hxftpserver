@@ -99,14 +99,12 @@ public class DownloadNotificationService extends Service
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) // NotificationChannel
     {
-      Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
       String channelId = getString(R.string.notificationChannelIda); // Get the channel Id.
       String channelName = getString(R.string.notificationChannelNameher); // Get the notification channel name.
       NotificationChannel chan = new NotificationChannel( channelId, channelName, NotificationManager.IMPORTANCE_LOW);
               
       mNM.createNotificationChannel(chan);
       notificationBuilder.setChannelId(channelId);
-      Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
     } //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //动态权限
 
     // Set the info for the views that show in the notification panel.
@@ -118,16 +116,13 @@ public class DownloadNotificationService extends Service
       .setContentText(downloadingText)  // the contents of the entry
       .setContentIntent(contentIntent)  // The intent to send when the entry is clicked
       .setPriority(Notification.PRIORITY_HIGH)   // heads-up
-      // .setChannelId("#include")
+      .setOngoing(true) // Ongoing notificaiton.
       .build();
-    Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
 
     continiusNotification=notification; //记录通知
 
     // Send the notification.
-    Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
     mNM.notify(NOTIFICATION, notification);
-    Log.d(TAG, CodePosition.newInstance().toString()); //Debug.
   }
 
   /**

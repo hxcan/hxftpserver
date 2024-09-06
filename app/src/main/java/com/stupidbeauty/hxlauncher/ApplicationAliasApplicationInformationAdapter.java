@@ -141,11 +141,6 @@ public class ApplicationAliasApplicationInformationAdapter extends RecyclerView.
       */
       public void launchApplication()
       {
-        if (functionName.equals("FileMessage")) // It is file message.
-        {
-          requestViewFile(); // Request view file.
-        } //if (iconType==ActivityIconType) //是活动。
-        
         context.hideKeyboard(); // Hide keyboard.
       } //public void launchApplication()
     }
