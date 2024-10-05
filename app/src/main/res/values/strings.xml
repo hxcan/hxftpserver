@@ -1,4 +1,57 @@
 <resources>
-    <string name="app_name">Hx Ftp Server</string>
-    <string name="copyUrl">Copy url</string>
+  <string name="app_name">Hx Ftp Server</string>
+  <string name="copyUrl">Copy url</string>
+  <string name="availableSpace">Available space: </string>
+  <string name="downloadFinished">Download finished</string>
+  <string name="ipChanged">IP changed</string>
+  <string name="allowUnsafeDeletei">Allow unsafe delete</string>
+  <string name="allowAnonymousetei">Allow anonymous</string>
+  <string name="stupidbeautypace">stupidbeauty</string>
+  <string name="ftpserverw">ftpserver</string>
+  <string name="userNamee">user name:</string>
+  <string name="passWorde">pass word:</string>
+  <string name="darkBackgroundImage">Dark the background image</string>
+  <string name="hxLauncherSettings">HxFtpServer Settings</string>
+  <string name="externalStoragePerformanceOptimizempty">External storage performance optimize</string>
+  <string name="setRootDirectoryunt">Set root directory</string>
+  <string name="setting_tab_name">Setting</string>
+  <string name="empty" translatable="false" />
+  <string name="backgroundImage">Background image</string>
+  <string name="locks">Lock</string>
+  <string name="loginSuccess">Logic successful</string>
+  <string name="goAndEnableLocationService">Enable it</string>
+  <string name="selectRootDirectoryin">Select root directory</string>
+  <string name="rateUs">Rate us</string>
+  <string name="applicationIcon">Application Icon</string>
+  <string name="needExternalStorageManagerPermission">We need the special permission "Manage all files" to work properly. If you would like to grant that permission, please press the button below, it would lead you to a system settings page. You can grant the actual permission on that page.</string>
+  <string name="grantPermission">Grant permission</string>
+  <string name="controlConnectionEndedUnexpectedlyged">Control connection ended unexpectedly</string>
+  <string name="sayToMeAppName">Say to me:\"%1$s\"</string>
+  <string name="appNamePrompt">Messages</string>
+  <string name="myAccount">My account</string>
+  <string name="freeCredit">Current root directory:</string>
+  <string name="paidCredit">Paid speech credit</string>
+  <string name="applicationAlias">Application alias</string>
+  <string name="pleaseSetHxLauncherAsTheDefaultLauncher">Please set HxLauncher as the default launcher.</string>
+  <string name="applicationFrequency">Application frequency</string>
+  <string name="grantManageAllFilesPermission">Grant manage all files permission</string>
+  <string name="stopWeb">Stop</string>
+  <string name="forwardWeb">Forward</string>
+  <string name="startServerl">Start server</string>
+  <string name="enterPassword">Enter password</string>
+  <string name="forgotPassword">Forgot password?</string>
+  <string name="apn_setting_username">You can set a custom root directory for the ftp server. Start by pressing the button below.</string>
+  <string name="firstStepEnableLanIme">Auto start</string>
+  <string name="stopServerl">Stop server</string>
+  <string name="unlink_not_right">Not right</string>
+  <string name="about_help_feedback_title">Help And Feedback</string>
+  <string name="urlCopiedged">Url copied</string>
+  <string name="login_login_button">Login</string>
+  <string name="loginout_loginout_button">Log Out</string>
+  <string name="button_ok">OK</string>
+  <string name="resetRootDirectoryin">Reset root directory</string>
+  <string name="msg_intent_failed">Sorry, the requested application could not be launched.</string>
+    <string name="slash">/</string>
+
+
 </resources>

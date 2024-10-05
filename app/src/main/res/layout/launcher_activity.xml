@@ -1,87 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:custom="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:animateLayoutChanges="false"
-    tools:context=".LauncherActivity"
-    android:id="@+id/launcher_activity"
-    >
-
-    <ImageView
-        android:id="@+id/wallpaper"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.88"
-        android:clickable="true"
-        android:focusable="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/stopusingphone"
-        android:visibility="invisible" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.2"
-        android:background="@android:color/black"
-        tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/statustextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentLeft="false"
-        android:layout_centerVertical="true"
-        android:textColor="@color/yellow"
-        android:textSize="28sp"
-        tools:visibility="visible" />
-    
-    <Button
-        android:id="@+id/copyUrlButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/statustextView"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/yellow"
-        android:textSize="28sp"
-        android:text="@string/copyUrl"
-        />
-
-    <RelativeLayout
-        android:id="@+id/voiceAssistantLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="48dp"
-        android:layout_marginBottom="48dp"
-        android:alwaysDrawnWithCache="false"
-        android:animateLayoutChanges="true"
-        android:clickable="true"
-        android:focusable="auto"
-        android:focusableInTouchMode="true">
-
-        <ImageView
-            android:id="@+id/microphoneIcon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:alpha="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:scaleType="centerCrop"
-            android:visibility="visible" />
-
-        <ImageView
-            android:id="@+id/hitApplicationIcon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_toRightOf="@id/microphoneIcon"
-            android:alpha="1"
-            android:scaleType="centerCrop"
-            android:visibility="invisible" />
-    </RelativeLayout>
-
-
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:custom="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+  android:layout_height="match_parent" android:animateLayoutChanges="false" tools:context=".LauncherActivity" android:id="@+id/launcher_activity" >
+  <ImageView android:id="@+id/wallpaper" android:layout_width="match_parent" android:layout_height="match_parent" android:alpha="0.88" android:clickable="true"
+    android:focusable="true" android:scaleType="centerCrop" android:src="@drawable/t3848215259" android:visibility="visible" />
+  <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:alpha="0.4" android:background="@android:color/black"
+    tools:visibility="visible" />
+  <ImageView
+    android:id="@+id/shareIcon"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:alpha="1"
+    android:background="@drawable/settings0"
+    android:clickable="true"
+    android:contentDescription="@string/backgroundImage"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="18dp"
+    android:layout_marginTop="28dp"
+    android:layout_alignParentTop="true"
+    android:focusable="true"
+    android:scaleType="centerCrop"
+    android:visibility="visible" />
+  <ImageView
+    android:id="@+id/feedbackIcon"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:alpha="1"
+    android:background="@drawable/customer_feedback_png"
+    android:clickable="true"
+    android:contentDescription="@string/backgroundImage"
+    android:layout_toLeftOf="@id/shareIcon"
+    android:layout_marginRight="18dp"
+    android:layout_marginTop="28dp"
+    android:layout_alignParentTop="true"
+    android:focusable="true"
+    android:scaleType="centerCrop"
+    android:visibility="visible" 
+  />
+  <Button android:id="@+id/startServerlButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/feedbackIcon"
+    android:layout_centerHorizontal="true" android:textColor="@color/yellow" android:textSize="28sp" android:text="@string/startServerl" 
+    android:visibility="invisible" 
+  />
+  <Button android:id="@+id/stopServerlButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/startServerlButton"
+    android:layout_centerHorizontal="true" android:textColor="@color/yellow" android:textSize="28sp" android:text="@string/stopServerl" />
+  <CheckBox android:id="@+id/allowAnonymousetei" android:text="@string/allowAnonymousetei" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_above="@id/allowUnsafeDeletei" android:checked="true" />
+  <CheckBox android:id="@+id/allowUnsafeDeletei" android:text="@string/allowUnsafeDeletei" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_above="@id/statustextView" android:checked="true" />
+  <TextView android:id="@+id/statustextView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentStart="false"
+    android:layout_alignParentLeft="false" android:layout_centerVertical="true" android:textColor="@color/yellow" android:textSize="28sp"
+    tools:visibility="visible" />
+  <ImageView
+    android:id="@+id/maskUrlLineImagecon"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:alpha="0.48"
+    android:background="@drawable/z00various2016028giftwrapvarity700400"
+    android:clickable="true"
+    android:contentDescription="@string/backgroundImage"
+    android:layout_alignRight="@id/statustextView"
+    android:layout_alignTop="@id/statustextView"
+    android:layout_alignLeft="@id/statustextView"
+    android:layout_alignBottom="@id/statustextView"
+    android:focusable="true"
+    android:scaleType="centerCrop"
+    android:visibility="invisible" />
+  <Button android:id="@+id/copyUrlButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/statustextView"
+    android:layout_centerHorizontal="true" android:textColor="@color/yellow" android:textSize="28sp" android:text="@string/copyUrl" />
+  <RelativeLayout android:id="@+id/userNamePassWordayout" android:layout_width="wrap_content" android:layout_height="wrap_content"
+     android:layout_marginLeft="48dp"  android:alwaysDrawnWithCache="false"  android:layout_below="@id/copyUrlButton"
+    android:animateLayoutChanges="true" android:clickable="true" android:focusable="auto" android:focusableInTouchMode="true">
+  <RelativeLayout android:id="@+id/userNameout" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:alwaysDrawnWithCache="false"  
+    android:animateLayoutChanges="true" android:clickable="true" android:focusable="auto" android:focusableInTouchMode="true">
+    <TextView android:id="@+id/userNameView" android:layout_width="wrap_content" android:layout_height="wrap_content"
+      android:layout_alignParentStart="false" android:layout_alignParentLeft="false" android:layout_centerVertical="true" android:textColor="@color/yellow"
+      android:textSize="28sp" 
+      android:text="@string/userNamee" 
+      tools:visibility="visible" />
+    <TextView android:id="@+id/userNameContentpassWordiew" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentStart="false"
+      android:layout_alignParentLeft="false" android:layout_centerVertical="true" 
+      android:layout_toRightOf="@id/userNameView"
+      android:text="@string/stupidbeautypace" 
+      android:textSize="28sp" tools:visibility="visible" />
+  </RelativeLayout>
+  <RelativeLayout android:id="@+id/PassWordayout" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:alwaysDrawnWithCache="false"  
+    android:layout_below="@id/userNameout"
+    android:animateLayoutChanges="true" android:clickable="true" android:focusable="auto" android:focusableInTouchMode="true">
+    <TextView android:id="@+id/passworduserNameView" android:layout_width="wrap_content" android:layout_height="wrap_content"
+      android:layout_alignParentStart="false" android:layout_alignParentLeft="false" android:layout_centerVertical="true" android:textColor="@color/yellow"
+      android:textSize="28sp" 
+      android:text="@string/passWorde" 
+      tools:visibility="visible" />
+    <TextView android:id="@+id/passWordiew" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentStart="false"
+      android:layout_alignParentLeft="false" android:layout_centerVertical="true" 
+      android:layout_toRightOf="@id/passworduserNameView"
+      android:text="@string/ftpserverw" 
+      android:textSize="28sp" tools:visibility="visible" />
+  </RelativeLayout>
+  </RelativeLayout>
+  <RelativeLayout android:id="@+id/voiceAssistantLayout" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true" android:layout_marginLeft="48dp" android:layout_marginBottom="48dp" android:alwaysDrawnWithCache="false"
+    android:animateLayoutChanges="true" android:clickable="true" android:focusable="auto" android:focusableInTouchMode="true">
+    <TextView android:id="@+id/promptAvailableSpaceView" android:layout_width="wrap_content" android:layout_height="wrap_content"
+      android:layout_alignParentStart="false" android:layout_alignParentLeft="false" android:layout_centerVertical="true" android:textColor="@color/yellow"
+      android:textSize="28sp" android:text="@string/availableSpace" tools:visibility="visible" />
+    <TextView android:id="@+id/availableSpaceView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentStart="false"
+      android:layout_alignParentLeft="false" android:layout_centerVertical="true" android:layout_toRightOf="@id/promptAvailableSpaceView"
+      android:textColor="@color/yellow"
+      android:textSize="28sp" tools:visibility="visible" 
+    />
+  </RelativeLayout>
 </RelativeLayout>
