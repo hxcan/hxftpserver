@@ -1,5 +1,6 @@
 package com.stupidbeauty.builtinftp;
 
+import com.stupidbeauty.builtinftp.demo.FtpEventListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,7 +27,7 @@ public class BuiltinFtpServer
   private boolean allowAnonymous=true; //!< Whether to allow anonymous.
   private static final String TAG="BuiltinFtpServer"; //!< 输出调试信息时使用的标记
   private ErrorListener errorListener=null; //!< Error listener.
-  private EventListener eventListener=null; //!< Event listener.
+  private FtpEventListener eventListener = null; //!< Event listener.
   private FtpServerErrorListener ftpServerErrorListener=null; //!< The ftp server error listner. Chen xin.
   private int port=1421; //!< Port.
   private String ip=null; //!< ip.
@@ -35,7 +36,12 @@ public class BuiltinFtpServer
   private boolean externalStoragePerformanceOptimize = true; //!< If we should enable external storage performance optimization.
   private boolean fileNameTolerant = true; //!< if we should tolerate invalid file name.
     
-  public void setEventListener(EventListener eventListener)
+  public FtpEventListener getEventListener() 
+  {
+    return eventListener;
+  }
+
+  public void setEventListener(FtpEventListener eventListener)
   {
     this.eventListener=eventListener;
         

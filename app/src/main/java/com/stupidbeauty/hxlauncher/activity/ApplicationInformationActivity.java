@@ -89,13 +89,9 @@ public class ApplicationInformationActivity extends Activity
 
   private     AnimationDrawable rocketAnimation; //!<录音按钮变暗
 
-//   private Stack<VoiceCommandHitDataObject> voiceCommandHitDataStack=new Stack<>(); //!<语音命中数据记录栈
-
-//   private BuiltinShortcutsManager builtinShortcutsManager=new BuiltinShortcutsManager(); //!<内置快捷方式管理器
-
   @BindView(R.id.hitApplicationIcon) ImageView hitApplicationIcon; //!<命中的应用的图标。
   @BindView(R.id.microphoneIcon) ImageView microphoneIcon; //!< 升级按钮图标。
-  @BindView(R.id.applicationName2) TextView applicationName2; //!< Application name text view.
+
   @BindView(R.id.launcher_activity) RelativeLayout launcher_activity; //!<整个启动活动
 
   private HashMap<String, Long> packageItemLastLaunchTimestampMap=new HashMap<>(); //!<包名加类名的字符串与最后一次启动时间戳之间的映射。

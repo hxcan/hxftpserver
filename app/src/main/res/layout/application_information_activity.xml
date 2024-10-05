@@ -7,39 +7,6 @@
     android:contentDescription="@string/backgroundImage" android:focusable="true" android:scaleType="centerCrop" 
     android:src="@drawable/photo_20230326_10585066211"
     android:visibility="visible" tools:visibility="visible" />
-  <com.andexert.library.RippleView android:id="@+id/launchRipple" android:layout_width="wrap_content" android:layout_height="wrap_content" app:rv_color="#170358"
-    app:rv_rippleDuration="100"
-    android:visibility="invisible" 
-    >
-    <ImageView android:id="@+id/applicationIconrightimageView2" android:layout_width="wrap_content" android:layout_height="wrap_content"
-      android:layout_alignParentStart="false" android:layout_alignParentLeft="true" android:layout_alignParentEnd="false" android:layout_alignParentRight="true"
-      android:layout_centerHorizontal="true" android:adjustViewBounds="true" android:contentDescription="@string/applicationIcon"
-      android:src="@drawable/vector_66_11" />
-    <TextView android:id="@+id/rightTextoperationMethodactTitletextView2" style="@style/AudioFileInfoOverlayText" android:layout_width="wrap_content"
-      android:layout_height="wrap_content" android:layout_below="@+id/applicationIconrightimageView2" android:layout_alignParentStart="false"
-      android:layout_alignParentLeft="false" android:layout_alignParentTop="false" android:layout_alignParentEnd="false" android:layout_alignParentRight="false"
-      android:layout_alignParentBottom="false" android:layout_centerHorizontal="true" android:background="@drawable/back" android:gravity="center_horizontal"
-      android:text="@string/empty" />
-    <TextView
-      android:id="@+id/applicationName2"
-      style="@style/AudioFileInfoOverlayText"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/rightTextoperationMethodactTitletextView2"
-      android:layout_alignParentStart="false"
-      android:layout_alignParentLeft="false"
-      android:layout_alignParentTop="false"
-      android:layout_alignParentEnd="false"
-      android:layout_alignParentRight="false"
-      android:layout_alignParentBottom="false"
-      android:layout_centerHorizontal="true"
-      android:background="@drawable/back"
-      android:gravity="center_horizontal"
-      android:textSize="28sp"
-      android:textColor="@color/green"
-      android:text="@string/empty" 
-      />
-  </com.andexert.library.RippleView>
   <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:alpha="0.4" android:background="@android:color/black"
     android:contentDescription="@string/darkBackgroundImage" />
   <ProgressBar android:id="@+id/progressBar" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="wrap_content"

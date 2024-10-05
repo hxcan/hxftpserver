@@ -424,13 +424,11 @@ public class PdfLearnActivity extends Activity
 	 */
 	private void bindAdapter()
 	{
-      int columnsPerRow= getResources().getInteger(  R.integer.columnsPerRow); //每行的列数。
+    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this); //布局管理器。
+    mRecyclerView.setLayoutManager(mLayoutManager);
 
-      RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this); //布局管理器。
-      mRecyclerView.setLayoutManager(mLayoutManager);
-
-      mAdapter=new ApplicationAliasApplicationInformationAdapter(this); //应用程序信息适配器。
-      mRecyclerView.setAdapter(mAdapter);
+    mAdapter=new ApplicationAliasApplicationInformationAdapter(this); //应用程序信息适配器。
+    mRecyclerView.setAdapter(mAdapter);
 	} //private void bindAdapter()
 
 	/**
