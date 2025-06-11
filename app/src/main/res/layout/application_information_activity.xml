@@ -13,17 +13,24 @@
     android:layout_margin="4dp" android:indeterminate="true" android:progressDrawable="@drawable/progress_horizontal1" 
     android:visibility="invisible" 
                />
-  <TextView android:id="@+id/statustextView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentStart="false"
+  <TextView 
+    android:id="@+id/statustextView" 
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:layout_alignParentStart="false"
     android:layout_alignParentLeft="false" 
     android:textColor="@color/yellow" 
     android:textSize="28sp" 
     android:text="@string/needExternalStorageManagerPermission" 
     android:layout_marginTop="28dp" 
-            />
-  <Button android:id="@+id/lock0" 
+  />
+  <Button 
+    android:id="@+id/lock0" 
     android:text="@string/grantPermission" 
-          android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:layout_below="@+id/launchRipple" />
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/statustextView" 
+  />
   <ImageView android:id="@+id/loveAnimation" android:layout_width="48dp" android:layout_height="48dp" android:layout_alignTop="@id/voiceAssistantLayout"
     android:layout_toRightOf="@id/voiceAssistantLayout" android:background="@drawable/delete512"
     android:visibility="invisible" 

@@ -107,35 +107,18 @@ public class ApplicationInformationActivity extends Activity
     private static final int PERMISSIONS_REQUEST = 1; //!<权限请求标识
 
     private static final String PERMISSION_FINE_LOCATIN = Manifest.permission.ACCESS_FINE_LOCATION; //!<位置权限
-
     @BindView(R.id.wallpaper) ImageView wallpaper; //!<墙纸视图。
-
     @BindView(R.id.progressBar) ProgressBar progressBar; //!<进度条。
-
     private String voiceRecognizeResultString; //!<语音识别结果。
-
     int ret = 0;
-
-    @BindView(R.id.applicationIconrightimageView2) ImageView applicationIconrightimageView2; //!< 应用图标图片。陈欣。
-
     @BindView(R.id.statustextView) TextView statustextView; //!< 用来显示状态的文字标签。
-
     private int recognizeCounter=0; //!<识别计数器．
-
     private Vibrator vibrator;
-
     private boolean voiceEndDetected=false; //!<是否已经探测到用户声音结束。
-
     private int mPageNumber = 1;//{1, 1, 1};
-
     private final int MSG_LOAD_MORE = 2;
-
-    private ImageView mHeaderImageView;
-    private TextView mHeaderTitle;
-
     private String packagename; //!< 包名。陈欣。
     private String activityName; //!< 活动名字。
-
     private int mCurrMsg = -1;
 
     @OnClick(R.id.loveAnimation)
@@ -195,19 +178,7 @@ public class ApplicationInformationActivity extends Activity
 
         ButterKnife.bind(this); //视图注入。
 
-        mHeaderImageView = findViewById(R.id.applicationIconrightimageView2);
-        mHeaderTitle = findViewById(R.id.rightTextoperationMethodactTitletextView2);
-
-        // BEGIN_INCLUDE(detail_set_view_name)
-        /*
-         * Set the name of the view's which will be transition to, using the static values above.
-         * This could be done in the layout XML, but exposing it via static variables allows easy
-         * querying from other Activities
-         */
-        mHeaderTitle.setTransitionName( VIEW_NAME_HEADER_TITLE);
-
         Intent intent=getIntent(); // 获取意图。
-
     } //protected void onCreate(Bundle savedInstanceState)
 
     /**

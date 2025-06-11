@@ -40,20 +40,17 @@ android
 
 dependencies 
 {
-  implementation 'com.github.hxcan:victoriafresh.android:2024.5.8'
+  implementation 'com.github.hxcan:victoriafresh.android:2024.6.9'
   implementation 'com.jakewharton:butterknife:10.2.3'
   annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
   implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
   implementation 'androidx.appcompat:appcompat:1.2.0'
-  implementation 'com.github.hxcan:upgrademanager:2023.9.6'
-  implementation 'com.github.hxcan:ftpserver:2024.8.15'
+  implementation 'com.github.hxcan:upgrademanager:2024.8.25'
+  implementation 'com.github.hxcan:ftpserver:2025.5.26'
   implementation 'com.github.hxcan:feedback:2023.10.24'
-
-//   implementation 'com.github.hxcan:ftpserver:3b21c14'
-  
   implementation 'com.github.hxcan:rotatingactiveuser:2023.9.8'
   implementation 'com.upokecenter:cbor:4.2.0'
-  implementation 'com.github.hxcan:voiceui:2023.6.27'
+  implementation 'com.github.hxcan:voiceui:2024.6.6'
   implementation 'com.github.hxcan:CodePosition:2023.9.7'
   implementation 'com.github.hxcan:RippleEffect:2024.8.21'
   implementation "androidx.documentfile:documentfile:1.0.1"
