@@ -24,7 +24,7 @@
   <string name="firstStepEnableLanIme">自动运行</string>
   <string name="sayToMeAppName">对我说:\"%1$s\"</string>
   <string name="appNamePrompt">相机</string>
-
+  <string name="dolphinbug474238_workaround_label">绕过 Dolphin bug #474238（空目录不可拖放）</string>
   <string name="stopWeb">停止载入</string>
   <string name="selectRootDirectoryin">选择顶级目录</string>
   <string name="hxLauncherSettings">太极FTP服务器设置</string>
