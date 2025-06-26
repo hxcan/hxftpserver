@@ -35,19 +35,22 @@ public class SettingsActivity extends Activity
     CheckBox checkDolphinBug474238; // 新增：用于绕过 Dolphin bug #474238 的复选框
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.settings_activity); // 设置界面内容
         ButterKnife.bind(this); // 视图注入
 
-        // 读取偏好设置中的状态并初始化复选框
-        boolean isEnabled = PreferenceManagerUtil.getBooleanPreference(this, PREF_DOLPHIN_BUG_WORKAROUND, false);
-        checkDolphinBug474238.setChecked(isEnabled);
-
         // 设置初始状态到核心库
         HxLauncherApplication hxLauncherApplication= HxLauncherApplication.getInstance() ; // 获取应用程序实例。
         builtinFtpServer = hxLauncherApplication.getBuiltinFtpServer(); // 获取FTP服务器实例对象。
+
+
+
+        // 读取偏好设置中的状态并初始化复选框
+        boolean isEnabled = PreferenceManagerUtil.getBooleanPreference(this, PREF_DOLPHIN_BUG_WORKAROUND, false);
+        checkDolphinBug474238.setChecked(isEnabled);
 
         builtinFtpServer.setEnableDolphinBug474238Placeholder(isEnabled);
     }

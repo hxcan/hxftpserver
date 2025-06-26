@@ -46,7 +46,7 @@ dependencies
   implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
   implementation 'androidx.appcompat:appcompat:1.2.0'
   implementation 'com.github.hxcan:upgrademanager:2025.6.22'
-  implementation 'com.github.hxcan:ftpserver:2025.6.26'
+  implementation 'com.github.hxcan:ftpserver:2025.6.28'
   implementation 'com.github.hxcan:feedback:2023.10.24'
   implementation 'com.github.hxcan:rotatingactiveuser:2023.9.8'
   implementation 'com.upokecenter:cbor:4.2.0'
