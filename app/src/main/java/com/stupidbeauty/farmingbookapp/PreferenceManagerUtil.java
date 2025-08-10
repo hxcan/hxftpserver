@@ -66,6 +66,20 @@ public class PreferenceManagerUtil
     return sp.getInt(Constants.Common.VoiceShortCutMapVersion, 0);
   } //public static int getVoiceShortCutMapVersion()
 
+  public static void setBooleanPreference(Context context, String key, boolean value)
+  {
+    SharedPreferences sharedPref = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPref.edit();
+    editor.putBoolean(key, value);
+    editor.apply();
+  }
+
+  public static boolean getBooleanPreference(Context context, String key, boolean defaultValue)
+  {
+    SharedPreferences sharedPref = context.getSharedPreferences("app_settings", Context.MODE_PRIVATE);
+    return sharedPref.getBoolean(key, defaultValue);
+  }
+
 	/**
 	 * 设置语音命中快捷方式数据文件的版本号
 	 * @param BuildConfigVERSION_CODE 版本号

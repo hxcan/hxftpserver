@@ -35,6 +35,22 @@ public class BuiltinFtpServer
   private boolean allowActiveMode=true; //!<  Whether to allow active mode.
   private boolean externalStoragePerformanceOptimize = true; //!< If we should enable external storage performance optimization.
   private boolean fileNameTolerant = true; //!< if we should tolerate invalid file name.
+
+  /**
+    * 设置是否启用 Dolphin bug #474238 的绕过选项。
+    */
+  public void setEnableDolphinBug474238Placeholder(boolean enable)
+  {
+    FtpServer.setEnableDolphinBug474238Placeholder(enable);
+  }
+
+  /**
+    * 获取当前是否启用了 Dolphin bug #474238 的绕过选项。
+    */
+  public boolean isEnableDolphinBug474238Placeholder()
+  {
+    return FtpServer.isDolphinBug474238PlaceholderEnabled();
+  }
     
   public FtpEventListener getEventListener() 
   {

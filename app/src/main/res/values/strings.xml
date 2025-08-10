@@ -54,4 +54,5 @@
   <string name="slash">/</string>
   <string name="notificationChannelIda">ddesscamera74345</string>
   <string name="notificationChannelNameher">HxFtpServer keeps running</string>
+  <string name="dolphinbug474238_workaround_label">Workaround for Dolphin bug #474238 (empty dirs not droppable)</string>
 </resources>
