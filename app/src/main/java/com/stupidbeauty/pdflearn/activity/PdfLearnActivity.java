@@ -2,8 +2,6 @@ package com.stupidbeauty.pdflearn.activity;
 
 import androidx.documentfile.provider.DocumentFile;
 import java.io.File;
-// import com.koushikdutta.async.callback.CompletedCallback;
-// import com.koushikdutta.async.callback.ListenCallback;
 import com.stupidbeauty.hxlauncher.activity.ApplicationInformationActivity;
 import com.stupidbeauty.builtinftp.BuiltinFtpServer;
 import butterknife.BindView;
@@ -32,7 +30,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Display;
 import com.google.android.material.textfield.TextInputEditText;
-import com.simplify.ink.InkView;
+// import com.simplify.ink.InkView;
 import com.stupidbeauty.builtinftp.demo.R;
 import com.stupidbeauty.hxlauncher.ApplicationAliasApplicationInformationAdapter;
 
