@@ -2,8 +2,6 @@ package com.stupidbeauty.pdflearn.activity;
 
 import androidx.documentfile.provider.DocumentFile;
 import java.io.File;
-// import com.koushikdutta.async.callback.CompletedCallback;
-// import com.koushikdutta.async.callback.ListenCallback;
 import com.stupidbeauty.hxlauncher.activity.ApplicationInformationActivity;
 import com.stupidbeauty.builtinftp.BuiltinFtpServer;
 import butterknife.BindView;
