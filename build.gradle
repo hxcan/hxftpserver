@@ -1,0 +1,30 @@
+buildscript 
+{
+  ext.kotlin_version = '1.1.4-3'
+
+  repositories 
+  {
+    maven { url "https://jitpack.io" }
+    jcenter()
+    google()
+  }
+  dependencies 
+  {
+    classpath 'com.android.tools.build:gradle:8.4.1'
+  }
+}
+
+allprojects 
+{
+  repositories 
+  {
+    maven { url "https://jitpack.io" }
+    jcenter()
+    google()
+  }
+}
+
+repositories 
+{
+  mavenCentral()
+}

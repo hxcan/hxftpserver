@@ -1,0 +1,127 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/homeNewsLayout"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_margin="14dp"
+  android:background="?android:attr/selectableItemBackground"
+  android:gravity="center_horizontal"
+  tools:ignore="Overdraw"
+>
+  <com.andexert.library.RippleView
+    android:id="@+id/launchRipple"
+    app:rv_rippleDuration="100"
+    app:rv_color="#170358"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+  >
+    <ImageView
+      android:id="@+id/applicationIconrightimageView2"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:layout_alignParentStart="false"
+      android:layout_alignParentLeft="false"
+      android:layout_alignParentEnd="false"
+      android:layout_alignParentRight="false"
+      android:layout_centerHorizontal="false"
+      android:adjustViewBounds="true"
+      android:contentDescription="@string/applicationIcon"
+      android:src="@drawable/vector_66_11" 
+    />
+    <TextView
+      android:id="@+id/rightTextoperationMethodactTitletextView2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="false"
+      android:layout_alignParentLeft="false"
+      android:layout_alignParentTop="false"
+      android:layout_alignParentEnd="false"
+      android:layout_alignParentRight="false"
+      android:layout_alignParentBottom="false"
+      android:layout_centerHorizontal="false"
+      android:layout_centerVertical="false"
+      android:layout_toEndOf="@id/applicationIconrightimageView2"
+      android:background="@drawable/back"
+      android:gravity="center_horizontal"
+      android:textColor="@color/yellow"
+      android:text="@string/empty" 
+    />
+    <TextView
+      android:id="@+id/receivedLengthTextoperationMethodactTitletextView2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/rightTextoperationMethodactTitletextView2"
+      android:layout_alignParentStart="false"
+      android:layout_alignParentLeft="false"
+      android:layout_alignParentTop="false"
+      android:layout_alignParentEnd="false"
+      android:layout_alignParentRight="false"
+      android:layout_alignParentBottom="false"
+      android:layout_centerHorizontal="false"
+      android:layout_centerVertical="false"
+      android:layout_toEndOf="@id/applicationIconrightimageView2"
+      android:background="@drawable/back"
+      android:gravity="center_horizontal"
+      android:text="@string/empty" 
+    />
+
+        <TextView
+            android:id="@+id/slashTextoperationMethodactTitletextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rightTextoperationMethodactTitletextView2"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="false"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="false"
+            android:layout_toEndOf="@id/applicationIconrightimageView2"
+            android:layout_toRightOf="@id/receivedLengthTextoperationMethodactTitletextView2"
+            android:background="@drawable/back"
+            android:gravity="center_horizontal"
+            android:text="@string/slash" />
+
+        <TextView
+            android:id="@+id/wholeLengthTextoperationMethodactTitletextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rightTextoperationMethodactTitletextView2"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="false"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="false"
+            android:layout_toEndOf="@id/applicationIconrightimageView2"
+            android:layout_toRightOf="@id/slashTextoperationMethodactTitletextView2"
+            android:background="@drawable/back"
+            android:gravity="center_horizontal"
+            android:text="@string/empty" />
+
+        <ProgressBar
+            android:id="@+id/fileprogressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/receivedLengthTextoperationMethodactTitletextView2"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/applicationIconrightimageView2" />
+
+    </com.andexert.library.RippleView>
+
+    <!--<SeekBar-->
+        <!--android:id="@+id/durationseekBar"-->
+        <!--style="@style/Widget.AppCompat.SeekBar.Discrete"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/autoRunswitch1"-->
+        <!--android:max="10"-->
+        <!--android:progress="3" />-->
+
+</RelativeLayout>

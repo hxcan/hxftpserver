@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:animateLayoutChanges="false"
+  android:theme="@android:style/Theme.Wallpaper"
+  tools:context=".LauncherActivity" android:id="@+id/launcher_activity" >
+  <ImageView android:id="@+id/wallpaper" android:layout_width="match_parent" android:layout_height="match_parent" android:alpha="0.88" android:clickable="true"
+    android:contentDescription="@string/backgroundImage" android:focusable="true" android:scaleType="centerCrop" 
+    android:src="@drawable/photo_20230326_10585066211"
+    android:visibility="visible" tools:visibility="visible" />
+  <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:alpha="0.4" android:background="@android:color/black"
+    android:contentDescription="@string/darkBackgroundImage" />
+  <ProgressBar android:id="@+id/progressBar" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_margin="4dp" android:indeterminate="true" android:progressDrawable="@drawable/progress_horizontal1" 
+    android:visibility="invisible" 
+               />
+  <TextView 
+    android:id="@+id/statustextView" 
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:layout_alignParentStart="false"
+    android:layout_alignParentLeft="false" 
+    android:textColor="@color/yellow" 
+    android:textSize="28sp" 
+    android:text="@string/needExternalStorageManagerPermission" 
+    android:layout_marginTop="28dp" 
+  />
+  <Button 
+    android:id="@+id/lock0" 
+    android:text="@string/grantPermission" 
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/statustextView" 
+  />
+  <ImageView android:id="@+id/loveAnimation" android:layout_width="48dp" android:layout_height="48dp" android:layout_alignTop="@id/voiceAssistantLayout"
+    android:layout_toRightOf="@id/voiceAssistantLayout" android:background="@drawable/delete512"
+    android:visibility="invisible" 
+    />
+  <RelativeLayout android:id="@+id/voiceAssistantLayout" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true" 
+    android:layout_marginLeft="48dp" 
+    android:visibility="invisible" 
+    android:layout_marginBottom="48dp" android:alwaysDrawnWithCache="false"
+    android:animateLayoutChanges="true" android:clickable="true" android:focusable="auto" android:focusableInTouchMode="true">
+    <ImageView android:id="@+id/microphoneIcon" android:layout_width="48dp" android:layout_height="48dp" 
+      android:alpha="1" 
+      android:background="@drawable/n962606"
+      android:clickable="true" android:contentDescription="@string/backgroundImage" android:focusable="true" 
+      android:scaleType="centerCrop"
+      android:visibility="visible" />
+    <ImageView android:id="@+id/hitApplicationIcon" android:layout_width="48dp" android:layout_height="48dp" 
+      android:layout_toRightOf="@id/microphoneIcon"
+      android:background="@drawable/narrowhousecartooneye"
+      android:alpha="1" android:contentDescription="@string/darkBackgroundImage" android:scaleType="centerCrop" 
+      android:visibility="visible" />
+  </RelativeLayout>
+</RelativeLayout>
