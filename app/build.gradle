@@ -37,7 +37,6 @@ android
   return void
 }
 
-dependencies 
 {
   implementation 'com.github.hxcan:victoriafresh.android:2024.6.9'
   implementation 'com.jakewharton:butterknife:10.2.3'
