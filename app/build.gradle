@@ -34,12 +34,6 @@ android
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
-
-  packagingOptions 
-  {
-    pickFirst '**/HxShortcutInfo.class'
-    pickFirst '**/HxShortcutInfo.dex'
-  }
   return void
 }
 
