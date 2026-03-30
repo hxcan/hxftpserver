@@ -29,7 +29,7 @@ android
   buildTypes 
   {
     release 
-    {
+  implementation 'com.github.hxcan:ftpserver:2026.3.31'
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
