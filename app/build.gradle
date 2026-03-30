@@ -26,6 +26,7 @@ android
     versionName "4681.2024.2.4"
   } // defaultConfig 
   buildTypes 
+  buildTypes 
   {
     release 
     {
@@ -34,6 +35,10 @@ android
     }
   }
 
+  packagingOptions {
+    pickFirst '**/HxShortcutInfo.class'
+    pickFirst '**/HxShortcutInfo.dex'
+  }
   return void
 }
 
