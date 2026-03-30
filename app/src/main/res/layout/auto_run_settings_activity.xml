@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:theme="@android:style/Theme.Wallpaper"
+
+    tools:context=".LauncherActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.4"
+        android:background="@android:color/black"
+        android:contentDescription="@string/darkBackgroundImage"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/articleListmy_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false"
+        android:scrollbars="vertical"/>
+
+    <TextView
+        android:id="@+id/statustextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:textColor="@color/yellow"
+        android:textSize="28sp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:indeterminate="true"
+        android:progressDrawable="@drawable/progress_horizontal1"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.88"
+        android:clickable="true"
+        android:contentDescription="@string/backgroundImage"
+        android:focusable="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/stopusingphone"
+        android:visibility="invisible" />
+
+
+</RelativeLayout>

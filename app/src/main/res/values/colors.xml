@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="green">#00ff00</color>
+  <color name="huise">#ff777777</color>
+
+    <color name="black">#000000</color>
+    <color name="light_gray">#424445</color>
+    <color name="orange1">#FF973E</color>
+    <color name="white">#ffffffff</color>
+
+
+    <color name="nav_bar_bg">#AAAAAA</color>
+
+    <color name="action_sheet_content_bg">#61656F</color>
+    <color name="red">#ffff0000</color>
+    <color name="emailRegisterColor">#666666</color>
+
+    <color name="light_white">#BEBEBE</color>
+    <color name="orange2">#FED12D</color>
+
+    <color name="x2bgcolor">#e4e4e4</color>
+
+</resources>
