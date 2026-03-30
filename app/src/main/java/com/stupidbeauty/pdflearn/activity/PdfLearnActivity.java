@@ -92,7 +92,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
-import com.stupidbeauty.hxlauncher.datastore.RuntimeInformationStore;
 import com.stupidbeauty.qtdocchinese.ArticleInfo;
 import org.apache.commons.io.FileUtils;
 import butterknife.OnClick;
@@ -159,7 +158,7 @@ public class PdfLearnActivity extends Activity
 	 * 活动被创建。
 	 */
 	public void onCreate(Bundle savedInstanceState) 
-	{
+  {
       super.onCreate(savedInstanceState); //创建超类。
 
       requestWindowFeature(Window.FEATURE_NO_TITLE); //无标题栏。
@@ -185,7 +184,7 @@ public class PdfLearnActivity extends Activity
 	* Add recyclerview on touch listener.
 	*/
 	private void addRecyclerViewOnTouchListerner()
-	{  
+  {  
       View.OnTouchListener hideKeyboardListner=new View.OnTouchListener()
       {
         public boolean onTouch(View v, MotionEvent event)
@@ -216,7 +215,7 @@ public class PdfLearnActivity extends Activity
 	 * Adds the image specified by the Uri IMAGEURI to the current view.
 	 */
 	private void addImage(Uri imageURI)
-	{
+  {
     Log.d(TAG, "addImage." + CodePosition.newInstance().toString()); //Debug.
     String[] filePathColumn = { MediaStore.Images.Media.DATA, MediaStore.Images.Media.DESCRIPTION };
 
@@ -310,7 +309,7 @@ public class PdfLearnActivity extends Activity
 
       HxLauncherApplication hxLauncherApplication= HxLauncherApplication.getInstance() ; // 获取应用程序实例。
       BuiltinFtpServer builtinFtpServer=null; //!< The builtin ftp server.
-      builtinFtpServer=hxLauncherApplication.getBuiltinFtpServer(); // 获取FTP服务器实例对象。
+      builtinFtpServer=hxLauncherApplication.getBuiltinFtpServer(); // 获取 FTP 服务器实例对象。
       
       boolean noTakePermission = false; // Do not take the permission.
       
@@ -611,7 +610,7 @@ public class PdfLearnActivity extends Activity
 	{
       boolean result=false; //结果。
 
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //安卓6.
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //安卓 6.
       {
         result= checkSelfPermission(PERMISSION_STORAGE) == PackageManager.PERMISSION_GRANTED; //存储权限。
 
@@ -619,7 +618,7 @@ public class PdfLearnActivity extends Activity
         {
           result=(checkSelfPermission(PERMISSION_RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED); //录音权限。
         } //if (result) //存储权限已有。
-      } //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //安卓6.
+      } //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //安卓 6.
       else //旧版本。
       {
         result=true; //有权限。
