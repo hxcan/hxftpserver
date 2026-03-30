@@ -1,9 +1,9 @@
 <resources>
-  <string name="app_name">太极FTP服务器</string>
+  <string name="app_name">太极 FTP 服务器</string>
   <string name="copyUrl">复制地址</string>
   <string name="availableSpace">可用空间：</string>
   <string name="downloadFinished">文件下载完毕</string>
-  <string name="ipChanged">IP变化</string>
+  <string name="ipChanged">IP 变化</string>
   <string name="allowUnsafeDeletei">允许非安全删除</string>
   <string name="allowAnonymousetei">允许匿名访问</string>
   <string name="userNamee">用户名：</string>
@@ -12,9 +12,8 @@
   <string name="grantPermission">授予权限</string>
   <string name="resetRootDirectoryin">重置顶级目录</string>
   <string name="grantManageAllFilesPermission">授予管理全部文件权限</string>
-  <string name="apn_setting_username">你可以为FTP设置一个自定义的顶级目录。按下面的按钮以开始设置。</string>
+  <string name="apn_setting_username">你可以为 FTP 设置一个自定义的顶级目录。按下面的按钮以开始设置。</string>
   <string name="setting_tab_name">设置</string>
-  <string name="about_info_coverage">覆盖范围</string>
   <string name="myAccount">我的账号</string>
   <string name="freeCredit">当前顶级目录：</string>
   <string name="paidCredit">付费语音指令额度</string>
@@ -27,7 +26,7 @@
   <string name="dolphinbug474238_workaround_label">绕过 Dolphin bug #474238（空目录不可拖放）</string>
   <string name="stopWeb">停止载入</string>
   <string name="selectRootDirectoryin">选择顶级目录</string>
-  <string name="hxLauncherSettings">太极FTP服务器设置</string>
+  <string name="hxLauncherSettings">太极 FTP 服务器设置</string>
   <string name="enterPassword">输入密码</string>
   <string name="forgotPassword">忘记密码？</string>
 
