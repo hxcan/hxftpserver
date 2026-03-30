@@ -49,6 +49,15 @@ android
       keyPassword 'android'
     }
   }
+
+  applicationVariants.all { variant ->
+    variant.outputs.all { output ->
+      def appName = "hxftpserver"
+      def buildType = variant.buildType.name
+      def versionName = variant.versionName
+      output.outputFileName = new File("${appName}-${buildType}-${versionName}.apk")
+    }
+  }
 }
 
 dependencies 
