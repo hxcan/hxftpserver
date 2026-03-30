@@ -27,6 +27,12 @@ jobs:
     - name: Grant execute permission
       run: chmod +x gradlew
 
+    - name: Install Build Tools via SDK Manager
+      run: |
+        export ANDROID_HOME=/usr/local/lib/android/sdk
+        export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/tools/bin
+        yes | sdkmanager "build-tools;29.0.3"
+
     - name: Build Debug APK
       run: ./gradlew assembleDebug --warning-mode none
 
