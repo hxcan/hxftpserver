@@ -77,7 +77,6 @@ import com.stupidbeauty.builtinftp.BuiltinFtpServer;
 import com.stupidbeauty.hxlauncher.factory.MessageFactory;
 import com.stupidbeauty.hxlauncher.bean.ApplicationNameInternationalizationData;
 import com.stupidbeauty.hxlauncher.bean.WakeLockPackageNameSetData;
-import com.stupidbeauty.hxlauncher.datastore.RuntimeInformationStore;
 import java.io.File;
 import java.io.IOException;
 

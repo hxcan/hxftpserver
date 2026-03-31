@@ -16,7 +16,6 @@ import java.util.Date;
 import java.time.format.DateTimeFormatter;
 import java.io.File;
 import com.stupidbeauty.hxlauncher.application.HxLauncherApplication;
-import com.stupidbeauty.hxlauncher.datastore.RuntimeInformationStore;
 
 // import com.stupidbeauty.hxlauncher.factory.MessageFactory;
 // import com.stupidbeauty.hxlauncher.factory.MessageFactory;

@@ -27,6 +27,12 @@ jobs:
     - name: Grant execute permission
       run: chmod +x gradlew
 
+    - name: Install Build Tools via SDK Manager
+      run: |
+        export ANDROID_HOME=/usr/local/lib/android/sdk
+        export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/tools/bin
+        yes | sdkmanager "build-tools;29.0.3"
+
     - name: Build Debug APK
       run: ./gradlew assembleDebug --warning-mode none
 
@@ -43,17 +49,25 @@ jobs:
         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
         keyPassword: ${{ secrets.KEY_STORE_PASSWORD }}
 
-    - name: Upload artifact
+    - name: Upload Debug APK artifact
       uses: actions/upload-artifact@v4
       with:
-        name: hxftpserver-apk-${{ github.run_number }}
-        path: app/build/outputs/apk/debug/app-debug.apk
+        name: hxftpserver-debug-${{ github.run_number }}
+        path: app/build/outputs/apk/debug/hxftpserver-debug-*.apk
+
+    - name: Upload Signed Release APK artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: hxftpserver-release-signed-${{ github.run_number }}
+        path: ${{ steps.sign_release.outputs.signedReleaseFile }}
 
     - name: Create Release
       if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       uses: softprops/action-gh-release@v1
       with:
         tag_name: ci-build-${{ github.run_number }}
-        files: app/build/outputs/apk/debug/app-debug.apk
+        files: |
+          app/build/outputs/apk/debug/hxftpserver-debug-*.apk
+          ${{ steps.sign_release.outputs.signedReleaseFile }}
         prerelease: true
         body: Auto build from commit ${{ github.sha }}
