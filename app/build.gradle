@@ -22,8 +22,8 @@ android
     applicationId "com.stupidbeauty.hxftpserver"
     minSdkVersion 21
     targetSdkVersion 33
-    versionCode 4682
-    versionName "4682.2026.3.30"
+    versionCode 4683
+    versionName "4683.2026.3.31"
   } // defaultConfig
 
   buildTypes 
