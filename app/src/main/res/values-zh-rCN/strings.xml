@@ -14,7 +14,6 @@
   <string name="grantManageAllFilesPermission">授予管理全部文件权限</string>
   <string name="apn_setting_username">你可以为FTP设置一个自定义的顶级目录。按下面的按钮以开始设置。</string>
   <string name="setting_tab_name">设置</string>
-  <string name="about_info_coverage">覆盖范围</string>
   <string name="myAccount">我的账号</string>
   <string name="freeCredit">当前顶级目录：</string>
   <string name="paidCredit">付费语音指令额度</string>
