@@ -68,7 +68,7 @@ dependencies
   implementation 'com.github.hxcan:feedback:2026.3.34'
   implementation 'androidx.appcompat:appcompat:1.2.0'
   implementation 'com.github.hxcan:upgrademanager:2025.8.1'
-  implementation 'com.github.hxcan:ftpserver:2026.3.31'
+  implementation 'com.github.hxcan:ftpserver:2026.3.36'
   implementation 'com.github.hxcan:rotatingactiveuser:2023.9.8'
   implementation 'com.upokecenter:cbor:4.2.0'
   implementation 'com.github.hxcan:voiceui:2024.6.6'
