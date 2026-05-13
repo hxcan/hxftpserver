@@ -43,7 +43,7 @@ android
   {
     debug
     {
-      storeFile file('../keystore.31/debug.keystore')
+      storeFile file('..\/keystore.31\/debug.keystore')
       storePassword 'android'
       keyAlias 'androiddebugkey'
       keyPassword 'android'
@@ -68,7 +68,7 @@ dependencies
   implementation 'com.github.hxcan:feedback:2026.3.34'
   implementation 'androidx.appcompat:appcompat:1.2.0'
   implementation 'com.github.hxcan:upgrademanager:2025.8.1'
-  implementation 'com.github.hxcan:ftpserver:2026.5.13'
+  implementation 'com.github.hxcan:ftpserver:2026.5.14'
   implementation 'com.github.hxcan:rotatingactiveuser:2023.9.8'
   implementation 'com.upokecenter:cbor:4.2.0'
   implementation 'com.github.hxcan:voiceui:2024.6.6'
@@ -94,7 +94,6 @@ tasks.withType(JavaCompile).configureEach {
     options.forkOptions.jvmArgs += [
 //         # essential for butterknife
         '--add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED',
-
 //         # if you need Glide or LomBok
 //         # these may not be the exact list, but it works for me
         '--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED',
