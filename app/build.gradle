@@ -1,10 +1,14 @@
 apply plugin: 'com.android.application'
 
-android {
-  lint {
+android 
+{
+  lint
+  {
     baseline = file("lint-baseline.xml")
   }
-  compileOptions {
+
+  compileOptions 
+  {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
   }
@@ -12,7 +16,8 @@ android {
   compileSdkVersion 33
   namespace 'com.stupidbeauty.builtinftp.demo'
 
-  defaultConfig {
+  defaultConfig 
+  {
     buildToolsVersion = "30.0.3"
     applicationId "com.stupidbeauty.hxftpserver"
     minSdkVersion 21
@@ -21,24 +26,30 @@ android {
     versionName "4683.2026.3.31"
   } // defaultConfig
 
-  buildTypes {
-    debug {
+  buildTypes 
+  {
+    debug
+    {
       signingConfig signingConfigs.debug
     }
-    release {
+    release 
+    {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
 
-  signingConfigs {
-    debug {
+  signingConfigs
+  {
+    debug
+    {
       storeFile file('../keystore.31/debug.keystore')
       storePassword 'android'
       keyAlias 'androiddebugkey'
       keyPassword 'android'
     }
   }
+
   applicationVariants.all { variant ->
     variant.outputs.all { output ->
       def appName = "hxftpserver"
@@ -49,7 +60,8 @@ android {
   }
 }
 
-dependencies {
+dependencies 
+{
   implementation 'com.github.hxcan:victoriafresh.android:2026.3.8'
   implementation 'com.jakewharton:butterknife:10.2.3'
   annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
@@ -81,7 +93,7 @@ tasks.withType(JavaCompile).configureEach {
     options.fork = true
     options.forkOptions.jvmArgs += [
 //         # essential for butterknife
-        '--add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED,
+        '--add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED',
 
 //         # if you need Glide or LomBok
 //         # these may not be the exact list, but it works for me
